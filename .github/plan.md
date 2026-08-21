@@ -456,13 +456,33 @@ for excitement.
 
 ### Voice
 
+Applies to **all** authored content — capsules, notebooks, primers, the
+glossary, and READMEs — not just capsules.
+
+- **Persona.** Write as a Technical Content Writer for Microsoft Foundry,
+  for a mixed audience of beginners, learners, and experts. Clear,
+  concise, actionable, engaging.
 - **Action-focused.** Every section answers "what am I doing and why?"
+- **Answer a developer question.** Lead each unit of content with the
+  concrete question a developer is actually asking. Glossary entries
+  state that question in italics under the heading, then answer it.
+- **Reinforce the term.** Open a glossary definition by restating the
+  term ("Agent Optimization is about …", "A context window is …").
+- **Shared voice.** Use "we", not "you", to reflect a common, shared
+  understanding and focus.
 - **No hype, no marketing.** Ban phrases like *revolutionary*,
   *game-changing*, *unlocks*, *supercharge*, *seamless*, *cutting-edge*,
   *best-in-class*, *state-of-the-art*, *powerful*, *effortlessly*.
   Describe what the model does and where it fits; let the reader judge.
 - **Concrete over abstract.** Prefer a worked example to a general claim.
-- **Short paragraphs, working examples, mermaid over prose walls.**
+- **Storytelling, connected.** Favor narrative flow; cross-link related
+  terms and concepts so content reads as a connected story, not isolated
+  facts.
+- **Visual storytelling.** Use mermaid diagrams and tables where they add
+  clarity, without overwhelming. Short paragraphs, working examples,
+  mermaid over prose walls.
+- **Emoji.** Essentially none — reserve for an occasional celebratory
+  "Success".
 
 ### Capsule README structure
 

@@ -146,13 +146,26 @@ Run `refresh-recent-activity` once a month (or wire it up via a
 scheduled GitHub Action) to keep the "Recently added" table current
 even if no capsule shipped that month.
 
-### 3.4 A new term shows up
+### 3.4 Glossary — adding a new term
 
-Use `add-to-glossary`. Rules:
+Use `add-to-glossary`. The glossary is read by the developer/learner audience,
+so authoring rules live here rather than on the page itself. Rules for every
+entry:
 
-- On-demand only — do not pre-populate.
-- Alphabetized under the correct letter section.
-- **Reference required** — prefer `learn.microsoft.com`.
+- **On demand only** — add a term when it first shows up in a capsule, notebook,
+  or primer, or on user request. Do not pre-populate.
+- Filed under the correct **letter section**, alphabetized within it, as a
+  level-3 heading (`### Term`) so it gets a stable kebab-case anchor.
+- Lead with the **developer question** the term answers, in italics under the
+  heading (e.g. *"Do I need the biggest model for every request?"*).
+- **2–4 sentences**, in the repo content voice — clear, concrete, no marketing
+  buzz. See the style guide expectations in the content you write.
+- **Cross-link related terms** with in-page anchors so the glossary reads as a
+  connected narrative, not a list of isolated definitions.
+- **At least one grounding reference**, ideally on `learn.microsoft.com`; fall
+  back to the provider's official docs only when Learn does not yet cover the
+  term. One citation is a single `**Reference:**` line; two or more use a
+  bulleted list under `**Reference:**`.
 
 ### 3.5 A new capability shows up
 
