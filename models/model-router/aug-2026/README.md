@@ -32,30 +32,6 @@ notebooks:
       - point one agent at the model-router deployment
       - benchmark across task classes and read response.model
       - chart the selected-model distribution per task
-  - path: 03-routing-modes.ipynb
-    title: "Trade cost against quality with routing modes"
-    concepts:
-      - compare Cost, Balanced, and Quality routing modes
-  - path: 04-model-subset.ipynb
-    title: "Constrain the model subset"
-    concepts:
-      - hold quality while cutting cost and routing variance
-  - path: 05-deployment-and-data-zone.ipynb
-    title: "Choose deployment and data-zone types"
-    concepts:
-      - keep the frontier while meeting data-residency policy
-  - path: 06-automatic-failover.ipynb
-    title: "Preserve success rate with automatic failover"
-    concepts:
-      - hold tail latency and success rate when a model is unstable
-  - path: 07-agentic-routing.ipynb
-    title: "Route tool-calling turns across providers"
-    concepts:
-      - route agentic turns across OpenAI, OSS, and Anthropic
-  - path: 08-refresh-and-per-agent-routers.ipynb
-    title: "Refresh the pool and give each agent its own router"
-    concepts:
-      - compare per-agent routing policies with the refreshed pool
 ---
 
 # Model Router — August 2026 — Release Capsule
@@ -113,22 +89,22 @@ notebook maps to the release that introduced it.
 | 07 | `07-agentic-routing.ipynb` | Does routing the agent's tool-calling turns beat pinning one model, now that it selects across OpenAI, OSS, and Anthropic? | Agentic routing across providers (Aug 2026) |
 | 08 | `08-refresh-and-per-agent-routers.ipynb` | Does giving each agent its own routing policy beat one global router, with the refreshed model pool? | Model refresh + per-agent routers (Aug 2026) |
 
-Notebooks 00–02 are built; the later lever notebooks (03–08) are structured skeletons
-we flesh out iteratively, and each row becomes a fully runnable notebook as we build it.
+Notebooks 00–02 are built and runnable today. The later lever notebooks (03–08)
+roll out as fully runnable notebooks throughout August 2026 — the rows below are
+the planned sequence, and each becomes a live link as it ships.
 
 ## The journey
 
 ```mermaid
-flowchart TD
-    N1[01 optimize instructions<br/>frontier baseline] --> N2[02 route each request<br/>right-fit reveal]
-    N2 --> N3[03 routing modes]
-    N3 --> N4[04 model subset]
-    N4 --> N5[05 deployment / data zone]
-    N5 --> N6[06 failover]
-    N6 --> N7[07 agentic routing]
-    N7 --> N8[08 refresh + per-agent]
-    N8 --> Best[Best routing policy<br/>for Contoso Travel]
+flowchart LR
+    N1[01 optimize<br/>instructions] --> N2[02 route<br/>each request] --> N3[03 routing<br/>modes] --> N4[04 model<br/>subset] --> N5[05 deployment<br/>/ data zone] --> N6[06 failover] --> N7[07 agentic<br/>routing] --> N8[08 refresh +<br/>per-agent] --> Best[Best routing<br/>policy]
+    classDef built fill:#e6f4ea,stroke:#34a853,color:#1e4620;
+    classDef upcoming fill:#f1f3f4,stroke:#9aa0a6,color:#3c4043,stroke-dasharray:4 3;
+    class N1,N2 built;
+    class N3,N4,N5,N6,N7,N8 upcoming;
 ```
+
+_Green steps ship in this release (00–02); dashed steps roll out through August 2026._
 
 ## How we score each step
 

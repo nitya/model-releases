@@ -38,7 +38,7 @@ Every new model release announcement gets a row here, with a link back to the or
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Capabilities |
 | --- | --- | --- |
-| **aug-2026** | [2026-08-19](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router) | Model Router · Chat Completion · Function Calling |
+| **aug-2026** | [2026-08-19](https://aka.ms/modelrouter/updates) | Model Router · Chat Completion · Function Calling |
 | **MAI-Thinking-1** | [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | Reasoning · Chat Completion · Function Calling · Long Context |
 | **MAI-Code-1.1-Flash** | [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | Chat Completion |
 <!-- END:RECENTLY-ADDED -->

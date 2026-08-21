@@ -138,48 +138,6 @@
             "benchmark across task classes and read response.model",
             "chart the selected-model distribution per task"
           ]
-        },
-        {
-          "path": "models/model-router/aug-2026/03-routing-modes.ipynb",
-          "title": "Trade cost against quality with routing modes",
-          "concepts": [
-            "compare Cost, Balanced, and Quality routing modes"
-          ]
-        },
-        {
-          "path": "models/model-router/aug-2026/04-model-subset.ipynb",
-          "title": "Constrain the model subset",
-          "concepts": [
-            "hold quality while cutting cost and routing variance"
-          ]
-        },
-        {
-          "path": "models/model-router/aug-2026/05-deployment-and-data-zone.ipynb",
-          "title": "Choose deployment and data-zone types",
-          "concepts": [
-            "keep the frontier while meeting data-residency policy"
-          ]
-        },
-        {
-          "path": "models/model-router/aug-2026/06-automatic-failover.ipynb",
-          "title": "Preserve success rate with automatic failover",
-          "concepts": [
-            "hold tail latency and success rate when a model is unstable"
-          ]
-        },
-        {
-          "path": "models/model-router/aug-2026/07-agentic-routing.ipynb",
-          "title": "Route tool-calling turns across providers",
-          "concepts": [
-            "route agentic turns across OpenAI, OSS, and Anthropic"
-          ]
-        },
-        {
-          "path": "models/model-router/aug-2026/08-refresh-and-per-agent-routers.ipynb",
-          "title": "Refresh the pool and give each agent its own router",
-          "concepts": [
-            "compare per-agent routing policies with the refreshed pool"
-          ]
         }
       ]
     },
