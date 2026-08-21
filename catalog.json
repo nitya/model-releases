@@ -82,12 +82,107 @@
     }
   ],
   "counts": {
-    "capsules": 5,
+    "capsules": 6,
     "scenarios": 1,
     "publishers": 12,
     "primers": 10
   },
   "capsules": [
+    {
+      "model": "aug-2026",
+      "name": "Model Router — August 2026",
+      "publisher": "model-router",
+      "summary": "Catch up on routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers",
+      "release_date": "2026-08-19",
+      "last_updated": "2026-08-21",
+      "capabilities": [
+        "model-router",
+        "chat-completion",
+        "function-calling"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/model-router",
+      "announcement": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router",
+      "pricing": {
+        "notes": "Billed at the selected underlying model's rate — no separate routing charge",
+        "source": "https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/"
+      },
+      "domains": [
+        "travel"
+      ],
+      "path": "models/model-router/aug-2026",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/model-router/aug-2026",
+      "notebooks": [
+        {
+          "path": "models/model-router/aug-2026/00-setup.ipynb",
+          "title": "Set up your Foundry project",
+          "concepts": [
+            "create the contoso-travel-releases project",
+            "deploy the model-router and required models",
+            "create and smoke-test the prompt agent"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/01-optimize-instructions.ipynb",
+          "title": "Optimize instructions on a frontier model",
+          "concepts": [
+            "baseline a weak prompt agent on a fixed frontier model",
+            "generate a rubric evaluator and upload an eval dataset",
+            "run the Agent Optimizer from code and read the candidate scorecard"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/02-route-each-request.ipynb",
+          "title": "Route each request and reveal right-fit models",
+          "concepts": [
+            "point one agent at the model-router deployment",
+            "benchmark across task classes and read response.model",
+            "chart the selected-model distribution per task"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/03-routing-modes.ipynb",
+          "title": "Trade cost against quality with routing modes",
+          "concepts": [
+            "compare Cost, Balanced, and Quality routing modes"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/04-model-subset.ipynb",
+          "title": "Constrain the model subset",
+          "concepts": [
+            "hold quality while cutting cost and routing variance"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/05-deployment-and-data-zone.ipynb",
+          "title": "Choose deployment and data-zone types",
+          "concepts": [
+            "keep the frontier while meeting data-residency policy"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/06-automatic-failover.ipynb",
+          "title": "Preserve success rate with automatic failover",
+          "concepts": [
+            "hold tail latency and success rate when a model is unstable"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/07-agentic-routing.ipynb",
+          "title": "Route tool-calling turns across providers",
+          "concepts": [
+            "route agentic turns across OpenAI, OSS, and Anthropic"
+          ]
+        },
+        {
+          "path": "models/model-router/aug-2026/08-refresh-and-per-agent-routers.ipynb",
+          "title": "Refresh the pool and give each agent its own router",
+          "concepts": [
+            "compare per-agent routing policies with the refreshed pool"
+          ]
+        }
+      ]
+    },
     {
       "model": "mai-image-2.5-pro",
       "name": "MAI-Image-2.5-Pro",

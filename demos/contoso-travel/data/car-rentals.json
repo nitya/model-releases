@@ -1,0 +1,18 @@
+{
+  "$comment": "Sample car-rental inventory for the Contoso Travel Concierge demo. Daily rates in USD. Policy caps class at midsize, daily rate at 75, and approved vendors to Avis/Hertz/Enterprise (see travel-policy.json). Some options intentionally breach policy (class too high, over daily cap, unapproved vendor, non-refundable).",
+  "as_of_date": "2026-08-21",
+  "car_rentals": [
+    { "id": "C001", "vendor": "Avis", "city": "Tokyo", "car_class": "midsize", "model_example": "Toyota Corolla", "daily_rate_usd": 68, "refundable": true },
+    { "id": "C002", "vendor": "Hertz", "city": "Tokyo", "car_class": "fullsize", "model_example": "Toyota Camry", "daily_rate_usd": 82, "refundable": true },
+    { "id": "C003", "vendor": "Enterprise", "city": "London", "car_class": "compact", "model_example": "Volkswagen Golf", "daily_rate_usd": 55, "refundable": true },
+    { "id": "C004", "vendor": "Sixt", "city": "London", "car_class": "midsize", "model_example": "BMW 1 Series", "daily_rate_usd": 72, "refundable": true },
+    { "id": "C005", "vendor": "Avis", "city": "Paris", "car_class": "economy", "model_example": "Peugeot 208", "daily_rate_usd": 48, "refundable": true },
+    { "id": "C006", "vendor": "Hertz", "city": "Paris", "car_class": "luxury", "model_example": "Mercedes-Benz E-Class", "daily_rate_usd": 140, "refundable": true },
+    { "id": "C007", "vendor": "Enterprise", "city": "Chicago", "car_class": "midsize", "model_example": "Ford Fusion", "daily_rate_usd": 70, "refundable": true },
+    { "id": "C008", "vendor": "Avis", "city": "Chicago", "car_class": "suv", "model_example": "Ford Explorer", "daily_rate_usd": 95, "refundable": true },
+    { "id": "C009", "vendor": "Hertz", "city": "San Francisco", "car_class": "midsize", "model_example": "Nissan Altima", "daily_rate_usd": 74, "refundable": true },
+    { "id": "C010", "vendor": "Enterprise", "city": "San Francisco", "car_class": "midsize", "model_example": "Toyota Camry", "daily_rate_usd": 78, "refundable": true },
+    { "id": "C011", "vendor": "Budget", "city": "New York", "car_class": "compact", "model_example": "Kia Forte", "daily_rate_usd": 60, "refundable": true },
+    { "id": "C012", "vendor": "Avis", "city": "New York", "car_class": "midsize", "model_example": "Chevrolet Malibu", "daily_rate_usd": 73, "refundable": false }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "$comment": "Sample employee profiles for the Contoso Travel Concierge demo. Drive preference-adherence and exception stories (loyalty, cabin, refundable waiver for Executives).",
+  "employees": [
+    {
+      "employee_id": "E1042",
+      "name": "Dana Reyes",
+      "level": "Director",
+      "home_airport": "BOS",
+      "hotel_program": "Marriott",
+      "hotel_status": "Gold",
+      "airline_program": "United",
+      "airline_status": "Gold",
+      "preferred_cabin": "business",
+      "max_personal_overspend_usd": 200,
+      "preferences": { "nonstop": true, "seat": "aisle", "hotel_area": "Shinjuku", "avoid_red_eye": true, "late_checkout": true }
+    },
+    {
+      "employee_id": "E2210",
+      "name": "Sam Okoye",
+      "level": "Manager",
+      "home_airport": "SEA",
+      "hotel_program": "Hilton",
+      "hotel_status": "Diamond",
+      "airline_program": "Alaska",
+      "airline_status": "MVP",
+      "preferred_cabin": "economy",
+      "max_personal_overspend_usd": 150,
+      "preferences": { "nonstop": true, "seat": "window", "avoid_red_eye": true }
+    },
+    {
+      "employee_id": "E3387",
+      "name": "Priya Anand",
+      "level": "VP",
+      "home_airport": "JFK",
+      "hotel_program": "Marriott",
+      "hotel_status": "Titanium",
+      "airline_program": "Delta",
+      "airline_status": "Platinum",
+      "preferred_cabin": "business",
+      "max_personal_overspend_usd": 500,
+      "preferences": { "nonstop": true, "seat": "window", "late_checkout": true }
+    },
+    {
+      "employee_id": "E4501",
+      "name": "Miguel Santos",
+      "level": "Individual Contributor",
+      "home_airport": "SFO",
+      "hotel_program": null,
+      "hotel_status": null,
+      "airline_program": "United",
+      "airline_status": "Silver",
+      "preferred_cabin": "economy",
+      "max_personal_overspend_usd": 0,
+      "preferences": { "nonstop": false, "lowest_cost": true }
+    },
+    {
+      "employee_id": "E5588",
+      "name": "Alex Chen",
+      "level": "Executive",
+      "home_airport": "ORD",
+      "hotel_program": "Marriott",
+      "hotel_status": "Ambassador",
+      "airline_program": "American",
+      "airline_status": "Executive Platinum",
+      "preferred_cabin": "business",
+      "max_personal_overspend_usd": 1000,
+      "preferences": { "nonstop": true, "seat": "window", "refundable_waiver_eligible": true }
+    }
+  ]
+}

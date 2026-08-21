@@ -8,6 +8,7 @@ Each row links out to what you need: the date to the announcement, the model to 
 
 | Date | Publisher | Model | Capabilities |
 |---|---|---|---|
+| [2026-08-19](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router) | [Model Router](https://ai.azure.com/catalog/models?publisher=microsoft) | [aug-2026](https://ai.azure.com/catalog/models/model-router) | Model Router · Chat Completion · Function Calling |
 | [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Thinking-1](https://ai.azure.com/catalog/models/MAI-Thinking-1)<br>_(public preview)_ | Reasoning · Chat Completion · Function Calling · Long Context |
 | [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Code-1.1-Flash](https://microsoft.ai/models/mai-code-1-flash/)<br>_(GitHub Copilot and VS Code)_ | Chat Completion |
 | [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | MAI-Image-2.6<br>_(not yet in Foundry)_ | Image Generation |

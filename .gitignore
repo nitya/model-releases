@@ -12,6 +12,7 @@
 *.env
 venv
 !scripts/sample.env
+!models/model-router/aug-2026/sample.env
 
 # Local planning/scratch folder - do not commit
 .do-not-commit/

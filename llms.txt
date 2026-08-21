@@ -6,6 +6,7 @@ Announcements are tracked in CHANGELOG.md, newest first, grouped by month. Capsu
 
 ## Capsules
 
+- [Model Router — August 2026](https://github.com/microsoft-foundry/model-releases/tree/main/models/model-router/aug-2026): Catch up on routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers. Publisher: model-router. Capabilities: model-router, chat-completion, function-calling. Released 2026-08-19.
 - [MAI-Image-2.5-Pro](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-image-2.5-pro): Render portraits, in-image text, and complex scenes. Publisher: microsoft-ai. Capabilities: image-generation. Released 2026-07-23.
 - [MAI-Voice-2](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-voice-2): Direct expressive, multilingual, and long-form speech synthesis. Publisher: microsoft-ai. Capabilities: audio-speech. Released 2026-06-02.
 - [MAI-Transcribe-1.5](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/mai-transcribe-1.5): Transcribe multilingual audio with keyword biasing. Publisher: microsoft-ai. Capabilities: audio-speech. Released 2026-06-02.

@@ -21,6 +21,14 @@ Providers without a capsule yet are listed in the [publishers reference](./docs/
 
 <br/>
 
+## Model Router
+
+| Capsule | Capability | Last updated | Description |
+| --- | --- | --- | --- |
+| [Model Router — August 2026](models/model-router/aug-2026/) | Model Router, Chat Completion, Function Calling | 2026-08-21 | Catch up on routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers |
+
+<br/>
+
 ## Multi-model scenarios
 
 A scenario covers more than one release in a single notebook, so it can't live in any one capsule. It sits in a `multi-model-scenarios/` folder in one of two places. Under a publisher (`models/<publisher>/multi-model-scenarios/`) it goes deeper on models from that publisher - often a technical dive that uses several together, not necessarily a comparison. At the top level (`models/multi-model-scenarios/`) it spans publishers.

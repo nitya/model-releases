@@ -7,24 +7,57 @@ provider: Microsoft
 related_primers: [model-router]
 ---
 
-# Model Router on Microsoft Foundry
+# Model router in Microsoft Foundry
 
 > **One endpoint, best-fit model per request.** The Microsoft Foundry
 > model router is itself a deployable model — send everything to
 > `model-router` and it picks the underlying model to run.
 
-## Why it matters
+Model router in Microsoft Foundry is a deployable chat model that picks the
+best-fit underlying model for each request. It reads the request — system
+instructions, conversation history, and tool definitions — routes it to an eligible
+model, and returns that model's answer along with the name of the model it chose.
+We address one endpoint; it manages model selection per request.
 
-Custom routing code is one of the first things teams reach for as
-workloads diversify. Model Router removes that responsibility from your
-codebase: pick a mode (Balanced / Cost / Quality) and iterate on the
-routed subset instead of your app.
+We can see model router two ways.
 
-## Members
+### As a model to build agents
 
-| Model | Capabilities | Model card | Released | Expires | Capsule |
-|---|---|---|---|---|---|
-| _—_ | _—_ | _—_ | _—_ | _—_ | _—_ |
+We point an agent at the `model-router` deployment instead of a specific model — a
+drop-in replacement. There's no custom routing code to write: the router selects the
+model, and the response tells us which one answered.
+
+```mermaid
+flowchart LR
+    Ag[Agent] --> R[model-router deployment]
+    R --> M1[underlying model A]
+    R --> M2[underlying model B]
+    R --> M3[underlying model C]
+    R --> Out[Response +<br/>chosen model]
+```
+
+### As an optimization tool to right-size model selection
+
+Every routing configuration — mode, model subset, deployment type, one router per
+agent — is an optimization [lever](../../docs/GLOSSARY.md#optimization-lever) for
+[right-sizing](../../docs/GLOSSARY.md#right-sizing) model selection. We change one,
+re-score, and keep it only when the frontier improves — that's
+[hill climbing](../../docs/GLOSSARY.md#hill-climbing).
+
+```mermaid
+flowchart LR
+    Cfg[Router config<br/>mode · subset · deployment · per-agent] --> Fr[Cost / Quality / Latency frontier]
+```
+
+## Releases
+
+Model router has no versions — it updates in place. We capture each monthly update
+as a dated release capsule; the notebooks inside turn that month's features into
+optimization levers you can measure.
+
+| Release | Focus | Capsule |
+|---|---|---|
+| aug-2026 | Catch-up: routing modes, model subsets, deployment types, failover, agentic routing | [aug-2026](aug-2026/) |
 
 ## Learn more
 

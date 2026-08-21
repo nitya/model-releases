@@ -119,6 +119,11 @@ Then set at minimum:
 Capsules add capsule-specific vars in their **Before You Begin**. The
 `.env` file is git-ignored — never commit it.
 
+> **Entra ID auth.** Capsules that authenticate with `azure-identity` (for
+> example the model router series) need only `MICROSOFT_FOUNDRY_ENDPOINT` plus
+> `az login` — no API key — along with their own `<JOB>_DEPLOYMENT` var such as
+> `AZURE_MODEL_ROUTER_DEPLOYMENT`.
+
 ## 5. Verify
 
 Every capsule notebook opens with an **env precheck cell** that prints

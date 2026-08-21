@@ -1,0 +1,54 @@
+{
+  "policy_id": "contoso-travel-policy",
+  "version": "2027.1",
+  "effective_date": "2026-09-01",
+  "expires_date": "2028-08-31",
+  "currency": "USD",
+  "notes": "Deterministic corporate travel policy. Hard limits are authoritative and must be enforced in code, not left to model judgement. The concierge may interpret ambiguous requests and explain exceptions, but compliance decisions come from these rules.",
+  "airfare": {
+    "international_business_max": 6000,
+    "international_economy_max": 2500,
+    "domestic_business_allowed": false,
+    "domestic_economy_max": 900,
+    "cabin_rule": "Economy is required for flights of 6 hours or less. Business class is allowed only when scheduled flight time exceeds 6 hours.",
+    "fee_rule": "Compliance is evaluated on the total price including mandatory taxes and fees, not the base fare."
+  },
+  "hotel": {
+    "nightly_max_by_city": {
+      "Tokyo": 400,
+      "London": 380,
+      "Paris": 390,
+      "New York": 420,
+      "San Francisco": 380,
+      "Chicago": 300,
+      "default": 300
+    },
+    "preferred_chains": ["Marriott", "Hilton"],
+    "prefer_city_center": true,
+    "refundable_required": true
+  },
+  "car_rental": {
+    "max_class": "midsize",
+    "class_order": ["economy", "compact", "midsize", "fullsize", "suv", "luxury"],
+    "daily_max": 75,
+    "approved_vendors": ["Avis", "Hertz", "Enterprise"]
+  },
+  "booking": {
+    "advance_purchase_days": 14,
+    "refundable_required": true
+  },
+  "exceptions": {
+    "refundable_waiver": {
+      "allowed_for_levels": ["Executive"],
+      "approver": "none"
+    },
+    "international_business_over_cap": {
+      "approver": "VP",
+      "max_overspend_pct": 15
+    },
+    "advance_purchase_waiver": {
+      "approver": "Manager",
+      "condition": "Urgent business travel inside the 14-day window."
+    }
+  }
+}

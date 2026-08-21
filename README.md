@@ -38,9 +38,9 @@ Every new model release announcement gets a row here, with a link back to the or
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Capabilities |
 | --- | --- | --- |
+| **aug-2026** | [2026-08-19](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router) | Model Router · Chat Completion · Function Calling |
 | **MAI-Thinking-1** | [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | Reasoning · Chat Completion · Function Calling · Long Context |
 | **MAI-Code-1.1-Flash** | [2026-08-11](https://microsoft.ai/news/mai-code-1-1-flash-br-better-faster-at-a-quarter-of-the-cost) | Chat Completion |
-| **MAI-Image-2.6** | [2026-08-10](https://microsoft.ai/news/mai-image-2-6-launches-at-no-2-on-arena-ahead-of-google-meta-and-xai) | Image Generation |
 <!-- END:RECENTLY-ADDED -->
 
 *See the full* [*CHANGELOG*](./CHANGELOG.md) *for everything else.*
@@ -59,9 +59,9 @@ Start with the [Quickstart](#quickstart-explore-model-releases-hands-on), then p
 <!-- BEGIN:RECENT-CAPSULES -->
 | Capsule | Last updated | Description |
 | --- | --- | --- |
+| [Model Router — August 2026](models/model-router/aug-2026/) | 2026-08-21 | Catch up on routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers |
 | [MAI-Voice-2](models/microsoft-ai/mai-voice-2/) | 2026-08-19 | Direct expressive, multilingual, and long-form speech synthesis |
 | [MAI-Image-2.5](models/microsoft-ai/mai-image-2.5/) | 2026-08-11 | Generate and edit images from text prompts |
-| [MAI-Transcribe-1.5](models/microsoft-ai/mai-transcribe-1.5/) | 2026-08-07 | Transcribe multilingual audio with keyword biasing |
 <!-- END:RECENT-CAPSULES -->
 
 *See the full* [*CAPSULE-TOC*](./CAPSULE-TOC.md) *for everything else.*

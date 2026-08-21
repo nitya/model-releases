@@ -1,0 +1,42 @@
+{
+  "$comment": "Expense receipts for the Contoso Travel Concierge demo. The 'artifact' field is modality-neutral so the scenario can be reused across model capabilities WITHOUT changing this schema: the base (text) version sets type='text' and content=<extracted text>; a future vision version sets type='image' and uri=<image path>; a future voice version sets type='audio' and uri=<audio path>. Every modality resolves to the same structured receipt.",
+  "modality_note": "Only 'type' + ('content' | 'uri') change between capability versions. Downstream policy and reasoning read the resolved fields (category, amount_usd, date), never the raw artifact.",
+  "receipts": [
+    {
+      "id": "RC001",
+      "employee_id": "E1042",
+      "trip_id": "T-2026-TOKYO-01",
+      "category": "airfare",
+      "amount_usd": 5830,
+      "date": "2026-11-12",
+      "artifact": { "type": "text", "content": "ANA NH9 BOS-NRT business, base 5450 + taxes/fees 380, total USD 5830, refundable" }
+    },
+    {
+      "id": "RC002",
+      "employee_id": "E1042",
+      "trip_id": "T-2026-TOKYO-01",
+      "category": "hotel",
+      "amount_usd": 1080,
+      "date": "2026-11-15",
+      "artifact": { "type": "text", "content": "Tokyo Marriott Shinjuku, 3 nights x 360 USD, total 1080, refundable" }
+    },
+    {
+      "id": "RC003",
+      "employee_id": "E2210",
+      "trip_id": "T-2026-LONDON-02",
+      "category": "car",
+      "amount_usd": 165,
+      "date": "2026-12-03",
+      "artifact": { "type": "text", "content": "Enterprise London compact VW Golf, 3 days x 55 USD, total 165, refundable" }
+    },
+    {
+      "id": "RC004",
+      "employee_id": "E3387",
+      "trip_id": "T-2027-PARIS-03",
+      "category": "meal",
+      "amount_usd": 74,
+      "date": "2027-01-16",
+      "artifact": { "type": "text", "content": "Dinner, Paris, 1 guest, total EUR 68 (USD 74 at booking rate)" }
+    }
+  ]
+}

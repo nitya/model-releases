@@ -91,6 +91,31 @@ models/<publisher-slug>/<model-slug>/<YYYY-MM-DD>/
     └── assets/              # optional
 ```
 
+**Model router family (dated releases).** `model-router` has no versions — it
+updates in place. Its releases are dated capsule folders
+`models/model-router/<mmm-yyyy>/` (for example `aug-2026/`), where the capsule
+`model:` slug equals the folder name. The publisher README lists **releases, not
+members**, and frames the model two ways: as a model to build agents, and as an
+optimization tool whose routing config is a lever. Each release folder holds one
+notebook per feature/lever from that month's update, each opening with a
+falsifiable "does changing X improve Y?" question.
+
+**`demos/` — reusable optimization scenarios.** `demos/<name>/` holds a scenario
+(data + instructions + benchmark) for practicing hill climbing against live
+Foundry deployments. Demos are **not** capsules and are invisible to the catalog.
+Rules: demo data must be **future-proof** (dates in late 2026–2028, never past
+dates); datasets are JSON (playground-friendly); a stable Travel-State-style
+schema plus modality-neutral artifacts keep a scenario reusable across
+capabilities (text now; vision/voice/image later by swapping only the agent and
+its "Inputs & modalities" block).
+
+**Env vars.** Capsules use `MICROSOFT_FOUNDRY_ENDPOINT` (the project endpoint).
+Entra ID capsules (e.g. the model router series) authenticate with `az login`
+(`azure-identity`) — no API key — plus a `<JOB>_DEPLOYMENT` var such as
+`AZURE_MODEL_ROUTER_DEPLOYMENT`. Additional vars are documented in
+`scripts/sample.env` and the capsule's Before You Begin, which links back to
+`models/quickstart/`.
+
 ---
 
 ## 3. Repo README structure
@@ -470,6 +495,9 @@ glossary, and READMEs — not just capsules.
   term ("Agent Optimization is about …", "A context window is …").
 - **Shared voice.** Use "we", not "you", to reflect a common, shared
   understanding and focus.
+- **Terminology.** Write "model router" in lowercase (not "Model Router"),
+  and say "model router in Microsoft Foundry" on first reference in a
+  document. Generated catalog names and tables are a separate concern.
 - **No hype, no marketing.** Ban phrases like *revolutionary*,
   *game-changing*, *unlocks*, *supercharge*, *seamless*, *cutting-edge*,
   *best-in-class*, *state-of-the-art*, *powerful*, *effortlessly*.
@@ -478,8 +506,9 @@ glossary, and READMEs — not just capsules.
 - **Storytelling, connected.** Favor narrative flow; cross-link related
   terms and concepts so content reads as a connected story, not isolated
   facts.
-- **Visual storytelling.** Use mermaid diagrams and tables where they add
-  clarity, without overwhelming. Short paragraphs, working examples,
+- **Visual storytelling.** Prefer a **mermaid diagram over prose** whenever a
+  flow, relationship, or sequence can be drawn. Use diagrams and tables where
+  they add clarity, without overwhelming. Short paragraphs, working examples,
   mermaid over prose walls.
 - **Emoji.** Essentially none — reserve for an occasional celebratory
   "Success".
@@ -535,7 +564,9 @@ the Jupyter Outline reads like a tutorial table of contents:
     ship empty.
 
 Section headings use `##` (level 2) so they populate the Outline;
-sub-steps within a section can use `###`.
+sub-steps within a section can use `###`. Number sub-steps to match their
+parent section (`### 2.1`, `### 2.2`), and always leave a blank line before a
+subheading so it reads cleanly.
 
 ### Enforcement
 

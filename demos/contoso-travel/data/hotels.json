@@ -1,0 +1,20 @@
+{
+  "$comment": "Sample hotel inventory for the Contoso Travel Concierge demo. Nightly rates in USD. Policy caps vary by city (see travel-policy.json). preferred_chains are a soft preference, not a hard cap. Some options intentionally breach policy (over nightly cap, non-refundable) or are simply non-preferred, to drive hill-climbing stories.",
+  "as_of_date": "2026-08-21",
+  "hotels": [
+    { "id": "H001", "name": "Tokyo Marriott Shinjuku", "chain": "Marriott", "city": "Tokyo", "area": "Shinjuku", "city_center": true, "nightly_rate_usd": 360, "rating": 4.5, "refundable": true },
+    { "id": "H002", "name": "Hilton Tokyo", "chain": "Hilton", "city": "Tokyo", "area": "Shinjuku", "city_center": true, "nightly_rate_usd": 410, "rating": 4.4, "refundable": true },
+    { "id": "H003", "name": "Park Hyatt Tokyo", "chain": "Hyatt", "city": "Tokyo", "area": "Shinjuku", "city_center": true, "nightly_rate_usd": 520, "rating": 4.8, "refundable": true },
+    { "id": "H004", "name": "Tokyu Stay Shinjuku", "chain": "Independent", "city": "Tokyo", "area": "Shinjuku", "city_center": true, "nightly_rate_usd": 210, "rating": 4.0, "refundable": false },
+    { "id": "H005", "name": "London Marriott County Hall", "chain": "Marriott", "city": "London", "area": "South Bank", "city_center": true, "nightly_rate_usd": 370, "rating": 4.6, "refundable": true },
+    { "id": "H006", "name": "Hilton London Bankside", "chain": "Hilton", "city": "London", "area": "Bankside", "city_center": true, "nightly_rate_usd": 360, "rating": 4.5, "refundable": true },
+    { "id": "H007", "name": "The Savoy", "chain": "Independent", "city": "London", "area": "Covent Garden", "city_center": true, "nightly_rate_usd": 610, "rating": 4.9, "refundable": true },
+    { "id": "H008", "name": "Paris Marriott Opera Ambassador", "chain": "Marriott", "city": "Paris", "area": "Opera", "city_center": true, "nightly_rate_usd": 380, "rating": 4.4, "refundable": true },
+    { "id": "H009", "name": "Hilton Paris Opera", "chain": "Hilton", "city": "Paris", "area": "Opera", "city_center": true, "nightly_rate_usd": 400, "rating": 4.5, "refundable": true },
+    { "id": "H010", "name": "Chicago Marriott Downtown", "chain": "Marriott", "city": "Chicago", "area": "The Loop", "city_center": true, "nightly_rate_usd": 290, "rating": 4.3, "refundable": true },
+    { "id": "H011", "name": "Hilton Chicago", "chain": "Hilton", "city": "Chicago", "area": "South Loop", "city_center": true, "nightly_rate_usd": 320, "rating": 4.4, "refundable": true },
+    { "id": "H012", "name": "San Francisco Marriott Marquis", "chain": "Marriott", "city": "San Francisco", "area": "SoMa", "city_center": true, "nightly_rate_usd": 370, "rating": 4.4, "refundable": true },
+    { "id": "H013", "name": "Hyatt Regency San Francisco", "chain": "Hyatt", "city": "San Francisco", "area": "Embarcadero", "city_center": true, "nightly_rate_usd": 360, "rating": 4.5, "refundable": true },
+    { "id": "H014", "name": "New York Marriott Marquis", "chain": "Marriott", "city": "New York", "area": "Times Square", "city_center": true, "nightly_rate_usd": 430, "rating": 4.5, "refundable": true }
+  ]
+}
