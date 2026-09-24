@@ -8,6 +8,12 @@ Each row links out to what you need: the date to the announcement, the model to 
 
 | Date | Publisher | Model | Capabilities |
 |---|---|---|---|
+| [2026-09-22](https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-6-sol](https://ai.azure.com/catalog/models/gpt-6-sol) | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context |
+| [2026-09-22](https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-6-luna](https://ai.azure.com/catalog/models/gpt-6-luna) | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context |
+| [2026-09-10](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-live-1](https://ai.azure.com/catalog/models/gpt-live-1) | Audio / Speech · Function Calling |
+| [2026-09-09](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-image-2.5-flare](https://ai.azure.com/catalog/models/gpt-image-2.5-flare) | Image Generation |
+| [2026-09-09](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-image-2.5-sunburst](https://ai.azure.com/catalog/models/gpt-image-2.5-sunburst) | Image Generation |
+| [2026-09-03](https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-6-astra](https://ai.azure.com/catalog/models/gpt-6-astra) | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context |
 | [2026-09-03](https://microsoft.ai/news/mai-transcribe-2-is-the-fastest-most-accurate-and-cheapest-speech-recognition-model-in-the-world/) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Transcribe-2](https://ai.azure.com/catalog/models/MAI-Transcribe-2) | Audio / Speech |
 
 ## August 2026
@@ -29,6 +35,7 @@ Each row links out to what you need: the date to the announcement, the model to 
 | [2026-07-24](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-5-is-available-today-in-microsoft-foundry/4535068) | [Anthropic](https://ai.azure.com/catalog/models?publisher=anthropic) | [Claude Opus 5](https://ai.azure.com/catalog/models/claude-opus-5) | Chat Completion · Reasoning · Multimodal · Function Calling |
 | [2026-07-23](https://microsoft.ai/news/introducing-mai-image-2-5-pro-and-mai-voice-2-flash/) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Image-2.5-Pro](https://ai.azure.com/catalog/models/MAI-Image-2.5-Pro) | Image Generation |
 | [2026-07-23](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446) | [Microsoft AI](https://ai.azure.com/catalog/models?publisher=microsoft) | [MAI-Voice-2-Flash](https://ai.azure.com/catalog/models/MAI-Voice-2-Flash) | Audio / Speech |
+| [2026-07-09](https://azure.microsoft.com/en-us/blog/gpt-5-6-now-available-in-microsoft-foundry/) | [Azure OpenAI](https://ai.azure.com/catalog/models?publisher=openai) | [gpt-5.6-terra](https://ai.azure.com/catalog/models/gpt-5.6-terra) | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context |
 
 ## June 2026
 

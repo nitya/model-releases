@@ -26,3 +26,6 @@ azure-cognitiveservices-speech
 azure-ai-projects
 openai
 python-dotenv
+
+# GPT-Live-1 — server-side full-duplex WebSocket session
+websockets

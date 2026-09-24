@@ -24,7 +24,13 @@ drive the patterns other families follow.
 
 | Model | Capabilities | Model card | Released | Expires | Capsule |
 |---|---|---|---|---|---|
-| _—_ | _—_ | _—_ | _—_ | _—_ | _—_ |
+| gpt-live-1 | Audio / Speech · Function Calling | [card](https://ai.azure.com/catalog/models/gpt-live-1) | 2026-09-10 | — | [capsule](gpt-live-1/) |
+| gpt-image-2.5-flare | Image Generation | [card](https://ai.azure.com/catalog/models/gpt-image-2.5-flare) | 2026-09-09 | — | [capsule](gpt-image-2.5-flare/) |
+| gpt-image-2.5-sunburst | Image Generation | [card](https://ai.azure.com/catalog/models/gpt-image-2.5-sunburst) | 2026-09-09 | — | [capsule](gpt-image-2.5-sunburst/) |
+| gpt-6-astra | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context | [card](https://ai.azure.com/catalog/models/gpt-6-astra) | 2026-09-03 | — | [capsule](gpt-6-astra/) |
+| gpt-6-sol | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context | [card](https://ai.azure.com/catalog/models/gpt-6-sol) | 2026-09-22 | — | [capsule](gpt-6-sol/) |
+| gpt-5.6-terra | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context | [card](https://ai.azure.com/catalog/models/gpt-5.6-terra) | 2026-07-09 | — | [capsule](gpt-5.6-terra/) |
+| gpt-6-luna | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context | [card](https://ai.azure.com/catalog/models/gpt-6-luna) | 2026-09-22 | — | [capsule](gpt-6-luna/) |
 
 <!-- Row template (added by add-model / add-capsule):
 | gpt-4.1 | Chat · Reasoning · Vision · Function Calling | [card](https://learn.microsoft.com/...) | YYYY-MM-DD | YYYY-MM-DD | [capsule](gpt-4.1/) |

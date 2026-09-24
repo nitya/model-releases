@@ -9,6 +9,20 @@ Providers without a capsule yet are listed in the [publishers reference](./docs/
 <br/>
 
 <!-- BEGIN:CAPSULE-TABLES -->
+## Azure OpenAI
+
+| Capsule | Capability | Last updated | Description |
+| --- | --- | --- | --- |
+| [GPT-6 Sol](models/azure-openai/gpt-6-sol/) | Reasoning, Chat Completion, Multimodal, Vision, Function Calling, Long Context | 2026-09-23 | Resolve conflicting product claims and safety constraints before recommending a camping bundle |
+| [GPT-6 Luna](models/azure-openai/gpt-6-luna/) | Reasoning, Chat Completion, Multimodal, Vision, Function Calling, Long Context | 2026-09-23 | Classify short retail questions into deterministic support routes and inspect request latency |
+| [GPT-Live-1](models/azure-openai/gpt-live-1/) | Audio / Speech, Function Calling | 2026-09-21 | Redirect a full-duplex spoken product explanation while preserving the session transcript and audio |
+| [GPT-Image-2.5-Sunburst](models/azure-openai/gpt-image-2.5-sunburst/) | Image Generation | 2026-09-21 | Apply a precise campaign-background edit while asking the model to preserve the source backpack |
+| [GPT-Image-2.5-Flare](models/azure-openai/gpt-image-2.5-flare/) | Image Generation | 2026-09-21 | Create tent and backpack merchandising variants from approved local product images |
+| [GPT-6 Astra](models/azure-openai/gpt-6-astra/) | Reasoning, Chat Completion, Multimodal, Vision, Function Calling, Long Context | 2026-09-21 | Reconcile product records, manuals, and product images into an evidence-backed outfitting plan |
+| [GPT-5.6 Terra](models/azure-openai/gpt-5.6-terra/) | Reasoning, Chat Completion, Multimodal, Vision, Function Calling, Long Context | 2026-09-21 | Ground a structured gear comparison in deterministic local inventory lookups |
+
+<br/>
+
 ## Microsoft AI
 
 | Capsule | Capability | Last updated | Description |

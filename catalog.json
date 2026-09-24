@@ -82,12 +82,183 @@
     }
   ],
   "counts": {
-    "capsules": 7,
+    "capsules": 14,
     "scenarios": 1,
     "publishers": 12,
     "primers": 10
   },
   "capsules": [
+    {
+      "model": "gpt-6-sol",
+      "name": "GPT-6 Sol",
+      "publisher": "azure-openai",
+      "summary": "Resolve conflicting product claims and safety constraints before recommending a camping bundle",
+      "release_date": "2026-09-22",
+      "last_updated": "2026-09-23",
+      "capabilities": [
+        "reasoning",
+        "chat-completion",
+        "multimodal",
+        "vision",
+        "function-calling",
+        "long-context"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-6-sol",
+      "announcement": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/",
+      "pricing": {
+        "notes": "Rates vary by deployment and short- or long-context usage",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-6-sol",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-6-sol",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-6-sol/01-reason-through-gear-constraints.ipynb",
+          "title": "Reason through gear constraints and conflicting claims",
+          "concepts": [
+            "constraint reasoning"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "publisher": "azure-openai",
+      "summary": "Classify short retail questions into deterministic support routes and inspect request latency",
+      "release_date": "2026-09-22",
+      "last_updated": "2026-09-23",
+      "capabilities": [
+        "reasoning",
+        "chat-completion",
+        "multimodal",
+        "vision",
+        "function-calling",
+        "long-context"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-6-luna",
+      "announcement": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/",
+      "pricing": {
+        "notes": "Rates vary by deployment and short- or long-context usage",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-6-luna",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-6-luna",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-6-luna/01-route-shopper-questions.ipynb",
+          "title": "Route short shopper questions",
+          "concepts": [
+            "low-latency request classification"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt-live-1",
+      "name": "GPT-Live-1",
+      "publisher": "azure-openai",
+      "summary": "Redirect a full-duplex spoken product explanation while preserving the session transcript and audio",
+      "release_date": "2026-09-10",
+      "last_updated": "2026-09-21",
+      "capabilities": [
+        "audio-speech",
+        "function-calling"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-live-1",
+      "announcement": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593",
+      "pricing": {
+        "notes": "Voice-session duration and any delegated backend work are billed separately",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-live-1",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-live-1",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-live-1/01-redirect-a-product-explanation.ipynb",
+          "title": "Redirect a spoken product explanation",
+          "concepts": [
+            "full-duplex conversation redirection"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "name": "GPT-Image-2.5-Sunburst",
+      "publisher": "azure-openai",
+      "summary": "Apply a precise campaign-background edit while asking the model to preserve the source backpack",
+      "release_date": "2026-09-09",
+      "last_updated": "2026-09-21",
+      "capabilities": [
+        "image-generation"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-image-2.5-sunburst",
+      "announcement": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593",
+      "pricing": {
+        "notes": "Image rates vary by quality, dimensions, and deployment",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-image-2.5-sunburst",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-image-2.5-sunburst",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-image-2.5-sunburst/01-preserve-a-product-in-a-campaign-edit.ipynb",
+          "title": "Preserve a backpack in a campaign edit",
+          "concepts": [
+            "high-fidelity product-preserving editing"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "name": "GPT-Image-2.5-Flare",
+      "publisher": "azure-openai",
+      "summary": "Create tent and backpack merchandising variants from approved local product images",
+      "release_date": "2026-09-09",
+      "last_updated": "2026-09-21",
+      "capabilities": [
+        "image-generation"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-image-2.5-flare",
+      "announcement": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593",
+      "pricing": {
+        "notes": "Image rates vary by quality, dimensions, and deployment",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-image-2.5-flare",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-image-2.5-flare",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-image-2.5-flare/01-create-merchandising-variants.ipynb",
+          "title": "Create tent merchandising variants",
+          "concepts": [
+            "multi-variant image editing"
+          ]
+        }
+      ]
+    },
     {
       "model": "mai-transcribe-2",
       "name": "MAI-Transcribe-2",
@@ -121,6 +292,43 @@
             "speaker-aware transcription with timestamps and controlled noise levels",
             "multilingual transcription and domain vocabulary biasing",
             "controlled comparison with MAI-Transcribe-1.5"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "publisher": "azure-openai",
+      "summary": "Reconcile product records, manuals, and product images into an evidence-backed outfitting plan",
+      "release_date": "2026-09-03",
+      "last_updated": "2026-09-21",
+      "capabilities": [
+        "reasoning",
+        "chat-completion",
+        "multimodal",
+        "vision",
+        "function-calling",
+        "long-context"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-6-astra",
+      "announcement": "https://azure.microsoft.com/en-us/blog/gpt-6-astra-frontier-intelligence-for-work-now-generally-available-in-microsoft-foundry/",
+      "pricing": {
+        "notes": "Rates vary by deployment and short- or long-context usage",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-6-astra",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-6-astra",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-6-astra/01-plan-a-safe-outfitting-kit.ipynb",
+          "title": "Plan a safe outfitting kit from mixed product evidence",
+          "concepts": [
+            "multimodal evidence synthesis"
           ]
         }
       ]
@@ -209,6 +417,43 @@
             "high-fidelity portrait generation",
             "accurate text rendering in images",
             "visual reasoning across complex scenes"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "name": "GPT-5.6 Terra",
+      "publisher": "azure-openai",
+      "summary": "Ground a structured gear comparison in deterministic local inventory lookups",
+      "release_date": "2026-07-09",
+      "last_updated": "2026-09-21",
+      "capabilities": [
+        "reasoning",
+        "chat-completion",
+        "multimodal",
+        "vision",
+        "function-calling",
+        "long-context"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/gpt-5.6-terra",
+      "announcement": "https://azure.microsoft.com/en-us/blog/gpt-5-6-now-available-in-microsoft-foundry/",
+      "pricing": {
+        "notes": "Rates vary by deployment and short- or long-context usage",
+        "source": "https://azure.microsoft.com/pricing/details/azure-openai/"
+      },
+      "domains": [
+        "retail",
+        "outdoor-recreation"
+      ],
+      "path": "models/azure-openai/gpt-5.6-terra",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/azure-openai/gpt-5.6-terra",
+      "notebooks": [
+        {
+          "path": "models/azure-openai/gpt-5.6-terra/01-compare-gear-with-tools.ipynb",
+          "title": "Compare gear with a local catalog tool",
+          "concepts": [
+            "function calling"
           ]
         }
       ]

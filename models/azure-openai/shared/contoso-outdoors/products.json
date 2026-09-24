@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "TrailMaster X4 Tent",
+    "price": 250,
+    "category": "Tents",
+    "brand": "OutdoorLiving",
+    "description": "Unveiling the TrailMaster X4 Tent from OutdoorLiving, your home away from home for your next camping adventure. Crafted from durable polyester, this tent boasts a spacious interior perfect for four occupants. It ensures your dryness under drizzly skies thanks to its water-resistant construction, and the accompanying rainfly adds an extra layer of weather protection. It offers refreshing airflow and bug defence, courtesy of its mesh panels. Accessibility is not an issue with its multiple doors and interior pockets that keep small items tidy. Reflective guy lines grant better visibility at night, and the freestanding design simplifies setup and relocation. With the included carry bag, transporting this convenient abode becomes a breeze. Be it an overnight getaway or a week-long nature escapade, the TrailMaster X4 Tent provides comfort, convenience, and concord with the great outdoors. Comes with a two-year limited warranty to ensure customer satisfaction.",
+    "slug": "trailmaster-x4-tent",
+    "manual": "manuals/product_info_1.md",
+    "images": [
+      "images/product_1.webp"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Adventurer Pro Backpack",
+    "price": 90,
+    "category": "Backpacks",
+    "brand": "HikeMate",
+    "description": "Venture into the wilderness with the HikeMate's Adventurer Pro Backpack! Uniquely designed with ergonomic comfort in mind, this backpack ensures a steadfast journey no matter the mileage. It boasts a generous 40L capacity wrapped up in durable nylon fabric ensuring its long-lasting performance on even the most rugged pursuits. It's meticulously fashioned with multiple compartments and pockets for organized storage, hydration system compatibility, and adjustable padded shoulder straps all in a lightweight construction. The added features of a sternum strap and hip belt enhance stability without compromising on comfort. The Adventurer Pro Backpack also prioritizes your safety with its reflective accents for when night falls. This buoyant beauty does more than carry your essentials; it carries the promise of a stress-free adventure!",
+    "slug": "adventurer-pro-backpack",
+    "manual": "manuals/product_info_2.md",
+    "images": [
+      "images/product_2.webp"
+    ]
+  }
+]

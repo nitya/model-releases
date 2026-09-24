@@ -38,9 +38,9 @@ Every new model release announcement gets a row here, with a link back to the or
 <!-- BEGIN:RECENTLY-ADDED -->
 | Model | Release date | Capabilities |
 | --- | --- | --- |
-| **MAI-Transcribe-2** | [2026-09-03](https://microsoft.ai/news/mai-transcribe-2-is-the-fastest-most-accurate-and-cheapest-speech-recognition-model-in-the-world/) | Audio / Speech |
-| **aug-2026** | [2026-08-19](https://aka.ms/modelrouter/updates) | Model Router · Chat Completion · Function Calling |
-| **MAI-Thinking-1** | [2026-08-12](https://microsoft.ai/news/introducing-mai-thinking-1) | Reasoning · Chat Completion · Function Calling · Long Context |
+| **gpt-6-sol** | [2026-09-22](https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/) | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context |
+| **gpt-6-luna** | [2026-09-22](https://azure.microsoft.com/en-us/blog/gpt-6-astra-sol-and-luna-for-production-agents-in-microsoft-foundry/) | Reasoning · Chat Completion · Multimodal · Vision · Function Calling · Long Context |
+| **gpt-live-1** | [2026-09-10](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/create-multimodal-applications-with-openai-models-in-microsoft-foundry/4543593) | Audio / Speech · Function Calling |
 <!-- END:RECENTLY-ADDED -->
 
 *See the full* [*CHANGELOG*](./CHANGELOG.md) *for everything else.*
@@ -59,9 +59,9 @@ Start with the [Quickstart](#quickstart-explore-model-releases-hands-on), then p
 <!-- BEGIN:RECENT-CAPSULES -->
 | Capsule | Last updated | Description |
 | --- | --- | --- |
-| [MAI-Transcribe-2](models/microsoft-ai/mai-transcribe-2/) | 2026-09-14 | Transcribe noisy multilingual audio with diarization, timestamps, and domain biasing |
-| [Model Router — August 2026](models/model-router/aug-2026/) | 2026-08-21 | Catch up on routing modes, model subsets, deployment types, failover, and agentic routing as optimization levers |
-| [MAI-Voice-2](models/microsoft-ai/mai-voice-2/) | 2026-08-19 | Direct expressive, multilingual, and long-form speech synthesis |
+| [GPT-6 Sol](models/azure-openai/gpt-6-sol/) | 2026-09-23 | Resolve conflicting product claims and safety constraints before recommending a camping bundle |
+| [GPT-6 Luna](models/azure-openai/gpt-6-luna/) | 2026-09-23 | Classify short retail questions into deterministic support routes and inspect request latency |
+| [GPT-Live-1](models/azure-openai/gpt-live-1/) | 2026-09-21 | Redirect a full-duplex spoken product explanation while preserving the session transcript and audio |
 <!-- END:RECENT-CAPSULES -->
 
 *See the full* [*CAPSULE-TOC*](./CAPSULE-TOC.md) *for everything else.*
