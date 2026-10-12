@@ -1,0 +1,298 @@
+{
+  "title": "Three cards, three questions",
+  "subtitle": "Reading a model card before we build",
+  "hosts": {
+    "harper": {
+      "name": "Harper",
+      "voice": "en-US-Harper:MAI-Voice-2.1"
+    },
+    "grant": {
+      "name": "Grant",
+      "voice": "en-US-Grant:MAI-Voice-2.1"
+    }
+  },
+  "cover_prompt": "Podcast cover art, flat vector illustration: two microphones facing each other over a stack of three glowing cards, soft teal and coral palette, bold simple shapes, no text",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "Why read a card",
+      "image_prompt": "Flat vector illustration of three glowing cards fanned out beside a microphone on a desk, soft teal and coral palette, calm studio, no text",
+      "lines": [
+        {
+          "id": "s0l1",
+          "host": "harper",
+          "style": "joyful",
+          "cites": [],
+          "text": "Welcome back. Today we're reading model cards, the page that tells us what a model is for, what it costs, and where it stops."
+        },
+        {
+          "id": "s0l2",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "And we're doing it with three real cards: the ones for the models that are making this very episode."
+        },
+        {
+          "id": "s0l3",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "That's right. MAI-Voice-2.1 is speaking, MAI-Transcribe-2 will check our words, and MAI-Image-2.6-Flash drew the pictures."
+        },
+        {
+          "id": "s0l4",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "For each card we'll ask one question, and then act on the answer. Let's start with the voice."
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "title": "The voice card: limits and access",
+      "image_prompt": "Flat vector illustration of a microphone emitting layered sound waves that turn into small ribbons, soft teal and coral palette, no text",
+      "lines": [
+        {
+          "id": "s1l1",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "voice.v1"
+          ],
+          "text": "The first thing I look for is limits. The Voice card says each generation runs up to about 45 seconds, with longer audio handled by chunking."
+        },
+        {
+          "id": "s1l2",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "So we didn't hand it one long script. We split every host turn into short lines, and the notebook checks that each clip stays under that limit."
+        },
+        {
+          "id": "s1l3",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "voice.v3"
+          ],
+          "text": "The card lists the price as $22 per 1M characters, so we can count our characters and know the cost before we synthesize anything."
+        },
+        {
+          "id": "s1l4",
+          "host": "harper",
+          "style": null,
+          "cites": [
+            "voice.v6",
+            "voice.v2"
+          ],
+          "text": "And a caution. The card describes instant voice cloning from a short audio clip, and it says access requires Microsoft approval and guardrails are in place to avoid misuse."
+        },
+        {
+          "id": "s1l5",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "So we only use the prebuilt voices, Harper and Grant, and nothing in this episode is cloned."
+        },
+        {
+          "id": "s1l6",
+          "host": "harper",
+          "style": null,
+          "cites": [
+            "voice.v5"
+          ],
+          "text": "One more line I underline: synthetic voices can be misused for impersonation, misinformation, or deceptive content."
+        },
+        {
+          "id": "s1l7",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "That's why the player labels this audio as generated."
+        }
+      ]
+    },
+    {
+      "id": "transcribe",
+      "title": "The transcription card: what we can ask for",
+      "image_prompt": "Flat vector illustration of an audio waveform flowing into rows of small dots and dashes like captions, soft teal and coral palette, no text",
+      "lines": [
+        {
+          "id": "s2l1",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "Second card, MAI-Transcribe-2. The question here is what we can ask it to return."
+        },
+        {
+          "id": "s2l2",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "transcribe.t1"
+          ],
+          "text": "Word-level timestamps, according to the card, give precise timing for every word."
+        },
+        {
+          "id": "s2l3",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "That's how our captions can follow along."
+        },
+        {
+          "id": "s2l4",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "transcribe.t2"
+          ],
+          "text": "It also supports keyword biasing for domain-specific terms."
+        },
+        {
+          "id": "s2l5",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "Our model names are exactly that, so we hand it a phrase list."
+        },
+        {
+          "id": "s2l6",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "transcribe.t3"
+          ],
+          "text": "And the card describes a clean style that removes disfluencies for readable captions, notes, and published transcripts."
+        },
+        {
+          "id": "s2l7",
+          "host": "harper",
+          "style": null,
+          "cites": [
+            "transcribe.t4"
+          ],
+          "text": "Watch the price line, though. It says early-bird pricing of $0.10 per hour of audio."
+        },
+        {
+          "id": "s2l8",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "Early-bird suggests it may change, so we check before budgeting."
+        },
+        {
+          "id": "s2l9",
+          "host": "harper",
+          "style": null,
+          "cites": [
+            "transcribe.t5"
+          ],
+          "text": "The input limits are practical too: WAV, MP3, or FLAC, up to 300 MB or 2 hours."
+        }
+      ]
+    },
+    {
+      "id": "image",
+      "title": "The image card: what the card leaves out",
+      "image_prompt": "Flat vector illustration of a picture frame showing a mountain lake, with a small ruler along its edge, soft teal and coral palette, no text",
+      "lines": [
+        {
+          "id": "s3l1",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "image.i1"
+          ],
+          "text": "Third card, MAI-Image-2.6-Flash. Here the price line doesn't give a number. It says pricing is based on deployment type and tokens used."
+        },
+        {
+          "id": "s3l2",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "So we read the token count from each response, and do the math once we have the current rate."
+        },
+        {
+          "id": "s3l3",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "image.i2"
+          ],
+          "text": "The card also caps output at 2,359,296 pixels, which is 1536 by 1536."
+        },
+        {
+          "id": "s3l4",
+          "host": "harper",
+          "style": null,
+          "cites": [
+            "image.i3"
+          ],
+          "text": "Language matters too. English is the primary language, and text rendering inside images is optimized for English."
+        },
+        {
+          "id": "s3l5",
+          "host": "grant",
+          "style": null,
+          "cites": [
+            "image.i5"
+          ],
+          "text": "And look at the lifecycle label. This one is a preview."
+        },
+        {
+          "id": "s3l6",
+          "host": "harper",
+          "style": null,
+          "cites": [
+            "image.i4"
+          ],
+          "text": "Here's my favorite part. Under known limitations, the card says the provider has not supplied this information."
+        },
+        {
+          "id": "s3l7",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "When a card is silent, that's our cue to test it ourselves. So we keep the images simple, and we don't ask for any text in them."
+        }
+      ]
+    },
+    {
+      "id": "checklist",
+      "title": "What we check before we build",
+      "image_prompt": "Flat vector illustration of a clipboard with six simple check marks beside a magnifying glass, soft teal and coral palette, no text",
+      "lines": [
+        {
+          "id": "s4l1",
+          "host": "harper",
+          "style": null,
+          "cites": [],
+          "text": "So what do we check before we build? One, what it's for. Two, the limits. Three, the price, and whether it's temporary. Four, the lifecycle label. Five, access and regions."
+        },
+        {
+          "id": "s4l2",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "And six, what the card doesn't say. Those gaps are where our own tests go."
+        },
+        {
+          "id": "s4l3",
+          "host": "harper",
+          "style": "relieved",
+          "cites": [],
+          "text": "That's the episode. Every claim we cited came from a card, and we checked each one before we recorded it."
+        },
+        {
+          "id": "s4l4",
+          "host": "grant",
+          "style": null,
+          "cites": [],
+          "text": "Thanks for listening. See you next time."
+        }
+      ]
+    }
+  ]
+}

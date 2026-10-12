@@ -1,0 +1,62 @@
+{
+  "retrieved": "2026-10-12",
+  "note": "Short quotations from the public model cards, kept so the episode can cite them. Read the live card for the current text.",
+  "cards": {
+    "voice": {
+      "name": "MAI-Voice-2.1",
+      "url": "https://ai.azure.com/catalog/models/MAI-Voice-2.1",
+      "excerpts": {
+        "v1": "Up to ~45 secs per generation, with longer outputs supported via chunking.",
+        "v2": "Access requires Microsoft approval and guardrails are in place to avoid misuse.",
+        "v3": "$22 per 1M characters.",
+        "v4": "Multi-speaker support for dialogue and conversational scenarios.",
+        "v5": "Synthetic voices can be misused for impersonation, misinformation, or deceptive content.",
+        "v6": "instant Voice Cloning: provide a short audio clip (5-60 seconds) and the model clones the voice instantly"
+      },
+      "excerpt_context": {
+        "v1": "Technical specs, Context length",
+        "v2": "Key capabilities, voice cloning",
+        "v3": "Pricing",
+        "v4": "Key capabilities",
+        "v5": "Responsible AI considerations, Known limitations",
+        "v6": "Key capabilities, voice cloning"
+      }
+    },
+    "transcribe": {
+      "name": "MAI-Transcribe-2",
+      "url": "https://ai.azure.com/catalog/models/MAI-Transcribe-2",
+      "excerpts": {
+        "t1": "Word-level timestamps: precise timing for every word, enabling alignment, search, and editing workflows.",
+        "t2": "Keyword biasing to handle domain specific terminology, abbreviations or disambiguating terms.",
+        "t3": "`clean` removes disfluencies for readable captions, notes, and published transcripts.",
+        "t4": "Early-bird pricing of $0.10 per hour of audio.",
+        "t5": "WAV, MP3, FLAC\nMax file size: 300 MB / 2 hours."
+      },
+      "excerpt_context": {
+        "t1": "Key capabilities",
+        "t2": "Key capabilities",
+        "t3": "Key capabilities, transcription style",
+        "t4": "Pricing",
+        "t5": "Technical specs, Input formats"
+      }
+    },
+    "image": {
+      "name": "MAI-Image-2.6-Flash",
+      "url": "https://ai.azure.com/catalog/models/MAI-Image-2.6-Flash",
+      "excerpts": {
+        "i1": "Pricing is based on a number of factors, including deployment type and tokens used.",
+        "i2": "Maximum total pixel count: 2,359,296 (equivalent to 1536×1536).",
+        "i3": "English (primary). The model processes prompts in English. Text rendering within images is optimized for English.",
+        "i4": "The provider has not supplied this information.",
+        "i5": "Lifecycle Preview"
+      },
+      "excerpt_context": {
+        "i1": "Pricing",
+        "i2": "Technical specs, Output formats",
+        "i3": "Technical specs, Supported languages",
+        "i4": "Responsible AI, Known limitations",
+        "i5": "Quick facts, Lifecycle (label and value)"
+      }
+    }
+  }
+}

@@ -31,6 +31,13 @@ models:
 capabilities: [audio-speech, image-generation, decision-models, chat-completion]
 dependencies: [requests, python-dotenv, azure-cognitiveservices-speech, azure-ai-transcription, pandas]
 domains: [media-production, developer-education, content-operations]
+notebooks:
+  - path: 01-primer-podcast-model-cards.ipynb
+    title: "Walk through three model cards as a two-host podcast"
+    concepts:
+      - checking a script against model-card excerpts before paying for speech
+      - fixing the transcription of model names with a phrase list
+      - assembling a synced player from audio, word timestamps, and images
 ---
 
 # Foundry Podcast Studio — Scenario
@@ -121,7 +128,7 @@ the steps only pass JSON, audio, and images to each other.
 
 | Notebook | What we build | What breaks, and how we fix it |
 |---|---|---|
-| `01-primer-podcast-model-cards.ipynb` | Two hosts, Harper and Grant, walk through the real model cards of three models used in this scenario, with a player that shows the card lines each host cites | Product names come back mangled in the transcript. We find the cause in the word-level differences and fix it with a phrase list |
+| [01-primer-podcast-model-cards.ipynb](01-primer-podcast-model-cards.ipynb) | Two hosts, Harper and Grant, walk through the real model cards of three models used in this scenario, with a player that shows the card lines each host cites | Product names come back mangled in the transcript. We find the cause in the word-level differences and fix it with a phrase list |
 | `02-release-notes-radio.ipynb` | A narrated deck for each announcement we pick, with every bullet linked to its source, and a radio page that lists the episodes | The drafting model invents a number. The grounding check catches it, we tighten the instructions, and we verify the slide again. The generated player page is reviewed before it runs, and the review can send it back |
 
 The notebooks are written in this order and run on their own. They follow the same loop: build the

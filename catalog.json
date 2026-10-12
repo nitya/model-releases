@@ -485,7 +485,17 @@
       ],
       "path": "models/multi-model-scenarios/foundry-podcast-studio",
       "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/multi-model-scenarios/foundry-podcast-studio",
-      "notebooks": []
+      "notebooks": [
+        {
+          "path": "models/multi-model-scenarios/foundry-podcast-studio/01-primer-podcast-model-cards.ipynb",
+          "title": "Walk through three model cards as a two-host podcast",
+          "concepts": [
+            "checking a script against model-card excerpts before paying for speech",
+            "fixing the transcription of model names with a phrase list",
+            "assembling a synced player from audio, word timestamps, and images"
+          ]
+        }
+      ]
     },
     {
       "slug": "mai-image-family-walkthrough",
