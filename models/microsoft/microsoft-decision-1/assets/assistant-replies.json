@@ -1,0 +1,142 @@
+[
+  {
+    "id": "r01",
+    "question": "Where can I refill my water bottle?",
+    "reply": "There are free refill stations at the Main Stage, the Food Court, the campsite, and Gate A.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r02",
+    "question": "Where do I find lost property?",
+    "reply": "Lost and found is at the Info Desk next to Gate A, open from 11:00 to midnight.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r03",
+    "question": "Can I get a refund since the headliner dropped out?",
+    "reply": "Yes, a full refund is available if a headliner cancels.",
+    "expected_grounding": "contradicted",
+    "human_grade": 0
+  },
+  {
+    "id": "r04",
+    "question": "Is there an ATM on site?",
+    "reply": "Yes, there are ATMs next to the Food Court.",
+    "expected_grounding": "contradicted",
+    "human_grade": 0
+  },
+  {
+    "id": "r05",
+    "question": "Can I bring my dog?",
+    "reply": "Only assistance dogs are welcome. Other pets aren't allowed.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r06",
+    "question": "What time do the shuttles run?",
+    "reply": "Shuttles leave every 20 minutes from 11:00 until 01:00.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r07",
+    "question": "Do you rent wheelchairs?",
+    "reply": "Yes, you can rent a wheelchair at the Info Desk for 10 euros.",
+    "expected_grounding": "cannot_tell",
+    "human_grade": 1
+  },
+  {
+    "id": "r08",
+    "question": "How do I replace a lost wristband?",
+    "reply": "Bring photo ID and proof of purchase to the Info Desk. There's no fee.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r09",
+    "question": "Can I leave and come back in?",
+    "reply": "You can re-enter as many times as you like through either gate.",
+    "expected_grounding": "contradicted",
+    "human_grade": 0
+  },
+  {
+    "id": "r10",
+    "question": "Where is the medical tent?",
+    "reply": "It's next to the Lantern Stage and open 24 hours a day.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r11",
+    "question": "Are there lockers for my bag?",
+    "reply": "Yes, bag lockers are located at Gate A.",
+    "expected_grounding": "cannot_tell",
+    "human_grade": 1
+  },
+  {
+    "id": "r12",
+    "question": "What happens if there's lightning?",
+    "reply": "Performances pause when lightning is within 10 km. A siren sounds, and staff will guide everyone to the Food Court hall.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r13",
+    "question": "Is the water free?",
+    "reply": "Yes.",
+    "expected_grounding": "supported",
+    "human_grade": 1
+  },
+  {
+    "id": "r14",
+    "question": "Can I bring a camera?",
+    "reply": "Sure, any camera is fine.",
+    "expected_grounding": "contradicted",
+    "human_grade": 1
+  },
+  {
+    "id": "r15",
+    "question": "Where do I park with a blue badge?",
+    "reply": "Park in Lot C. It's the closest lot to Gate A.",
+    "expected_grounding": "supported",
+    "human_grade": 2
+  },
+  {
+    "id": "r16",
+    "question": "When are quiet hours at the campsite?",
+    "reply": "Quiet hours are 23:00 to 07:00, so please keep the volume down then.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  },
+  {
+    "id": "r17",
+    "question": "Are the showers hot?",
+    "reply": "Yes, hot showers are available all day.",
+    "expected_grounding": "contradicted",
+    "human_grade": 0
+  },
+  {
+    "id": "r18",
+    "question": "Can I fly my drone to film the show?",
+    "reply": "Drones aren't allowed, but you're welcome to film on your phone.",
+    "expected_grounding": "cannot_tell",
+    "human_grade": 2
+  },
+  {
+    "id": "r19",
+    "question": "Who headlines on Sunday?",
+    "reply": "Sunday's headliner is Nova Reyes.",
+    "expected_grounding": "cannot_tell",
+    "human_grade": 0
+  },
+  {
+    "id": "r20",
+    "question": "What do I do if I get separated from my child?",
+    "reply": "Tell any staff member in a yellow vest. You can also pick up a free child wristband with your phone number at the Info Desk before you go in.",
+    "expected_grounding": "supported",
+    "human_grade": 3
+  }
+]

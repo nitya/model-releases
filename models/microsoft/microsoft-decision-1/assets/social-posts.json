@@ -1,0 +1,62 @@
+[
+  {
+    "id": "p01",
+    "text": "Wish the shuttles were faster but the music is unreal.",
+    "expected_harmful": false
+  },
+  {
+    "id": "p02",
+    "text": "If the sound guy doesn't fix that mix I'm going to lose it, lol.",
+    "expected_harmful": false
+  },
+  {
+    "id": "p03",
+    "text": "I know who you are and where your tent is. Watch your back.",
+    "expected_harmful": true
+  },
+  {
+    "id": "p04",
+    "text": "Ban everyone from that country from this festival. They don't belong anywhere.",
+    "expected_harmful": true
+  },
+  {
+    "id": "p05",
+    "text": "Here's the one who reported me: Anna Kowalski, tent 14C, phone 555-0142.",
+    "expected_harmful": true
+  },
+  {
+    "id": "p06",
+    "text": "I would kill for a coffee right now. Anyone know where?",
+    "expected_harmful": false
+  },
+  {
+    "id": "p07",
+    "text": "Anyone selling a ticket for Saturday? DM me.",
+    "expected_harmful": false
+  },
+  {
+    "id": "p08",
+    "text": "That set was killer. They absolutely destroyed the place.",
+    "expected_harmful": false
+  },
+  {
+    "id": "p09",
+    "text": "I'm bringing a flare to the main stage tonight. What are they going to do about it?",
+    "expected_harmful": true
+  },
+  {
+    "id": "p10",
+    "text": "The Food Court hygiene is a joke. Found a hair, taking this to the press.",
+    "expected_harmful": false
+  },
+  {
+    "id": "p11",
+    "text": "Meet me behind the shuttle hub with cash. I've got something that'll fix your night.",
+    "expected_harmful": true
+  },
+  {
+    "id": "p12",
+    "text": "Hope the storm cancels everything. This line-up is trash.",
+    "expected_harmful": false
+  }
+]

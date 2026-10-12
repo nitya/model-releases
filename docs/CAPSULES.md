@@ -4,10 +4,18 @@ A capsule pairs a model release with runnable notebooks. Pick a provider, then o
 
 <!-- BEGIN:CAPSULE-LIST -->
 <p align="center">
+  <a href="#microsoft"><img src="https://img.shields.io/badge/Microsoft-3-6B7280?style=flat-square" alt="Microsoft: 3 notebooks" /></a>
   <a href="#microsoft-ai"><img src="https://img.shields.io/badge/Microsoft%20AI-8-00A4EF?style=flat-square" alt="Microsoft AI: 8 notebooks" /></a>
   <a href="#model-router"><img src="https://img.shields.io/badge/Model%20Router-3-7F3FBF?style=flat-square" alt="Model Router: 3 notebooks" /></a>
   <a href="#multi-model-scenarios"><img src="https://img.shields.io/badge/Multi--model%20scenarios-1-6B7280?style=flat-square" alt="Multi-model scenarios: 1 notebook" /></a>
 </p>
+
+## Microsoft
+
+- 2026-10-12 · **[Microsoft-Decision-1](../models/microsoft/microsoft-decision-1/)** · Decision Models
+  1. [Route, rank, and gate festival messages with Microsoft-Decision-1](../models/microsoft/microsoft-decision-1/01-triage-festival-messages.ipynb)
+  2. [Turn probabilities into automatic, queued, and human-review lanes](../models/microsoft/microsoft-decision-1/02-set-confidence-thresholds.ipynb)
+  3. [Guard an agent's actions and grade its replies with Microsoft-Decision-1](../models/microsoft/microsoft-decision-1/03-guard-and-grade-the-ops-copilot.ipynb)
 
 ## Microsoft AI
 

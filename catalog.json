@@ -89,12 +89,64 @@
     }
   ],
   "counts": {
-    "capsules": 7,
+    "capsules": 8,
     "scenarios": 1,
-    "publishers": 12,
+    "publishers": 13,
     "primers": 13
   },
   "capsules": [
+    {
+      "model": "microsoft-decision-1",
+      "name": "Microsoft-Decision-1",
+      "publisher": "microsoft",
+      "summary": "Route, rank, and gate decisions with calibrated probabilities instead of generated text",
+      "release_date": "2026-10-09",
+      "last_updated": "2026-10-12",
+      "capabilities": [
+        "decision-models"
+      ],
+      "model_card": "https://ai.azure.com/catalog/models/Microsoft-Decision-1",
+      "announcement": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-microsoft-decision-1-in-microsoft-foundry-for-decision-and-classific/4562742",
+      "pricing": {
+        "notes": "Rates are on the Pricing tab of the model card",
+        "source": "https://ai.azure.com/catalog/models/Microsoft-Decision-1"
+      },
+      "domains": [
+        "events",
+        "operations",
+        "customer-support",
+        "ai-safety"
+      ],
+      "path": "models/microsoft/microsoft-decision-1",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft/microsoft-decision-1",
+      "notebooks": [
+        {
+          "path": "models/microsoft/microsoft-decision-1/01-triage-festival-messages.ipynb",
+          "title": "Route, rank, and gate festival messages with Microsoft-Decision-1",
+          "concepts": [
+            "choice, score, and noul questions over one JSON state",
+            "reading probabilities and adding an abstention option"
+          ]
+        },
+        {
+          "path": "models/microsoft/microsoft-decision-1/02-set-confidence-thresholds.ipynb",
+          "title": "Turn probabilities into automatic, queued, and human-review lanes",
+          "concepts": [
+            "checking whether confidence matches accuracy",
+            "choosing thresholds by the cost of each mistake"
+          ]
+        },
+        {
+          "path": "models/microsoft/microsoft-decision-1/03-guard-and-grade-the-ops-copilot.ipynb",
+          "title": "Guard an agent's actions and grade its replies with Microsoft-Decision-1",
+          "concepts": [
+            "gating proposed agent actions",
+            "checking groundedness with an explicit cannot-tell option",
+            "grading drafts against a rubric"
+          ]
+        }
+      ]
+    },
     {
       "model": "mai-transcribe-2",
       "name": "MAI-Transcribe-2",
@@ -473,6 +525,13 @@
       "provider": "Hugging Face",
       "one_line": "Open-source model catalog on Foundry",
       "path": "models/hugging-face"
+    },
+    {
+      "slug": "microsoft",
+      "name": "Microsoft",
+      "provider": "Microsoft",
+      "one_line": "Microsoft-built models beyond the MAI family, starting with decision models",
+      "path": "models/microsoft"
     },
     {
       "slug": "microsoft-ai",

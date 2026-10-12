@@ -1,0 +1,988 @@
+[
+  {
+    "id": "m01",
+    "time": "15:05",
+    "channel": "guest app",
+    "zone": "Info Desk",
+    "text": "Sorry wrong chat.",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m02",
+    "time": "15:12",
+    "channel": "guest app",
+    "zone": "Gate A",
+    "text": "Barcode on my ticket won't scan and there's a long line behind me.",
+    "expected": {
+      "team": "guest_services",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m03",
+    "time": "15:20",
+    "channel": "help desk kiosk",
+    "zone": "Info Desk",
+    "text": "Is there a lost and found? I think I left my wallet at the Lantern Stage.",
+    "expected": {
+      "team": "guest_services",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m04",
+    "time": "15:31",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "Where is the accessible viewing platform and is the ramp open?",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m05",
+    "time": "15:35",
+    "channel": "help desk kiosk",
+    "zone": "Info Desk",
+    "text": "Where do I park with a disabled badge?",
+    "expected": {
+      "team": "transport",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m06",
+    "time": "15:40",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "The showers are freezing cold. Any chance of hot water later?",
+    "expected": {
+      "team": "facilities",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m07",
+    "time": "15:48",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Burger stall charged me 18 euros for a plain burger and there's no price sign anywhere.",
+    "expected": {
+      "team": "vendors",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m08",
+    "time": "15:55",
+    "channel": "staff radio",
+    "zone": "Gate A",
+    "text": "Portable toilets near Gate A are overflowing, smell is awful, queue is going elsewhere.",
+    "expected": {
+      "team": "facilities",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m09",
+    "time": "15:58",
+    "channel": "guest app",
+    "zone": "Gate B",
+    "text": "Our rideshare driver can't find the Gate B pickup point. The map pin is wrong.",
+    "expected": {
+      "team": "transport",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m10",
+    "time": "16:03",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Found a hair in my noodles at stall 4 and the food was cold.",
+    "expected": {
+      "team": "vendors",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m11",
+    "time": "16:05",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "Feeling dizzy and sick after a day in the sun. Can I get water and somewhere to sit down?",
+    "expected": {
+      "team": "medical",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m12",
+    "time": "16:10",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "Got a headache and ringing ears after that bass drop. Can I get earplugs or see a medic?",
+    "expected": {
+      "team": "medical",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m13",
+    "time": "16:15",
+    "channel": "staff radio",
+    "zone": "Main Stage",
+    "text": "Cable run across the walkway, someone almost went down. Needs covering.",
+    "expected": {
+      "team": "facilities",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m14",
+    "time": "16:18",
+    "channel": "social post",
+    "zone": "Shuttle Hub",
+    "text": "Been stuck in the car park for 90 minutes. Not a good start #ContosoMusicFestival",
+    "expected": {
+      "team": "transport",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m15",
+    "time": "16:20",
+    "channel": "guest app",
+    "zone": "Gate A",
+    "text": "Can I get a refund? The headliner pulled out.",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m16",
+    "time": "16:25",
+    "channel": "help desk kiosk",
+    "zone": "Info Desk",
+    "text": "Do you have phone charging lockers? My battery is at 4 percent.",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m17",
+    "time": "16:28",
+    "channel": "guest app",
+    "zone": "Gate A",
+    "text": "Mi hija se perdió cerca de la entrada, tiene 8 años y una camiseta roja.",
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m18",
+    "time": "16:35",
+    "channel": "staff radio",
+    "zone": "Food Court",
+    "text": "Vendor 7 is handling raw chicken with no handwashing station set up.",
+    "expected": {
+      "team": "vendors",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m19",
+    "time": "16:40",
+    "channel": "staff radio",
+    "zone": "Camping",
+    "text": "Unattended rucksack by the tent entrance, no owner in sight, been there an hour.",
+    "expected": {
+      "team": "security",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m20",
+    "time": "16:42",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "Somebody just yelled that they have a knife near the camping bar!!",
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m21",
+    "time": "16:45",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "Is there bike parking anywhere?",
+    "expected": {
+      "team": "transport",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m22",
+    "time": "16:47",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "I'm vegan. Is there a vegan taco truck at the festival this year?",
+    "expected": {
+      "team": "vendors",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m23",
+    "time": "16:50",
+    "channel": "guest app",
+    "zone": "Info Desk",
+    "text": "Signs to Gate B blew away and everyone is walking in circles.",
+    "expected": {
+      "team": "facilities",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m24",
+    "time": "16:52",
+    "channel": "guest app",
+    "zone": "Info Desk",
+    "text": "Lost my wristband in the mud. Do I have to buy a new ticket?",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m25",
+    "time": "16:55",
+    "channel": "guest app",
+    "zone": "Lantern Stage",
+    "text": "My friend sprained her ankle and can't walk. Not an emergency, but she needs help getting to the medical tent.",
+    "expected": {
+      "team": "medical",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m26",
+    "time": "16:58",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "We need an update.",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m27",
+    "time": "17:00",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "It's happening again over there.",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m28",
+    "time": "17:02",
+    "channel": "staff radio",
+    "zone": "Gate A",
+    "text": "Medic request at Gate A. Man cut his hand on the fence, bleeding but conscious and walking.",
+    "expected": {
+      "team": "medical",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m29",
+    "time": "17:05",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "My friend just collapsed near the barrier at the front. She's breathing but won't wake up!!",
+    "expected": {
+      "team": "medical",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m30",
+    "time": "17:08",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "I have a severe peanut allergy and I think I ate something with peanuts. My lips are tingling.",
+    "expected": {
+      "team": "medical",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m31",
+    "time": "17:10",
+    "channel": "staff radio",
+    "zone": "Food Court",
+    "text": "Handwashing sinks near vendor row have no running water at all.",
+    "expected": {
+      "team": "facilities",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m32",
+    "time": "17:12",
+    "channel": "guest app",
+    "zone": "Lantern Stage",
+    "text": "The lights on the covered walkway to the Lantern Stage just went out and it is completely dark in there. People are tripping.",
+    "expected": {
+      "team": "facilities",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m33",
+    "time": "17:15",
+    "channel": "guest app",
+    "zone": "Gate B",
+    "text": "Somebody is having a seizure by the water refill station and people are crowding around.",
+    "expected": {
+      "team": "medical",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m34",
+    "time": "17:18",
+    "channel": "guest app",
+    "zone": "Gate B",
+    "text": "Help",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m35",
+    "time": "17:20",
+    "channel": "staff radio",
+    "zone": "Main Stage",
+    "text": "Left speaker tower is leaning. Looks like the sandbags at the base have shifted.",
+    "expected": {
+      "team": "facilities",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m36",
+    "time": "17:22",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Il y a une bagarre à côté du stand de pizza et quelqu'un est blessé.",
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m37",
+    "time": "17:24",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Two guys are fighting in the queue and one of them has a bottle.",
+    "expected": {
+      "team": "security",
+      "severity": 2,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m38",
+    "time": "17:28",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Drunk guy shouting at vendors and knocking over tables.",
+    "expected": {
+      "team": "security",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m39",
+    "time": "17:30",
+    "channel": "staff radio",
+    "zone": "Shuttle Hub",
+    "text": "Queue for the city shuttle is now over forty minutes and growing.",
+    "expected": {
+      "team": "transport",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m40",
+    "time": "17:33",
+    "channel": "guest app",
+    "zone": "Shuttle Hub",
+    "text": "Last shuttle to the city is full and we've waited 45 minutes. Will more buses come?",
+    "open_incidents": [
+      "Shuttle Hub: city shuttle queue over 40 minutes (reported 17:30, transport adding buses)"
+    ],
+    "expected": {
+      "team": "transport",
+      "severity": 1,
+      "danger": false,
+      "duplicate": true
+    }
+  },
+  {
+    "id": "m41",
+    "time": "17:35",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Is there any water to wash hands? The sinks near the burger stalls are dry.",
+    "open_incidents": [
+      "Food Court: handwashing sinks have no running water (reported 17:10)"
+    ],
+    "expected": {
+      "team": "facilities",
+      "severity": 1,
+      "danger": false,
+      "duplicate": true
+    }
+  },
+  {
+    "id": "m42",
+    "time": "17:36",
+    "channel": "social post",
+    "zone": "Main Stage",
+    "text": "Someone just stole a phone at the front. Saw the guy run toward Gate B.",
+    "expected": {
+      "team": "security",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m43",
+    "time": "17:38",
+    "channel": "guest app",
+    "zone": "Lantern Stage",
+    "text": "Can someone come?",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m44",
+    "time": "17:40",
+    "channel": "staff radio",
+    "zone": "Gate B",
+    "text": "Fence panel pushed over by the crowd, people are coming through the gap. Need security now.",
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m45",
+    "time": "17:42",
+    "channel": "guest app",
+    "zone": "Lantern Stage",
+    "text": "Loving the lantern parade, thank you!",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m46",
+    "time": "17:44",
+    "channel": "guest app",
+    "zone": "Gate B",
+    "text": "The fence at Gate B is down and people are pushing through. This is scary.",
+    "open_incidents": [
+      "Gate B: fence panel down, crowd coming through (reported 17:40, security on site)",
+      "Shuttle Hub: city shuttle queue over 40 minutes (reported 17:30, transport adding buses)"
+    ],
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": true
+    }
+  },
+  {
+    "id": "m47",
+    "time": "17:46",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "Is that speaker tower on the left going to fall over? It's tilting.",
+    "open_incidents": [
+      "Main Stage: left speaker tower leaning (reported 17:20, facilities on the way)",
+      "Gate B: fence panel down, crowd coming through (reported 17:40, security on site)"
+    ],
+    "expected": {
+      "team": "facilities",
+      "severity": 3,
+      "danger": true,
+      "duplicate": true
+    }
+  },
+  {
+    "id": "m48",
+    "time": "17:48",
+    "channel": "guest app",
+    "zone": "Gate A",
+    "text": "Toilet queue is huge but at least they're clean here.",
+    "open_incidents": [
+      "Food Court: handwashing sinks have no running water (reported 17:10)",
+      "Shuttle Hub: city shuttle queue over 40 minutes (reported 17:30, transport adding buses)"
+    ],
+    "expected": {
+      "team": "facilities",
+      "severity": 0,
+      "danger": false,
+      "duplicate": false
+    }
+  },
+  {
+    "id": "m49",
+    "time": "17:50",
+    "channel": "staff radio",
+    "zone": "Gate A",
+    "text": "Bus 14 has broken down and is blocking the lane at Gate A.",
+    "open_incidents": [
+      "Shuttle Hub: city shuttle queue over 40 minutes (reported 17:30, transport adding buses)"
+    ],
+    "expected": {
+      "team": "transport",
+      "severity": 2,
+      "danger": false,
+      "duplicate": false
+    }
+  },
+  {
+    "id": "m50",
+    "time": "17:52",
+    "channel": "staff radio",
+    "zone": "Main Stage",
+    "text": "Merch tent has sold out and the queue is 200 deep. The vendor wants to close early.",
+    "expected": {
+      "team": "vendors",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m51",
+    "time": "17:53",
+    "channel": "guest app",
+    "zone": "Gate B",
+    "text": "Rideshare pickup is total chaos, cars are blocking the road and an ambulance can't get through.",
+    "expected": {
+      "team": "transport",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m52",
+    "time": "17:55",
+    "channel": "guest app",
+    "zone": "Info Desk",
+    "text": "I've lost my 6 year old son near the Food Court. Green jacket, answers to Max. Please help!!",
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m53",
+    "time": "17:57",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "My son isn't lost anymore. Found him, sorry and thank you!",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m54",
+    "time": "17:58",
+    "channel": "help desk kiosk",
+    "zone": "Info Desk",
+    "text": "This is ridiculous.",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m55",
+    "time": "18:00",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Trash cans are overflowing and there are wasps swarming around the bins.",
+    "expected": {
+      "team": "facilities",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m56",
+    "time": "18:01",
+    "channel": "social post",
+    "zone": "Main Stage",
+    "text": "Is it safe?",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m57",
+    "time": "18:02",
+    "channel": "staff radio",
+    "zone": "Food Court",
+    "text": "Vendor 12's generator died. The freezer is full of ice cream and needs an electrician.",
+    "expected": {
+      "team": "vendors",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m58",
+    "time": "18:03",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "Three of us have stomach cramps and nausea since eating at the noodle stall.",
+    "expected": {
+      "team": "medical",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m59",
+    "time": "18:05",
+    "channel": "staff radio",
+    "zone": "Main Stage",
+    "text": "Wind gusts hitting 50 kilometres an hour at the main stage. The rigging crew is asking for a hold on the show.",
+    "expected": {
+      "team": "command",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m60",
+    "time": "18:06",
+    "channel": "guest app",
+    "zone": "Lantern Stage",
+    "text": "Lightning just hit close to the Lantern Stage!! Are we being evacuated?",
+    "expected": {
+      "team": "command",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m61",
+    "time": "18:07",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "Is the show still on? Black clouds are coming in.",
+    "expected": {
+      "team": "command",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m62",
+    "time": "18:09",
+    "channel": "guest app",
+    "zone": "Info Desk",
+    "text": "If the storm cancels tonight do we get a refund for Saturday?",
+    "expected": {
+      "team": "guest_services",
+      "severity": 0,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m63",
+    "time": "18:10",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "Tents are flooding and a few are blowing away at row C. We're moving to the car.",
+    "expected": {
+      "team": "facilities",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m64",
+    "time": "18:11",
+    "channel": "help desk kiosk",
+    "zone": "Info Desk",
+    "text": "Where is the nearest shelter from the storm? We have a baby and a wheelchair.",
+    "expected": {
+      "team": "command",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m65",
+    "time": "18:12",
+    "channel": "staff radio",
+    "zone": "Gate A",
+    "text": "The Gate A queue refuses to wait in the rain. People want in early. Should we open the gates now?",
+    "expected": {
+      "team": "command",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m66",
+    "time": "18:13",
+    "channel": "guest app",
+    "zone": "Shuttle Hub",
+    "text": "Shuttle queue is crazy long again. Any news?",
+    "open_incidents": [
+      "Shuttle Hub: city shuttle queue over 40 minutes (reported 17:30, transport adding buses)"
+    ],
+    "expected": {
+      "team": "transport",
+      "severity": 1,
+      "danger": false,
+      "duplicate": true
+    }
+  },
+  {
+    "id": "m67",
+    "time": "18:14",
+    "channel": "staff radio",
+    "zone": "Lantern Stage",
+    "text": "Sound engineer reports water pooling on the stage deck near the mixing desk.",
+    "expected": {
+      "team": "facilities",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m68",
+    "time": "18:15",
+    "channel": "guest app",
+    "zone": "Main Stage",
+    "text": "A woman near me is shaking and very cold after getting soaked. Her lips look blue.",
+    "expected": {
+      "team": "medical",
+      "severity": 2,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m69",
+    "time": "18:16",
+    "channel": "staff radio",
+    "zone": "Food Court",
+    "text": "Somebody should take a look at the thing near the stage.",
+    "expected": {
+      "team": "unclear",
+      "severity": null,
+      "danger": null,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m70",
+    "time": "18:17",
+    "channel": "guest app",
+    "zone": "Food Court",
+    "text": "The vendor tents are flapping like crazy and one corner pole just snapped.",
+    "expected": {
+      "team": "facilities",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m71",
+    "time": "18:18",
+    "channel": "guest app",
+    "zone": "Camping",
+    "text": "Smoke is coming out of a tent at row F and there are flames at the door!!",
+    "expected": {
+      "team": "security",
+      "severity": 3,
+      "danger": true,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m72",
+    "time": "18:20",
+    "channel": "social post",
+    "zone": "Camping",
+    "text": "Camping row C looks like a lake right now #ContosoMusicFestival",
+    "expected": {
+      "team": "facilities",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m73",
+    "time": "18:22",
+    "channel": "staff radio",
+    "zone": "Shuttle Hub",
+    "text": "The shuttle hub is waterlogged and two buses are stuck in the mud. Need a tow.",
+    "expected": {
+      "team": "transport",
+      "severity": 2,
+      "danger": false,
+      "duplicate": null
+    }
+  },
+  {
+    "id": "m74",
+    "time": "18:24",
+    "channel": "guest app",
+    "zone": "Gate B",
+    "text": "Is Gate B still open? It looks closed and I can't get back to my car.",
+    "expected": {
+      "team": "guest_services",
+      "severity": 1,
+      "danger": false,
+      "duplicate": null
+    }
+  }
+]

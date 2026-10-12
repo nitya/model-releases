@@ -82,6 +82,7 @@ _Traces help us answer it._ They record what the model was asked, what it return
 <!-- BEGIN:RECENT-CAPSULES -->
 <p align="center">
   <a href="models/microsoft-ai/README.md"><img src="https://img.shields.io/badge/Microsoft%20AI-8-00A4EF?style=flat-square" alt="Microsoft AI: 8 notebooks" /></a>
+  <a href="models/microsoft/README.md"><img src="https://img.shields.io/badge/Microsoft-3-6B7280?style=flat-square" alt="Microsoft: 3 notebooks" /></a>
   <a href="models/model-router/README.md"><img src="https://img.shields.io/badge/Model%20Router-3-7F3FBF?style=flat-square" alt="Model Router: 3 notebooks" /></a>
   <a href="models/anthropic/README.md"><img src="https://img.shields.io/badge/Anthropic-0-D97757?style=flat-square" alt="Anthropic: 0 notebooks" /></a>
   <a href="models/azure-openai/README.md"><img src="https://img.shields.io/badge/Azure%20OpenAI-0-0078D4?style=flat-square" alt="Azure OpenAI: 0 notebooks" /></a>
