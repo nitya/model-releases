@@ -26,6 +26,6 @@ especially for high-QPS, agent-style workloads.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-- [Model leaderboards — latency comparison](https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+- [Model leaderboards — latency comparison](https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks)
 - [Glossary](../../docs/GLOSSARY.md)

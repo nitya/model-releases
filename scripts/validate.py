@@ -6,7 +6,7 @@ before committing. It wraps the three validators that used to be three
 separate CI steps:
 
     1. validate-specs.py        — frontmatter vs. JSON Schema
-    2. validate-crosslinks.py   — CHANGELOG / README / capsule wiring
+    2. validate-crosslinks.py   — ANNOUNCEMENTS / README / capsule wiring
     3. generate-catalog.py      — generated files are current
 
 Usage:
@@ -44,7 +44,7 @@ CHECKS: list[tuple[str, list[str]]] = [
 # .git, caches) can't change a result, so watching it would only cause
 # re-runs that report the same thing.
 WATCH_DIRS = ["models", "docs", ".github/specs", "scripts"]
-WATCH_FILES = ["CHANGELOG.md", "README.md", "CAPSULE-TOC.md", "catalog.json"]
+WATCH_FILES = ["docs/ANNOUNCEMENTS.md", "README.md", "docs/CAPSULES.md", "catalog.json"]
 WATCH_SUFFIXES = {".md", ".py", ".json"}
 
 

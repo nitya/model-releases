@@ -36,7 +36,7 @@ notebooks:
 | Announcement | [Introducing MAI-Transcribe-2](https://microsoft.ai/news/mai-transcribe-2-is-the-fastest-most-accurate-and-cheapest-speech-recognition-model-in-the-world/) |
 | Pricing | $0.10 per hour for a limited time; standard price $0.36 per hour — [source](https://microsoft.ai/models/mai-transcribe-2/) |
 | Release date | 2026-09-03 |
-| Deployment regions | See [Speech service regions](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions?tabs=llmspeech) — LLM Speech is available in a subset of Speech regions |
+| Deployment regions | See [Speech service regions](https://learn.microsoft.com/azure/ai-services/speech-service/regions?tabs=llmspeech) — LLM Speech is available in a subset of Speech regions |
 
 See [models/quickstart/](../../quickstart/README.md) for first-time Foundry project setup.
 
@@ -128,7 +128,7 @@ one language.
 
 - [MAI-Transcribe-2 model page](https://microsoft.ai/models/mai-transcribe-2/) — features, language coverage, benchmarks, and current pricing.
 - [MAI-Transcribe-2 announcement](https://microsoft.ai/news/mai-transcribe-2-is-the-fastest-most-accurate-and-cheapest-speech-recognition-model-in-the-world/) — release context and comparative accuracy results.
-- [MAI-Transcribe in Azure Speech](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry) — REST parameters, language support, diarization, timestamps, transcript styles, and limitations.
-- [LLM Speech for speech transcription and translation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python) — authentication, the `azure-ai-transcription` SDK, and response handling.
-- [Speech service regions](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions?tabs=llmspeech) — current region and endpoint guidance.
+- [MAI-Transcribe in Azure Speech](https://learn.microsoft.com/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry) — REST parameters, language support, diarization, timestamps, transcript styles, and limitations.
+- [LLM Speech for speech transcription and translation](https://learn.microsoft.com/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python) — authentication, the `azure-ai-transcription` SDK, and response handling.
+- [Speech service regions](https://learn.microsoft.com/azure/ai-services/speech-service/regions?tabs=llmspeech) — current region and endpoint guidance.
 - [Audio / Speech primer](../../../docs/primers/audio-speech.md) — capability background and deployment considerations.

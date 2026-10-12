@@ -19,7 +19,7 @@
     },
     "one_line": {
       "type": "string",
-      "description": "Short pitch used in the repo README publisher table."
+      "description": "Short pitch for the publisher, carried into catalog.json."
     },
     "provider": {
       "type": ["string", "null"],

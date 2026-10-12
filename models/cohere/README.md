@@ -27,7 +27,7 @@ citation-friendly responses.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
 - [Embeddings primer](../../docs/primers/embeddings.md)
 - [Chat completion primer](../../docs/primers/chat-completion.md)
 - [Glossary](../../docs/GLOSSARY.md)

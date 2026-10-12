@@ -42,7 +42,7 @@ notebooks:
 | Announcement | [Introducing MAI-Transcribe-1.5](https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/) |
 | Pricing | $0.36 per hour of audio — [source](https://microsoft.ai/models/mai-transcribe-1-5/) |
 | Release date | 2026-06-02 |
-| Deployment regions | See [Speech service regions](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions?tabs=llmspeech) — LLM Speech is available in a subset of Speech regions |
+| Deployment regions | See [Speech service regions](https://learn.microsoft.com/azure/ai-services/speech-service/regions?tabs=llmspeech) — LLM Speech is available in a subset of Speech regions |
 
 See [models/quickstart/](../../quickstart/README.md) for first-time Foundry project setup.
 
@@ -85,7 +85,7 @@ MAI-Transcribe-1 (deprecated 2026-08-20), it adds:
 The notebooks run against the noisy contact-centre clips in [data/](data/), which is where these
 knobs earn their keep.
 
-**Limitations** ([source](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry)):
+**Limitations** ([source](https://learn.microsoft.com/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry)):
 diarization and prompt-tuning aren't supported; `transcribeStyle` and `phraseList` are
 `mai-transcribe-1.5` only. Audio files must be under 300 MB (WAV, MP3, or FLAC).
 
@@ -117,8 +117,8 @@ naming the model is enough to turn enhanced mode on.
 
 ## References
 
-- [MAI-Transcribe in Azure Speech (preview)](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry) — official how-to covering `enhancedMode`, `transcribeStyle`, `phraseList`, language support, and limitations.
-- [LLM Speech for speech transcription and translation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python) — quickstart for the LLM Speech API that MAI-Transcribe runs on: auth, the `azure-ai-transcription` SDK, and the response shape.
+- [MAI-Transcribe in Azure Speech (preview)](https://learn.microsoft.com/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry) — official how-to covering `enhancedMode`, `transcribeStyle`, `phraseList`, language support, and limitations.
+- [LLM Speech for speech transcription and translation](https://learn.microsoft.com/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python) — quickstart for the LLM Speech API that MAI-Transcribe runs on: auth, the `azure-ai-transcription` SDK, and the response shape.
 - [Introducing MAI-Transcribe-1.5](https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/) — release announcement: 43-language coverage, throughput, and keyword-biasing results.
 - [MAI-Transcribe-1.5 model page](https://microsoft.ai/models/mai-transcribe-1-5/) — benchmark comparison against MAI-Transcribe-1 and pricing per audio hour.
 - [MAI-Transcribe-1.5 model card (PDF)](https://microsoft.ai/pdf/MAI-Transcribe-1.5-Model-Card.PDF) — intended uses, evaluation methodology, and responsible-AI considerations.

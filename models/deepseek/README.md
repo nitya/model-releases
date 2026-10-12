@@ -27,6 +27,6 @@ reasoning-class model outside the OpenAI / Anthropic families.
 
 ## Learn more
 
-- [Tutorial: Get started with a DeepSeek reasoning model in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/tutorials/get-started-deepseek-r1)
+- [Tutorial: Get started with a DeepSeek reasoning model in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/foundry-models/tutorials/get-started-deepseek-r1)
 - [Reasoning primer](../../docs/primers/reasoning-models.md)
 - [Glossary](../../docs/GLOSSARY.md)

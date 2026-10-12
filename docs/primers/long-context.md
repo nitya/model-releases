@@ -6,11 +6,11 @@ slug: long-context
 one_line: 200k+ token context window.
 learn_more:
   - title: Microsoft Foundry Models overview — context windows
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: GPT-5 vs GPT-4.1 model choice guide
-    url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/model-choice-guide
+    url: https://learn.microsoft.com/azure/foundry/foundry-models/how-to/model-choice-guide
   - title: Model leaderboards — compare context window sizes
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks
+    url: https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks
 ---
 
 # Long-Context Models
@@ -40,8 +40,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview — context windows](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [GPT-5 vs GPT-4.1 model choice guide](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/model-choice-guide)
-3. [Model leaderboards — compare context window sizes](https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks)
+1. [Foundry Models overview — context windows](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [GPT-5 vs GPT-4.1 model choice guide](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/model-choice-guide)
+3. [Model leaderboards — compare context window sizes](https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks)
 
 _See also: [context window](../GLOSSARY.md#context-window) in the glossary._

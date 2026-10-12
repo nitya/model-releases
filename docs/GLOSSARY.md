@@ -27,6 +27,20 @@ to go deeper.
 
 ## A
 
+### Active Parameters
+
+*"This model has 235 billion parameters — so why is it fast?"*
+
+Active parameters are the parameters a model actually uses to process one token.
+In a [dense model](#dense-model) that is all of them. In a
+[Mixture of Experts](#mixture-of-experts-moe) model it is only the experts the
+router picks, so Qwen3 235B-A22B uses about 22B per token. Total parameters hint
+at capacity and the memory needed to host the model; active parameters hint at
+per-token speed and cost. See the
+[Model Architecture primer](primers/model-architecture.md) for fact-sheet numbers.
+
+**Reference:** [LLM Architecture Gallery](https://sebastianraschka.com/llm-architecture-gallery/)
+
 ### Agent Optimization
 
 *"My agent works in the demo — how do I make it worth running in production?"*
@@ -45,6 +59,22 @@ scorecard — cost, latency, and quality — that tells us whether each change i
 actually an improvement.
 
 **Reference:** [The Economics of Agent Optimization: From pilots to measurable returns](https://azure.microsoft.com/en-us/blog/the-economics-of-agent-optimization-from-pilots-to-measurable-returns/)
+
+### Attention
+
+*"How does the model decide which earlier words matter?"*
+
+Attention is the step in a [transformer](#transformer) block where each token
+looks at the other tokens in the context and weighs how much each one matters.
+Because tokens can look back at everything before them, attention is where context
+length turns into memory use (the [KV cache](#kv-cache)) and compute. Variants such
+as [grouped-query](#grouped-query-attention-gqa),
+[multi-head latent](#multi-head-latent-attention-mla),
+[sliding-window](#sliding-window-attention), and [hybrid](#hybrid-attention)
+attention change that cost. See the
+[Model Architecture primer](primers/model-architecture.md).
+
+**Reference:** [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 
 ## B
 
@@ -65,11 +95,22 @@ in the tens of thousands. Because everything in the window is billed as input,
 the context window is where [Tokenomics](#tokenomics) meets a hard limit — a
 practical reason to trim context and [right-size](#right-sizing) each request.
 
-**Reference:** [Work with chat completion models — Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/chatgpt)
+**Reference:** [Work with chat completion models — Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/how-to/chatgpt)
 
 ## D
 
-_No entries yet._
+### Dense Model
+
+*"Does every parameter work on every token?"*
+
+A dense model sends every token through all of its parameters, so its total and
+active parameters are the same. That makes it simple and predictable, and it is
+the design a [Mixture of Experts](#mixture-of-experts-moe) model departs from.
+Llama 3 8B is a dense example. See the
+[Model Architecture primer](primers/model-architecture.md) for how dense and MoE
+models compare.
+
+**Reference:** [LLM Architecture Gallery](https://sebastianraschka.com/llm-architecture-gallery/)
 
 ## E
 
@@ -81,7 +122,18 @@ _No entries yet._
 
 ## G
 
-_No entries yet._
+### Grouped-Query Attention (GQA)
+
+*"How do models keep long conversations from using so much memory?"*
+
+Grouped-query attention lets several attention heads share one set of keys and
+values instead of each head keeping its own. That shrinks the
+[KV cache](#kv-cache) and speeds up decoding while staying close to full
+multi-head quality. In the gallery, Llama 3 8B uses it at 128 KiB per token,
+where GPT-2 XL's full multi-head attention needs 300 KiB. See the
+[Model Architecture primer](primers/model-architecture.md).
+
+**Reference:** [GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints](https://arxiv.org/abs/2305.13245)
 
 ## H
 
@@ -105,7 +157,22 @@ change is kept only when the scorecard (cost, latency, quality) improves.
 
 **Reference:**
 - [Building a hill-climbing machine: launching seven new MAI models](https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/)
-- [Model router for Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router)
+- [Model router for Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-router)
+
+### Hybrid Attention
+
+*"Can a model handle a million tokens without a million-token cache?"*
+
+Hybrid attention mixes a few full-attention layers with many linear or recurrent
+layers that fold the past into a fixed-size state. Because that state doesn't grow
+with context, the [KV cache](#kv-cache) stays small. Qwen3 Next 80B-A3B pairs 12
+gated-attention layers with 36 DeltaNet layers and shows 24 KiB per token in the
+gallery. It is a newer design, so we check quality on our own tasks. See the
+[Model Architecture primer](primers/model-architecture.md).
+
+**Reference:**
+- [LLM Architecture Gallery](https://sebastianraschka.com/llm-architecture-gallery/)
+- [Gated Delta Networks: Improving Mamba2 with Delta Rule](https://arxiv.org/abs/2412.06464)
 
 ## I
 
@@ -117,13 +184,40 @@ _No entries yet._
 
 ## K
 
-_No entries yet._
+### KV Cache
+
+*"Why does memory climb as the conversation gets longer?"*
+
+The KV cache holds the keys and values of every token a model has already
+processed, so it doesn't recompute them for each new token. It grows with the
+context in use, and at long context it often matters more to memory than the
+model's parameter count. Attention designs such as
+[grouped-query](#grouped-query-attention-gqa) and
+[multi-head latent](#multi-head-latent-attention-mla) attention exist largely to
+shrink it. See the [Model Architecture primer](primers/model-architecture.md) for
+per-token figures.
+
+**Reference:** [LLM Architecture Gallery](https://sebastianraschka.com/llm-architecture-gallery/)
 
 ## L
 
 _No entries yet._
 
 ## M
+
+### Mixture of Experts (MoE)
+
+*"How can a model have hundreds of billions of parameters and still be quick?"*
+
+A Mixture of Experts model splits each feed-forward layer into many smaller
+blocks called experts, and a small router picks a few of them for each token. Only
+those experts run, so the model's [active parameters](#active-parameters) are a
+small share of its total. Mixtral 8x7B has access to 47B parameters but uses 13B
+per token. The experts all still need to be available in memory. See the
+[Model Architecture primer](primers/model-architecture.md), which contrasts MoE
+with a [dense model](#dense-model).
+
+**Reference:** [Mixtral of Experts](https://arxiv.org/abs/2401.04088)
 
 ### Model Optimization
 
@@ -144,8 +238,20 @@ broader [Agent Optimization](#agent-optimization) loop, which also improves the
 surrounding agent workflow and governs spend continuously.
 
 **Reference:**
-- [Optimize model cost and performance in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/control-plane/how-to-optimize-cost-performance)
+- [Optimize model cost and performance in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/control-plane/how-to-optimize-cost-performance)
 - [A Developer's Guide to Managing Models, Cost and Quality in Microsoft Foundry](https://devblogs.microsoft.com/foundry/build-2026-foundry-models/)
+
+### Multi-Head Latent Attention (MLA)
+
+*"Can the KV cache be compressed instead of shared?"*
+
+Multi-head latent attention compresses keys and values into a smaller latent
+vector, which cuts the [KV cache](#kv-cache) without having heads share keys the
+way [grouped-query attention](#grouped-query-attention-gqa) does. DeepSeek V3 uses
+it and shows 68.6 KiB per token in the gallery. See the
+[Model Architecture primer](primers/model-architecture.md).
+
+**Reference:** [DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model](https://arxiv.org/abs/2405.04434)
 
 ## N
 
@@ -198,11 +304,22 @@ model selection, deployment and pricing modes, and shorter prompts. It is where
 
 **Reference:**
 - [The Economics of Agent Optimization: From pilots to measurable returns](https://azure.microsoft.com/en-us/blog/the-economics-of-agent-optimization-from-pilots-to-measurable-returns/)
-- [Model router for Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router)
+- [Model router for Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/concepts/model-router)
 
 ## S
 
-_No entries yet._
+### Sliding-Window Attention
+
+*"Does every layer need to look at the whole conversation?"*
+
+In sliding-window attention, each token looks only at a window of nearby tokens
+instead of everything before it, which caps the [KV cache](#kv-cache) for that
+layer. Models usually mix these layers with a few global-attention layers so
+distant context still reaches the output. Gemma 3 27B uses a 5:1 ratio of
+sliding-window to global layers. See the
+[Model Architecture primer](primers/model-architecture.md).
+
+**Reference:** [Longformer: The Long-Document Transformer](https://arxiv.org/abs/2004.05150)
 
 ## T
 
@@ -226,7 +343,20 @@ and limiting unnecessary tool calls.
 
 **Reference:**
 - [Microsoft Mechanics: token economics episode](https://www.youtube.com/watch?v=mB0IyELzjRg)
-- [Optimize model cost and performance in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/control-plane/how-to-optimize-cost-performance)
+- [Optimize model cost and performance in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/control-plane/how-to-optimize-cost-performance)
+
+### Transformer
+
+*"What is almost every modern language model made of?"*
+
+A transformer is a neural network built from a stack of identical blocks, each
+combining [attention](#attention) with a feed-forward layer. Text becomes tokens,
+tokens become vectors, and each block mixes information across the sequence
+before the model predicts the next token. [Dense](#dense-model) and
+[Mixture of Experts](#mixture-of-experts-moe) models differ in the feed-forward
+layer. See the [Model Architecture primer](primers/model-architecture.md).
+
+**Reference:** [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 
 ## U
 

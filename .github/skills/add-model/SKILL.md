@@ -17,7 +17,7 @@ inputs:
     required: true
   - name: model_card
     type: url
-    description: Learn URL for the model card when available.
+    description: Learn URL for the model card when available (no locale segment).
     required: true
   - name: released
     type: date

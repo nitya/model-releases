@@ -27,7 +27,9 @@ from __future__ import annotations
 import json
 import re
 import sys
+from html import escape
 from pathlib import Path
+from urllib.parse import quote
 
 try:
     import yaml
@@ -39,21 +41,37 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 REPO_URL = "https://github.com/microsoft-foundry/model-releases"
 CATALOG = REPO_ROOT / "catalog.json"
 LLMS_TXT = REPO_ROOT / "llms.txt"
-CAPSULE_TOC = REPO_ROOT / "CAPSULE-TOC.md"
+CAPSULE_LOG = REPO_ROOT / "docs" / "CAPSULES.md"
 README = REPO_ROOT / "README.md"
 DOCS_README = REPO_ROOT / "docs" / "README.md"
 
 # Marker-bracketed regions this script owns. Prose outside them is
 # hand-written and preserved.
-TOC_MARKERS = ("<!-- BEGIN:CAPSULE-TABLES -->",
-               "<!-- END:CAPSULE-TABLES -->")
+LOG_MARKERS = ("<!-- BEGIN:CAPSULE-LIST -->",
+               "<!-- END:CAPSULE-LIST -->")
 README_MARKERS = ("<!-- BEGIN:RECENT-CAPSULES -->",
                   "<!-- END:RECENT-CAPSULES -->")
 TAXONOMY_MARKERS = ("<!-- BEGIN:CAPABILITY-TAXONOMY -->",
                     "<!-- END:CAPABILITY-TAXONOMY -->")
+CONCEPT_MARKERS = ("<!-- BEGIN:CONCEPT-PRIMERS -->",
+                   "<!-- END:CONCEPT-PRIMERS -->")
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 RESERVED_DIRS = {"quickstart", "multi-model-scenarios"}
+COLLECTION_BADGE_COLORS = {
+    "anthropic": "D97757",
+    "azure-openai": "0078D4",
+    "black-forest-labs": "222222",
+    "cohere": "39594D",
+    "deepseek": "4D6BFE",
+    "fireworks": "E5484D",
+    "hugging-face": "FFD21E",
+    "microsoft-ai": "00A4EF",
+    "mistral": "FF7000",
+    "model-router": "7F3FBF",
+    "nvidia": "76B900",
+    "xai": "555555",
+}
 
 
 def read_frontmatter(path: Path) -> dict:
@@ -169,10 +187,13 @@ def collect() -> dict:
         primers.append({
             "capability": fm.get("capability"),
             "label": fm.get("label"),
+            "title": fm.get("title"),
             "slug": fm.get("slug"),
             "one_line": fm.get("one_line"),
             "path": rel(p),
         })
+        if fm.get("topic") == "concept":
+            continue  # concept primers are not capability tags
         # The taxonomy: one entry per usable tag, including aliases.
         capabilities.append({
             "capability": fm.get("capability"),
@@ -235,8 +256,8 @@ def render_llms_txt(cat: dict) -> str:
         "and a Jupyter notebook you can run against your own Foundry "
         "project.",
         "",
-        "Announcements are tracked in CHANGELOG.md, newest first, "
-        "grouped by month. Capsules are indexed in CAPSULE-TOC.md, "
+        "Announcements are tracked in ANNOUNCEMENTS.md, newest first, "
+        "grouped by month. Capsules are indexed in CAPSULES.md, "
         "grouped by provider. catalog.json holds this same index in "
         "structured form.",
         "",
@@ -261,16 +282,16 @@ def render_llms_txt(cat: dict) -> str:
                 f"- [{s['title']}]({s['url']}): {_sentence(s['summary'])} "
                 f"Compares: {models}."
             )
-    L += ["", "## Capability primers", ""]
+    L += ["", "## Primers", ""]
     for p in cat["primers"]:
         L.append(
-            f"- [{p['capability']}]({REPO_URL}/blob/main/{p['path']}): "
-            f"{p['one_line']}"
+            f"- [{p['capability'] or p['title']}]"
+            f"({REPO_URL}/blob/main/{p['path']}): {p['one_line']}"
         )
     L += ["", "## Optional", "",
-          f"- [CHANGELOG]({REPO_URL}/blob/main/CHANGELOG.md): "
+          f"- [ANNOUNCEMENTS]({REPO_URL}/blob/main/docs/ANNOUNCEMENTS.md): "
           "every Foundry model release announcement",
-          f"- [CAPSULE-TOC]({REPO_URL}/blob/main/CAPSULE-TOC.md): "
+          f"- [CAPSULES]({REPO_URL}/blob/main/docs/CAPSULES.md): "
           "capsule index grouped by provider",
           f"- [Glossary]({REPO_URL}/blob/main/docs/GLOSSARY.md): "
           "terminology used across capsules",
@@ -297,8 +318,20 @@ def _by_recency(items: list[dict]) -> list[dict]:
                                         i.get("title") or ""), reverse=True)
 
 
-def render_capsule_toc(cat: dict) -> str:
-    """Provider-grouped capsule tables, plus the scenario table."""
+def _capsule_item(date: str, name: str, path: str, meta: str,
+                  notebooks: list[dict]) -> str:
+    """One list item: date, linked name, metadata, numbered notebooks."""
+    # Dated drops ("Model Router — August 2026") show as the family name;
+    # the date leads the item.
+    name = re.sub(r"\s+—\s+[A-Z][a-z]+ \d{4}$", "", name)
+    lines = [f"- {date} · **[{name}](../{path}/)** · {meta}"]
+    lines += [f"  {n}. [{nb['title']}](../{nb['path']})"
+              for n, nb in enumerate(notebooks, 1)]
+    return "\n".join(lines)
+
+
+def render_capsule_log(cat: dict) -> str:
+    """Provider-grouped capsule lists, plus the scenario list."""
     labels = {c["capability"]: c["label"] for c in cat["capabilities"]}
     pub_names = {f["slug"]: f["name"] for f in cat["publishers"]}
     blocks: list[str] = []
@@ -307,51 +340,102 @@ def render_capsule_toc(cat: dict) -> str:
     for c in cat["capsules"]:
         by_publisher.setdefault(c["publisher"], []).append(c)
 
-    for slug in sorted(by_publisher, key=lambda s: pub_names.get(s, s)):
-        rows = [
-            [f"[{c['name']}]({c['path']}/)",
-             ", ".join(labels.get(t, t) for t in c["capabilities"]),
-             _recency(c),
-             c["summary"]]
+    slugs = sorted(by_publisher, key=lambda s: pub_names.get(s, s))
+    blocks.append(render_section_badges(cat, pub_names, slugs))
+
+    for slug in slugs:
+        items = [
+            _capsule_item(
+                _recency(c), c["name"], c["path"],
+                ", ".join(labels.get(t, t) for t in c["capabilities"]),
+                c.get("notebooks") or [])
             for c in _by_recency(by_publisher[slug])
         ]
-        blocks.append(
-            f"## {pub_names.get(slug, slug)}\n\n"
-            + _rows(["Capsule", "Capability", "Last updated",
-                     "Description"], rows)
-        )
+        blocks.append(f"## {pub_names.get(slug, slug)}\n\n" + "\n".join(items))
 
     if cat["scenarios"]:
-        rows = [
-            [f"[{s['title']}]({s['path']}/)",
-             pub_names.get(s.get("publisher"), s.get("publisher") or "—"),
-             _recency(s),
-             s["summary"]]
+        items = [
+            _capsule_item(
+                _recency(s), s["title"], s["path"],
+                pub_names.get(s.get("publisher"), "Multiple publishers"),
+                s.get("notebooks") or [])
             for s in _by_recency(cat["scenarios"])
         ]
         blocks.append(
             "## Multi-model scenarios\n\n"
-            "A scenario covers more than one release in a single "
-            "notebook, so it can't live in any one capsule. It sits in a "
-            "`multi-model-scenarios/` folder in one of two places. Under a "
-            "publisher (`models/<publisher>/multi-model-scenarios/`) it goes "
-            "deeper on models from that publisher - often a technical dive "
-            "that uses several together, not necessarily a comparison. At "
-            "the top level (`models/multi-model-scenarios/`) it spans "
-            "publishers.\n\n"
-            + _rows(["Scenario", "Publisher", "Last updated", "Description"],
-                    rows)
+            "Scenarios use several releases together in one notebook.\n\n"
+            + "\n".join(items)
         )
-    return "\n\n<br/>\n\n".join(blocks)
+    return "\n\n".join(blocks)
 
 
-def render_recent_capsules(cat: dict, limit: int = 3) -> str:
-    """The README's most-recently-updated capsules block."""
-    rows = [
-        [f"[{c['name']}]({c['path']}/)", _recency(c), c["summary"]]
-        for c in _by_recency(cat["capsules"])[:limit]
-    ]
-    return _rows(["Capsule", "Last updated", "Description"], rows)
+def _anchor(heading: str) -> str:
+    """GitHub's heading slug, so a badge can link to its section."""
+    return re.sub(r"[^\w\- ]", "", heading.lower()).replace(" ", "-")
+
+
+def _badge(href: str, name: str, count: int, color: str) -> str:
+    count_label = f"{count} notebook{'s' if count != 1 else ''}"
+    badge_url = (
+        "https://img.shields.io/badge/"
+        f"{quote(name.replace('-', '--'))}-"
+        f"{count}-{color}?style=flat-square"
+    )
+    return (
+        f'  <a href="{escape(href)}"><img '
+        f'src="{badge_url}" alt="{escape(name)}: {count_label}" /></a>'
+    )
+
+
+def _publisher_notebook_counts(cat: dict) -> dict[str, int]:
+    counts = {p["slug"]: 0 for p in cat["publishers"]}
+    for capsule in cat["capsules"]:
+        slug = capsule["publisher"]
+        counts[slug] = counts.get(slug, 0) + len(capsule.get("notebooks") or [])
+    return counts
+
+
+def render_section_badges(cat: dict, pub_names: dict[str, str],
+                          slugs: list[str]) -> str:
+    """Badge row for CAPSULES.md; each badge jumps to its section."""
+    counts = _publisher_notebook_counts(cat)
+    badges = ['<p align="center">']
+    for slug in slugs:
+        name = pub_names.get(slug, slug)
+        color = COLLECTION_BADGE_COLORS.get(slug, "6B7280")
+        badges.append(_badge(f"#{_anchor(name)}", name, counts[slug], color))
+    if cat["scenarios"]:
+        total = sum(len(s.get("notebooks") or []) for s in cat["scenarios"])
+        badges.append(_badge("#multi-model-scenarios", "Multi-model scenarios",
+                             total, "6B7280"))
+    badges.append("</p>")
+    return "\n".join(badges)
+
+
+def render_notebook_collection_badges(cat: dict) -> str:
+    """Notebook counts linked to each provider collection README."""
+    publishers = {p["slug"]: p for p in cat["publishers"]}
+    notebook_counts = _publisher_notebook_counts(cat)
+
+    badges = ['<p align="center">']
+    # Collections with notebooks first, so the clickable ones lead.
+    for slug in sorted(
+        publishers,
+        key=lambda value: (
+            -notebook_counts[value],
+            publishers.get(value, {}).get("name", value).lower(),
+        ),
+    ):
+        publisher = publishers.get(slug, {})
+        name = publisher.get("name", slug)
+        path = publisher.get("path", f"models/{slug}")
+        color = COLLECTION_BADGE_COLORS.get(slug, "6B7280")
+        badges.append(
+            _badge(f"{path}/README.md", name, notebook_counts[slug], color)
+        )
+
+    badges.append("</p>")
+    return "\n".join(badges)
 
 
 def render_taxonomy(cat: dict) -> str:
@@ -364,10 +448,20 @@ def render_taxonomy(cat: dict) -> str:
     return _rows(["Tag", "Capability", "What it means", "Primer"], rows)
 
 
-def replace_block(path: Path, markers: tuple[str, str], body: str) -> str:
+def render_concept_primers(cat: dict) -> str:
+    """Concept primers (how models work) listed in docs/README.md."""
+    return "\n".join(
+        f"- [{p['title']}](primers/{p['slug']}.md): {p['one_line']}"
+        for p in cat["primers"] if p.get("title")
+    )
+
+
+def replace_block(path: Path, markers: tuple[str, str], body: str,
+                  text: str | None = None) -> str:
     """Swap the content between markers, preserving surrounding prose."""
     begin, end = markers
-    text = path.read_text(encoding="utf-8")
+    if text is None:
+        text = path.read_text(encoding="utf-8")
     i, j = text.find(begin), text.find(end)
     if i == -1 or j == -1:
         raise SystemExit(f"[catalog] missing {begin} / {end} in {rel(path)}")
@@ -382,12 +476,16 @@ def main() -> int:
     targets = [
         (CATALOG, catalog_text),
         (LLMS_TXT, llms_text),
-        (CAPSULE_TOC,
-         replace_block(CAPSULE_TOC, TOC_MARKERS, render_capsule_toc(cat))),
+        (CAPSULE_LOG,
+         replace_block(CAPSULE_LOG, LOG_MARKERS, render_capsule_log(cat))),
         (README,
-         replace_block(README, README_MARKERS, render_recent_capsules(cat))),
+         replace_block(README, README_MARKERS,
+                       render_notebook_collection_badges(cat))),
         (DOCS_README,
-         replace_block(DOCS_README, TAXONOMY_MARKERS, render_taxonomy(cat))),
+         replace_block(
+             DOCS_README, CONCEPT_MARKERS, render_concept_primers(cat),
+             text=replace_block(DOCS_README, TAXONOMY_MARKERS,
+                                render_taxonomy(cat)))),
     ]
 
     if check:

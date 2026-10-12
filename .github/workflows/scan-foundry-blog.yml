@@ -1,7 +1,7 @@
 name: Scan Foundry blog for new model releases
 
 # On demand only. Fetches the Microsoft Foundry blog index, diffs post
-# URLs against CHANGELOG.md, and opens a pull request with draft rows
+# URLs against ANNOUNCEMENTS.md, and opens a pull request with draft rows
 # for any new model-announcement posts. The PR also refreshes the
 # README Recently added top 3.
 #
@@ -55,7 +55,7 @@ jobs:
       - name: Detect file changes
         id: diff
         run: |
-          if git diff --quiet -- CHANGELOG.md README.md; then
+          if git diff --quiet -- docs/ANNOUNCEMENTS.md README.md; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -80,17 +80,17 @@ jobs:
         with:
           branch: bot/scan-foundry-blog
           delete-branch: true
-          commit-message: "chore(scan): draft CHANGELOG rows from Foundry blog"
-          title: "Foundry blog scan: draft CHANGELOG + README updates"
+          commit-message: "chore(scan): draft announcement row from Foundry blog"
+          title: "Foundry blog scan: draft announcement + README updates"
           body: |
             Automated scan of the [Microsoft Foundry blog](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/).
 
             **What this PR does**
 
-            - Prepends one draft row to `CHANGELOG.md` per new model-announcement
+            - Prepends one draft row to `ANNOUNCEMENTS.md` per new model-announcement
               blog post that isn't already referenced.
             - Refreshes the `README.md` **Recently added** block to reflect the
-              top 3 CHANGELOG rows.
+              top 3 announcement row.
 
             **Before merging**
 

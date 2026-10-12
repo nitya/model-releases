@@ -32,7 +32,7 @@ drive the patterns other families follow.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
 - [Chat completion primer](../../docs/primers/chat-completion.md)
 - [Reasoning primer](../../docs/primers/reasoning-models.md)
 - [Glossary](../../docs/GLOSSARY.md)

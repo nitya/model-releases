@@ -13,7 +13,7 @@ inputs:
     required: true
   - name: reference_url
     type: url
-    description: Grounding link — prefer learn.microsoft.com.
+    description: Grounding link — prefer learn.microsoft.com, with no locale segment.
     required: true
   - name: reference_title
     type: string
@@ -31,7 +31,9 @@ Adds a new entry to [`docs/GLOSSARY.md`](../../../docs/GLOSSARY.md):
 
 - Placed under the correct **A–Z letter section**.
 - Level-3 heading (`### Term Name`) with kebab-case anchor.
-- 2–4 sentence definition.
+- 2–4 sentence definition that answers a developer question in the warm,
+  shared voice from [`plan.md` §15](../../plan.md). Make the term approachable
+  without praise, hype, or filler.
 - Ends with `**Reference:** [title](url)` — required.
 
 Replaces the section's `_No entries yet._` placeholder if the section

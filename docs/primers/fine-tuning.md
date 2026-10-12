@@ -6,11 +6,11 @@ slug: fine-tuning
 one_line: Supports customization / distillation.
 learn_more:
   - title: Microsoft Foundry Models overview — customization
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Model leaderboards — spot fine-tuning-ready options
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks
+    url: https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks
   - title: GPT-5 vs GPT-4.1 model choice guide
-    url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/model-choice-guide
+    url: https://learn.microsoft.com/azure/foundry/foundry-models/how-to/model-choice-guide
 ---
 
 # Fine-tuning Ready Models
@@ -43,8 +43,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview — customization](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [Model leaderboards — spot fine-tuning-ready options](https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks)
-3. [GPT-5 vs GPT-4.1 model choice guide](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/model-choice-guide)
+1. [Foundry Models overview — customization](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [Model leaderboards — spot fine-tuning-ready options](https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks)
+3. [GPT-5 vs GPT-4.1 model choice guide](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/model-choice-guide)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

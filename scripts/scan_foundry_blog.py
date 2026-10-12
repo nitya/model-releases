@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 scan_foundry_blog.py — Scan the Microsoft Foundry blog for new model
-announcements and stage draft CHANGELOG + README updates.
+announcements and stage draft ANNOUNCEMENTS + README updates.
 
 Behavior:
 
@@ -11,15 +11,15 @@ Behavior:
 2. Extract candidate posts (URL, title, publish date).
 3. Filter to plausible model announcements (title heuristic: mentions
    a model family, "introducing", "available", "now in Foundry", etc).
-4. Diff against blog URLs already referenced in CHANGELOG.md.
-5. For each new post, add a draft row to CHANGELOG.md under its
+4. Diff against blog URLs already referenced in ANNOUNCEMENTS.md.
+5. For each new post, add a draft row to ANNOUNCEMENTS.md under its
    `## <Month> <Year>` heading (creating the heading and table header
    if the month is new), with the Date linking to the blog post.
    Publisher / Model / Capabilities cells are filled with
    `_review_` / `_—_` placeholders so the maintainer knows what to
    complete before merging.
 6. Regenerate the README `<!-- BEGIN:RECENTLY-ADDED -->` block from
-   the top 3 CHANGELOG rows.
+   the top 3 announcement row.
 7. Print a short summary to stdout so the workflow can surface it in
    the PR body.
 
@@ -30,7 +30,7 @@ Design notes:
 - The blog listing HTML shape may drift; parsing is intentionally
   forgiving. When a field can't be extracted we fall back to
   `_review_` and let the maintainer fix it in the PR.
-- The script never edits existing CHANGELOG rows — it only adds.
+- The script never edits existing announcement row — it only adds.
   Manual/curated rows added by hand keep their fidelity.
 - A row is considered "already present" if its Date-cell markdown link
   points at the same blog URL (path-normalized, ignoring trailing /).
@@ -116,7 +116,7 @@ class BlogPost:
 
     @property
     def normalized_url(self) -> str:
-        """URL used for equality checks against CHANGELOG rows."""
+        """URL used for equality checks against announcement row."""
         p = urllib.parse.urlsplit(self.url)
         path = p.path.rstrip("/")
         return urllib.parse.urlunsplit((p.scheme, p.netloc, path, "", ""))
@@ -148,7 +148,7 @@ def _strip_site_suffix(title: str) -> str:
     """Drop the trailing " | Microsoft Community Hub" site branding.
 
     og:title carries it, and it would otherwise land in the drafted
-    CHANGELOG row.
+    announcement row.
     """
     return re.sub(
         r"\s*[|\-–]\s*Microsoft Community Hub\s*$", "", title.strip(),
@@ -284,7 +284,7 @@ def crawl_index(max_pages: int) -> list[BlogPost]:
     return posts
 
 
-CHANGELOG_URL_RE = re.compile(
+ANNOUNCEMENTS_URL_RE = re.compile(
     r"https://techcommunity\.microsoft\.com/blog/azure-ai-foundry-blog/"
     r"[a-z0-9\-]+/\d+",
     re.IGNORECASE,
@@ -298,9 +298,9 @@ MONTH_NAMES = (
 )
 
 
-def existing_changelog_urls(changelog_text: str) -> set[str]:
+def existing_announcements_urls(announcements_text: str) -> set[str]:
     urls: set[str] = set()
-    for m in CHANGELOG_URL_RE.finditer(changelog_text):
+    for m in ANNOUNCEMENTS_URL_RE.finditer(announcements_text):
         url = m.group(0)
         p = urllib.parse.urlsplit(url)
         urls.add(
@@ -332,8 +332,8 @@ def month_heading(date_str: str) -> str:
     return f"## {MONTH_NAMES[d.month - 1]} {d.year}"
 
 
-def insert_rows_into_changelog(
-    changelog_text: str, new_rows: list[tuple[str, str]]
+def insert_rows_into_announcements(
+    announcements_text: str, new_rows: list[tuple[str, str]]
 ) -> str:
     """Insert new rows under their month's table, newest first.
 
@@ -341,9 +341,9 @@ def insert_rows_into_changelog(
     and table header are created if the month isn't present yet.
     """
     if not new_rows:
-        return changelog_text
-    trailing_nl = changelog_text.endswith("\n")
-    lines = changelog_text.splitlines()
+        return announcements_text
+    trailing_nl = announcements_text.endswith("\n")
+    lines = announcements_text.splitlines()
 
     # Oldest first, so repeated top-insertion leaves the newest row on
     # top.
@@ -372,7 +372,7 @@ def insert_rows_into_changelog(
                 break
         else:
             raise RuntimeError(
-                f"CHANGELOG.md: no table found under '{heading}'"
+                f"ANNOUNCEMENTS.md: no table found under '{heading}'"
             )
     return "\n".join(lines) + ("\n" if trailing_nl else "")
 
@@ -381,11 +381,11 @@ README_MARK_BEGIN = "<!-- BEGIN:RECENTLY-ADDED -->"
 README_MARK_END = "<!-- END:RECENTLY-ADDED -->"
 
 
-def parse_changelog_top(
-    changelog_text: str, n: int
+def parse_announcements_top(
+    announcements_text: str, n: int
 ) -> list[dict[str, str]]:
     """Extract the first n data rows, across all month tables."""
-    text = re.sub(r"<!--.*?-->", "", changelog_text, flags=re.DOTALL)
+    text = re.sub(r"<!--.*?-->", "", announcements_text, flags=re.DOTALL)
     rows: list[list[str]] = []
     in_table = False
     for line in text.splitlines():
@@ -412,13 +412,9 @@ def parse_changelog_top(
 
 
 def render_readme_block(rows: list[dict[str, str]]) -> str:
-    header = (
-        "| Model | Release date | Capabilities |\n"
-        "| --- | --- | --- |"
-    )
     body_lines: list[str] = []
     for r in rows:
-        # README shows a plain bold model name; the CHANGELOG cell may
+        # README shows a plain bold model name; the ANNOUNCEMENTS cell may
         # carry link markup and an availability note on a second line,
         # so strip all three rather than nesting a link inside bold.
         model = re.sub(
@@ -430,14 +426,13 @@ def render_readme_block(rows: list[dict[str, str]]) -> str:
             model = m.group(1)
         capabilities = r.get("capabilities", "").strip() or "_review_"
         body_lines.append(
-            f"| **{model}** | {r.get('date', '_review_')} "
-            f"| {capabilities} |"
+            f"- **{model}** · {r.get('date', '_review_')} "
+            f"· {capabilities}"
         )
-    # No caption here — the "See the full CHANGELOG" line lives outside
+    # No caption here — the "See the full ANNOUNCEMENTS" line lives outside
     # the markers in README.md so regeneration doesn't duplicate it.
     return (
         f"{README_MARK_BEGIN}\n"
-        f"{header}\n"
         + "\n".join(body_lines)
         + f"\n{README_MARK_END}"
     )
@@ -466,18 +461,18 @@ def main(argv: list[str]) -> int:
     )
     args = ap.parse_args(argv)
 
-    changelog_path = args.repo_root / "CHANGELOG.md"
+    announcements_path = args.repo_root / "docs" / "ANNOUNCEMENTS.md"
     readme_path = args.repo_root / "README.md"
-    if not changelog_path.exists():
-        print(f"error: {changelog_path} not found", file=sys.stderr)
+    if not announcements_path.exists():
+        print(f"error: {announcements_path} not found", file=sys.stderr)
         return 2
     if not readme_path.exists():
         print(f"error: {readme_path} not found", file=sys.stderr)
         return 2
 
-    changelog_text = changelog_path.read_text(encoding="utf-8")
+    announcements_text = announcements_path.read_text(encoding="utf-8")
     readme_text = readme_path.read_text(encoding="utf-8")
-    known = existing_changelog_urls(changelog_text)
+    known = existing_announcements_urls(announcements_text)
 
     print(f"[scan] fetching up to {args.max_pages} index page(s)…")
     posts = crawl_index(args.max_pages)
@@ -493,7 +488,7 @@ def main(argv: list[str]) -> int:
         return 0
 
     # Only consider posts that (a) look like model announcements and
-    # (b) are not already referenced in CHANGELOG.
+    # (b) are not already referenced in ANNOUNCEMENTS.
     candidates: list[BlogPost] = []
     for p in posts:
         if p.normalized_url in known:
@@ -526,25 +521,25 @@ def main(argv: list[str]) -> int:
         )
         for p in candidates
     ]
-    updated_changelog = insert_rows_into_changelog(
-        changelog_text, new_rows
+    updated_announcements = insert_rows_into_announcements(
+        announcements_text, new_rows
     )
-    top3 = parse_changelog_top(updated_changelog, 3)
+    top3 = parse_announcements_top(updated_announcements, 3)
     updated_readme = update_readme_recent(
         readme_text, render_readme_block(top3)
     )
 
     if args.dry_run:
-        print("\n[dry-run] would add these CHANGELOG rows:")
+        print("\n[dry-run] would add these announcement row:")
         for _, r in new_rows:
             print(f"  {r}")
         print("\n[dry-run] would update README Recently added block.")
         return 0
 
-    changelog_path.write_text(updated_changelog, encoding="utf-8")
+    announcements_path.write_text(updated_announcements, encoding="utf-8")
     readme_path.write_text(updated_readme, encoding="utf-8")
     print(
-        f"[scan] wrote {len(new_rows)} draft row(s) to CHANGELOG.md "
+        f"[scan] wrote {len(new_rows)} draft row(s) to ANNOUNCEMENTS.md "
         f"and refreshed README top 3."
     )
     return 0

@@ -18,6 +18,13 @@
       "primer_path": "docs/primers/chat-completion.md"
     },
     {
+      "capability": "decision-models",
+      "label": "Decision Models",
+      "description": "Ask typed questions about some state and get back choices, scores, or probabilities our code can branch on.",
+      "primer": "decision-models",
+      "primer_path": "docs/primers/decision-models.md"
+    },
+    {
       "capability": "embeddings",
       "label": "Embeddings",
       "description": "Vector representations for retrieval / similarity.",
@@ -85,7 +92,7 @@
     "capsules": 7,
     "scenarios": 1,
     "publishers": 12,
-    "primers": 10
+    "primers": 13
   },
   "capsules": [
     {
@@ -138,7 +145,7 @@
         "function-calling"
       ],
       "model_card": "https://ai.azure.com/catalog/models/model-router",
-      "announcement": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router",
+      "announcement": "https://learn.microsoft.com/azure/foundry/foundry-models/whats-new-model-router",
       "pricing": {
         "notes": "Billed at the selected underlying model's rate — no separate routing charge",
         "source": "https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/"
@@ -507,6 +514,7 @@
     {
       "capability": "audio-speech",
       "label": "Audio / Speech",
+      "title": null,
       "slug": "audio-speech",
       "one_line": "STT, TTS, or realtime voice.",
       "path": "docs/primers/audio-speech.md"
@@ -514,13 +522,23 @@
     {
       "capability": "chat-completion",
       "label": "Chat Completion",
+      "title": null,
       "slug": "chat-completion",
       "one_line": "General instruction-following and dialogue.",
       "path": "docs/primers/chat-completion.md"
     },
     {
+      "capability": "decision-models",
+      "label": "Decision Models",
+      "title": null,
+      "slug": "decision-models",
+      "one_line": "Ask typed questions about some state and get back choices, scores, or probabilities our code can branch on.",
+      "path": "docs/primers/decision-models.md"
+    },
+    {
       "capability": "embeddings",
       "label": "Embeddings",
+      "title": null,
       "slug": "embeddings",
       "one_line": "Vector representations for retrieval / similarity.",
       "path": "docs/primers/embeddings.md"
@@ -528,6 +546,7 @@
     {
       "capability": "fine-tuning",
       "label": "Fine-tuning Ready",
+      "title": null,
       "slug": "fine-tuning",
       "one_line": "Supports customization / distillation.",
       "path": "docs/primers/fine-tuning.md"
@@ -535,6 +554,7 @@
     {
       "capability": "function-calling",
       "label": "Function Calling",
+      "title": null,
       "slug": "function-calling",
       "one_line": "Structured tool invocation.",
       "path": "docs/primers/function-calling.md"
@@ -542,6 +562,7 @@
     {
       "capability": "image-generation",
       "label": "Image Generation",
+      "title": null,
       "slug": "image-generation",
       "one_line": "Text → image output.",
       "path": "docs/primers/image-generation.md"
@@ -549,13 +570,31 @@
     {
       "capability": "long-context",
       "label": "Long Context",
+      "title": null,
       "slug": "long-context",
       "one_line": "200k+ token context window.",
       "path": "docs/primers/long-context.md"
     },
     {
+      "capability": null,
+      "label": null,
+      "title": "Model Architecture",
+      "slug": "model-architecture",
+      "one_line": "How a model is built, from dense and Mixture of Experts layers to attention and hybrids, and what that means for speed, memory, and cost.",
+      "path": "docs/primers/model-architecture.md"
+    },
+    {
+      "capability": null,
+      "label": null,
+      "title": "Model Cards",
+      "slug": "model-cards",
+      "one_line": "How to read a model card, from parameters and context window to deployment, pricing, and limits.",
+      "path": "docs/primers/model-cards.md"
+    },
+    {
       "capability": "model-router",
       "label": "Model Router",
+      "title": null,
       "slug": "model-router",
       "one_line": "One endpoint that routes requests across models.",
       "path": "docs/primers/model-router.md"
@@ -563,6 +602,7 @@
     {
       "capability": "multimodal",
       "label": "Multimodal",
+      "title": null,
       "slug": "multimodal-models",
       "one_line": "Accepts image (and/or audio) input alongside text.",
       "path": "docs/primers/multimodal-models.md"
@@ -570,6 +610,7 @@
     {
       "capability": "reasoning",
       "label": "Reasoning",
+      "title": null,
       "slug": "reasoning-models",
       "one_line": "Extended-thinking / chain-of-thought optimized models.",
       "path": "docs/primers/reasoning-models.md"

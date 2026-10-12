@@ -26,6 +26,6 @@ marketing, mockups, synthetic data — this is where to look first.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
 - [Image generation primer](../../docs/primers/image-generation.md)
 - [Glossary](../../docs/GLOSSARY.md)

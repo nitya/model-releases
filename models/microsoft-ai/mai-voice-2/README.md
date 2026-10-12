@@ -48,7 +48,7 @@ delivery, locale handling, and consistency for your own scenario.
 | Pricing | Speech synthesis is billed per character; check [current regional pricing](https://azure.microsoft.com/pricing/details/speech/) |
 | Release date | 2026-06-02 |
 | Retirement date | No retirement date announced |
-| Regions | Check the live [Azure Speech region table](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions) before creating the resource |
+| Regions | Check the live [Azure Speech region table](https://learn.microsoft.com/azure/ai-services/speech-service/regions) before creating the resource |
 
 Complete [models/quickstart/](../../quickstart/README.md) for first-time Foundry setup, then
 create an Azure Speech resource in a region that supports MAI models.
@@ -85,7 +85,7 @@ created at runtime and should not be committed.
 
 The supplied SDK example uses `en-US-Ethan:MAI-Voice-2`. MAI-Voice-2 also provides
 locale-specific prebuilt voices. A voice's locale and supported styles determine which SSML
-experiments are valid; use the live [prebuilt voice table](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices#prebuilt-voices)
+experiments are valid; use the live [prebuilt voice table](https://learn.microsoft.com/azure/ai-services/speech-service/mai-voices#prebuilt-voices)
 as the source of truth.
 
 Expressive synthesis uses `mstts:express-as`:
@@ -114,11 +114,11 @@ segments without another audio dependency.
 
 ## References
 
-- [MAI-Voice overview](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices) — official feature, SSML, voice, language, preview, and gated-access guidance.
+- [MAI-Voice overview](https://learn.microsoft.com/azure/ai-services/speech-service/mai-voices) — official feature, SSML, voice, language, preview, and gated-access guidance.
 - [MAI-Voice-2 model card](https://ai.azure.com/catalog/models/MAI-Voice-2) — Foundry catalog capabilities and model details.
 - [Introducing MAI-Voice-2](https://microsoft.ai/news/mai-voice-2/) — release examples, supported languages, code-switching, use cases, and consent guidance.
 - [Azure Speech SDK samples](https://github.com/Azure-Samples/cognitive-services-speech-sdk) — official SDK examples across supported languages.
-- [Speech synthesis with the Speech SDK](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/get-started-text-to-speech) — authentication, audio output, and result handling.
-- [Speech service regions](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions) — live region and endpoint guidance.
+- [Speech synthesis with the Speech SDK](https://learn.microsoft.com/azure/ai-services/speech-service/get-started-text-to-speech) — authentication, audio output, and result handling.
+- [Speech service regions](https://learn.microsoft.com/azure/ai-services/speech-service/regions) — live region and endpoint guidance.
 - [Speech pricing](https://azure.microsoft.com/pricing/details/speech/) — current character-based text-to-speech pricing.
 - [Audio / Speech primer](../../../docs/primers/audio-speech.md) — capability background and deployment considerations.

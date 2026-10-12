@@ -7,11 +7,11 @@ sample_env: scripts/sample.env
 setup_script: scripts/setenv.sh
 learn_more:
   - title: Foundry quickstart docs
-    url: https://learn.microsoft.com/en-us/azure/foundry/quickstarts/get-started-code
+    url: https://learn.microsoft.com/azure/foundry/quickstarts/get-started-code
   - title: Microsoft Foundry Models overview
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Create a project in the Foundry portal
-    url: https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects
+    url: https://learn.microsoft.com/azure/foundry/how-to/create-projects
 ---
 
 # Model Releases Quickstart
@@ -19,8 +19,8 @@ learn_more:
 > **Do this once.** Every capsule notebook in this repo assumes you've completed the four steps below. When a notebook can't find a required env var, it will point you back here.
 
 **Grounded in Microsoft Learn:**
-- [Quickstart: Get started with Microsoft Foundry SDK](https://learn.microsoft.com/en-us/azure/foundry/quickstarts/get-started-code) 
-- [Overview of Microsoft Foundry Models](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview) 
+- [Quickstart: Get started with Microsoft Foundry SDK](https://learn.microsoft.com/azure/foundry/quickstarts/get-started-code)
+- [Overview of Microsoft Foundry Models](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
 - [Explore the Microsoft Foundry model catalog](https://ai.azure.com/catalog)
 
 ---
@@ -42,7 +42,7 @@ flowchart LR
 - An **Azure subscription** with access to Microsoft Foundry
   ([sign-in](https://ai.azure.com)).
 - **Azure CLI** logged in: `az login` — see
-  [Azure CLI docs](https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli).
+  [Azure CLI docs](https://learn.microsoft.com/cli/azure/get-started-with-azure-cli).
 - **Python 3.10+** (the devcontainer ships 3.12) or open this repo in the
   provided devcontainer, which installs `requirements-dev.txt` for you.
 
@@ -55,7 +55,7 @@ flowchart LR
 5. Note the **resource group name** and **project name** — you need them in Step 4.
 6. Wait for creation to complete.
 
-Full walkthrough: [Create a project in the Foundry portal](https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects).
+Full walkthrough: [Create a project in the Foundry portal](https://learn.microsoft.com/azure/foundry/how-to/create-projects).
 
 > **Other ways to create a project** (Azure CLI, Foundry Toolkit) will be documented here in a future update.
 
@@ -70,7 +70,7 @@ Each release capsule lists the exact deployments it expects in its
    (e.g. `router-nano`, `policy-mini`, `planner-gpt41`) — this makes it easy
    to swap models later without touching notebooks.
 
-Full reference: [Deploy models in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/how-to/deploy-models-openai).
+Full reference: [Deploy models in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/how-to/deploy-models-openai).
 
 > **Other deployment paths** (Azure CLI, Foundry Toolkit) will be documented here in a future update.
 
@@ -143,12 +143,12 @@ print('✅ base env OK' if not missing else f'⚠️ missing: {missing}')"
 
 - **`401 / 403`** — API key wrong, or your identity lacks the *Cognitive
   Services User* role. See
-  [Foundry RBAC](https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-azure-ai-foundry).
+  [Foundry RBAC](https://learn.microsoft.com/azure/foundry/concepts/rbac-azure-ai-foundry).
 - **`404 model not found`** — deployment name in `.env` doesn't match
   what's in the portal. Match them exactly (case-sensitive).
 - **Quota errors** — request a quota increase from the portal or pick a
   smaller model to start. See
-  [Manage quotas](https://learn.microsoft.com/en-us/azure/foundry/how-to/quota).
+  [Manage quotas](https://learn.microsoft.com/azure/foundry/how-to/quota).
 - **Region mismatch** — a model isn't available in your region; deploy
   it to the region listed in the capsule's Before You Begin.
 

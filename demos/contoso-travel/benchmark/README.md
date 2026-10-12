@@ -52,10 +52,10 @@ Use the portal optimizer to generate and rank better instructions automatically.
 4. **Compare** candidate scores to the baseline, then **Promote** the best candidate
    to a new agent version.
 
-Grounding: [Create a prompt agent](https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/prompt-agent?tabs=python)
-· [Optimize a prompt agent](https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent)
-· [Agent optimizer overview](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-optimizer-overview)
-· [Agent optimizer costs](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-optimizer-costs)
+Grounding: [Create a prompt agent](https://learn.microsoft.com/azure/foundry/agents/quickstarts/prompt-agent?tabs=python)
+· [Optimize a prompt agent](https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent)
+· [Agent optimizer overview](https://learn.microsoft.com/azure/foundry/agents/concepts/agent-optimizer-overview)
+· [Agent optimizer costs](https://learn.microsoft.com/azure/foundry/agents/concepts/agent-optimizer-costs)
 
 ## Reading the numbers
 

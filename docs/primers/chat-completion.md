@@ -6,11 +6,11 @@ slug: chat-completion
 one_line: General instruction-following and dialogue.
 learn_more:
   - title: Microsoft Foundry Models overview
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Basic Microsoft Foundry chat reference architecture
-    url: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat
+    url: https://learn.microsoft.com/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat
   - title: How to use vision-enabled chat models
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/gpt-with-vision
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/gpt-with-vision
 ---
 
 # Chat Completion Models
@@ -41,8 +41,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [Basic Microsoft Foundry chat reference architecture](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat)
-3. [How to use vision-enabled chat models](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/gpt-with-vision)
+1. [Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [Basic Microsoft Foundry chat reference architecture](https://learn.microsoft.com/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat)
+3. [How to use vision-enabled chat models](https://learn.microsoft.com/azure/foundry/openai/how-to/gpt-with-vision)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

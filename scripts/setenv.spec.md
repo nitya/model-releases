@@ -9,7 +9,7 @@ usage:
   - "./scripts/setenv.sh --use <rg> <project> [--force]          # populate from existing project"
   - "./scripts/setenv.sh --create <rg> <project> <location> [--force]  # create project + populate"
   - "./scripts/setenv.sh <rg> <project> [--force]                # legacy alias for --use"
-learn_ref: https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli
+learn_ref: https://learn.microsoft.com/cli/azure/get-started-with-azure-cli
 idempotent: true
 ---
 
@@ -29,6 +29,6 @@ the resource group or project, and will not overwrite `.env` unless `--force`
 is appended.
 
 Grounded in the
-[Foundry "Create a project" docs](https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects).
+[Foundry "Create a project" docs](https://learn.microsoft.com/azure/foundry/how-to/create-projects).
 
 See [`scripts/setenv.sh`](./setenv.sh) for the implementation.

@@ -14,8 +14,8 @@ this repo. One schema per `kind:` value.
 | `agent` | [`agent.schema.json`](./agent.schema.json) | `.github/agents/<name>.md` |
 | `script` | [`script.schema.json`](./script.schema.json) | `scripts/<name>.spec.md` |
 
-Run [`scripts/validate-specs.py`](../../../scripts/validate-specs.py) to
-check every artifact against its schema.
+Run [`scripts/validate.py`](../../../scripts/validate.py) to check every
+artifact against its schema and the repo's other invariants.
 
 ## What belongs in frontmatter
 
@@ -45,4 +45,4 @@ self-describing pages. `scripts/validate.py` fails if the generated
 files drift.
 
 `summary` is the field to get right: it is the meta description reused
-in `catalog.json`, `llms.txt`, `CAPSULE-TOC.md`, and the repo README.
+in `catalog.json`, `llms.txt`, `CAPSULES.md`, and the repo README.

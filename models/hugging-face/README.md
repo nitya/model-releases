@@ -28,6 +28,6 @@ deploy and scale them.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-- [Explore Microsoft Foundry Models in Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/foundry-models-overview?view=azureml-api-2)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+- [Explore Microsoft Foundry Models in Azure Machine Learning](https://learn.microsoft.com/azure/machine-learning/foundry-models-overview?view=azureml-api-2)
 - [Glossary](../../docs/GLOSSARY.md)

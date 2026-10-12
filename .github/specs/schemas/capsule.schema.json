@@ -32,7 +32,7 @@
       "type": "string",
       "minLength": 15,
       "maxLength": 160,
-      "description": "Short phrase describing what this release lets you do, e.g. \"Generate and edit images from text prompts\". Used verbatim in the repo README table, CAPSULE-TOC.md, catalog.json, and llms.txt - every one of which shows the model name right next to it, so do not repeat the model name or \"on Microsoft Foundry\" here. No trailing period; llms.txt adds one where it needs a full sentence."
+      "description": "Short phrase describing what this release lets you do, e.g. \"Generate and edit images from text prompts\". Used verbatim in the repo README table, CAPSULES.md, catalog.json, and llms.txt - every one of which shows the model name right next to it, so do not repeat the model name or \"on Microsoft Foundry\" here. No trailing period; llms.txt adds one where it needs a full sentence."
     },
     "release_date": {
       "type": "string",
@@ -42,7 +42,7 @@
     "last_updated": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-      "description": "Date this artifact was added or last meaningfully revised (ISO). Drives the ordering and the 'Last updated' column in CAPSULE-TOC.md. Defaults to release_date for capsules when omitted. Kept in frontmatter rather than read from git so a shallow CI checkout produces identical output."
+      "description": "Date this artifact was added or last meaningfully revised (ISO). Drives the ordering and the 'Last updated' column in CAPSULES.md. Defaults to release_date for capsules when omitted. Kept in frontmatter rather than read from git so a shallow CI checkout produces identical output."
     },
     "capabilities": {
       "type": "array",
@@ -60,7 +60,8 @@
           "function-calling",
           "model-router",
           "fine-tuning",
-          "long-context"
+          "long-context",
+          "decision-models"
         ]
       }
     },
@@ -134,7 +135,7 @@
         "properties": {
           "path": {
             "type": "string",
-            "description": "Relative path, e.g. notebooks/01-send-a-chat-request.ipynb"
+            "description": "Path relative to the capsule folder, e.g. mai-image-2.5.ipynb or 01-send-a-chat-request.ipynb"
           },
           "title": {
             "type": "string"

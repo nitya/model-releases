@@ -20,12 +20,12 @@ All of these are **generated** — edit the frontmatter, never the output.
 |---|---|---|
 | `catalog.json` | Agents, scripts | Every capsule, scenario, publisher, primer, and capability tag with models, capabilities, pricing, and notebook paths |
 | `llms.txt` | LLM consumers | A short, link-dense markdown map of the repo, per the [/llms.txt convention](https://llmstxt.org/) |
-| `CAPSULE-TOC.md` | Humans | Capsule tables grouped by provider, plus the multi-model scenario table |
-| `README.md` | Humans | The three most recently updated capsules |
+| `CAPSULES.md` | Humans | A badge row that jumps to each provider section, then capsule lists grouped by provider (date, name, capabilities, numbered notebook links, newest first), plus the multi-model scenario list |
+| `README.md` | Humans | The notebook badges: one per publisher with its notebook count, sorted by count then name, zeros included, each linking to the publisher's collection README |
 | `docs/README.md` | Humans | The capability taxonomy table |
 
 The three markdown files are only rewritten **between markers**
-(`<!-- BEGIN:CAPSULE-TABLES -->` and friends). Prose outside the
+(`<!-- BEGIN:CAPSULE-LIST -->` and friends). Prose outside the
 markers is hand-written and preserved, so the generator never
 flattens someone's intro paragraph.
 
@@ -44,9 +44,9 @@ central index from those same fields.
 ## Fields it reads
 
 `summary` is the load-bearing one. It is the meta description for a
-capsule — used in `catalog.json`, `llms.txt`, the repo README table,
-and `CAPSULE-TOC.md`. Write it to stand alone out of context: name the
-model, say what you can do with it, and mention Microsoft Foundry.
+capsule, used in `catalog.json`, `llms.txt`, and `CAPSULES.md`. Write it to
+stand alone out of context: say what the model does and when to reach for it.
+The schema defines the exact constraints.
 
 `last_updated` drives ordering and the **Last updated** column, and
 falls back to `release_date` when absent. It lives in frontmatter
@@ -62,6 +62,18 @@ primer in `docs/primers/`. A primer may also declare `aliases` so one
 primer serves several tags — `multimodal-models.md` covers both
 `multimodal` and `vision`. This is the single source of truth for the
 taxonomy table, so a tag is usable exactly when a primer declares it.
+
+## When the README changes
+
+The repo README has two marker-bounded blocks, refreshed by different tools:
+
+| Block | Refreshed by | Run it when |
+|---|---|---|
+| `RECENT-CAPSULES` (notebook badges) | this script | a notebook is added, renamed, or removed (update the capsule's `notebooks:` frontmatter first), or a new publisher or badge color is added |
+| `RECENTLY-ADDED` (top 3 announcement row) | the `refresh-recent-activity` skill, or `scripts/scan_foundry_blog.py` | a announcement row is added or edited |
+
+The README's "Try a notebook" link is hand-written. After a notebook rename or
+removal, search the README for the old path.
 
 ## Checking for drift
 

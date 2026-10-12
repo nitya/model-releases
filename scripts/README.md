@@ -11,7 +11,7 @@ purpose per script.
 - **Idempotent** — safe to re-run (check-before-create, `--force` flag
   for destructive ops).
 - **Grounded in [Microsoft Learn](https://learn.microsoft.com/) docs**
-  and the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
+  and the [Azure CLI](https://learn.microsoft.com/cli/azure/)
   where possible; link the underlying doc from the script's header.
 - **Spec-driven** — a script that authors or learners invoke as part
   of the workflow ships a sidecar `<name>.spec.md`, whose YAML
@@ -28,10 +28,10 @@ purpose per script.
 |---|---|---|
 | [`validate.py`](./validate.py) | [`validate.spec.md`](./validate.spec.md) | **Start here.** Run every check at once; `--watch` re-runs on each save |
 | [`setenv.sh`](./setenv.sh) | [`setenv.spec.md`](./setenv.spec.md) | Copy `sample.env` → `.env` and populate Foundry connection via Azure CLI |
-| [`generate-catalog.py`](./generate-catalog.py) | [`generate-catalog.spec.md`](./generate-catalog.spec.md) | Regenerate `catalog.json`, `llms.txt`, `CAPSULE-TOC.md`, and the README blocks |
+| [`generate-catalog.py`](./generate-catalog.py) | [`generate-catalog.spec.md`](./generate-catalog.spec.md) | Regenerate `catalog.json`, `llms.txt`, `CAPSULES.md`, and the README blocks |
 | [`validate-specs.py`](./validate-specs.py) | _(self-describing)_ | Validate every artifact's YAML frontmatter against its JSON Schema |
-| [`validate-crosslinks.py`](./validate-crosslinks.py) | _(self-describing)_ | Check CHANGELOG ↔ README ↔ capsule ↔ primer wiring |
-| [`scan_foundry_blog.py`](./scan_foundry_blog.py) | _(self-describing)_ | Diff the Foundry blog against the CHANGELOG and draft rows for new posts |
+| [`validate-crosslinks.py`](./validate-crosslinks.py) | _(self-describing)_ | Check ANNOUNCEMENTS ↔ README ↔ capsule ↔ primer wiring |
+| [`scan_foundry_blog.py`](./scan_foundry_blog.py) | _(self-describing)_ | Diff the Foundry blog against ANNOUNCEMENTS.md and draft rows for new posts |
 | [`sample.env`](./sample.env) | _(template)_ | Reference env vars for every capsule |
 
 ## Validating your changes

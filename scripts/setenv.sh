@@ -4,8 +4,8 @@
 #             auto-populate Microsoft Foundry connection details using
 #             the Azure CLI when a project is provided.
 # Prereqs:    Azure CLI logged in (`az login`) for any mode beyond copy-only.
-# Learn ref:  https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli
-#             https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects
+# Learn ref:  https://learn.microsoft.com/cli/azure/get-started-with-azure-cli
+#             https://learn.microsoft.com/azure/foundry/how-to/create-projects
 # Usage:
 #   ./scripts/setenv.sh                                          # copy template only
 #   ./scripts/setenv.sh --use <rg> <project> [--force]          # populate from existing project
@@ -61,7 +61,7 @@ esac
 
 require_az() {
   if ! command -v az >/dev/null 2>&1; then
-    echo "✗ Azure CLI not found. Install: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli" >&2
+    echo "✗ Azure CLI not found. Install: https://learn.microsoft.com/cli/azure/install-azure-cli" >&2
     exit 1
   fi
   if ! az account show >/dev/null 2>&1; then
@@ -94,7 +94,7 @@ populate_from_project() {
   tenant="$(az account show --query tenantId -o tsv)"
 
   # Discover the AIServices resource name in the RG — it may differ from the project name.
-  # Reference: https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects
+  # Reference: https://learn.microsoft.com/azure/foundry/how-to/create-projects
   resource_name="$(az cognitiveservices account list \
     --resource-group "$rg" \
     --query "[?kind=='AIServices'] | [0].name" -o tsv 2>/dev/null || true)"
@@ -181,7 +181,7 @@ case "$MODE" in
     fi
 
     # Create the Foundry AI Services resource if it doesn't already exist.
-    # Reference: https://learn.microsoft.com/en-us/azure/foundry/how-to/create-projects
+    # Reference: https://learn.microsoft.com/azure/foundry/how-to/create-projects
     if az cognitiveservices account show --name "$PROJECT" --resource-group "$RG" >/dev/null 2>&1; then
       echo "ℹ️  Foundry project '${PROJECT}' already exists — skipping creation."
     else

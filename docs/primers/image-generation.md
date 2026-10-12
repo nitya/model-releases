@@ -6,11 +6,11 @@ slug: image-generation
 one_line: Text → image output.
 learn_more:
   - title: Microsoft Foundry Models overview
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Model leaderboards in the Microsoft Foundry portal
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks
+    url: https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks
   - title: Explore Microsoft Foundry Models in Azure Machine Learning
-    url: https://learn.microsoft.com/en-us/azure/machine-learning/foundry-models-overview?view=azureml-api-2
+    url: https://learn.microsoft.com/azure/machine-learning/foundry-models-overview?view=azureml-api-2
 ---
 
 # Image Generation Models
@@ -42,9 +42,9 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [Model leaderboards in Microsoft Foundry portal](https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks)
-3. [Explore Microsoft Foundry Models in Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/foundry-models-overview?view=azureml-api-2)
+1. [Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [Model leaderboards in Microsoft Foundry portal](https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks)
+3. [Explore Microsoft Foundry Models in Azure Machine Learning](https://learn.microsoft.com/azure/machine-learning/foundry-models-overview?view=azureml-api-2)
 
 _Note: image-generation-specific Learn pages will be added here as the
 Foundry catalog grows the FLUX / DALL·E families._

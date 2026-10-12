@@ -6,11 +6,11 @@ slug: embeddings
 one_line: Vector representations for retrieval / similarity.
 learn_more:
   - title: Microsoft Foundry Models overview
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Basic Microsoft Foundry chat reference architecture (RAG pattern)
-    url: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat
+    url: https://learn.microsoft.com/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat
   - title: Model leaderboards — compare embedding quality
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks
+    url: https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks
 ---
 
 # Embeddings Models
@@ -43,8 +43,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [Basic Microsoft Foundry chat reference architecture (RAG pattern)](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat)
-3. [Model leaderboards — compare embedding quality](https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks)
+1. [Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [Basic Microsoft Foundry chat reference architecture (RAG pattern)](https://learn.microsoft.com/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat)
+3. [Model leaderboards — compare embedding quality](https://learn.microsoft.com/azure/foundry/concepts/model-benchmarks)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

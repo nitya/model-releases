@@ -11,8 +11,8 @@ Companion documents:
   artifact's YAML frontmatter is validated against.
 - [`.github/agents/CapsuleCreatorAgent.md`](./agents/CapsuleCreatorAgent.md) —
   the Copilot custom agent that drives capsule creation.
-- [`.github/skills/`](./skills/) — the six spec-driven skills the agent
-  orchestrates.
+- [`.github/skills/`](./skills/) — spec-driven creation and maintenance
+  workflows.
 
 ---
 
@@ -34,15 +34,15 @@ pip install pyyaml jsonschema
 
 (Only needed if you skipped the devcontainer.)
 
-### 1.3 Run the spec validator — expect all green
+### 1.3 Run every check — expect all green
 
 ```bash
-python scripts/validate-specs.py
+python scripts/validate.py
 ```
 
-You should see one `✓` line per artifact and a final `N/N artifacts
-valid.` If anything fails, fix the frontmatter before doing anything
-else — schema drift compounds fast.
+You should see a `PASS` line for each of Schemas, Crosslinks, and Generated
+files, then `All checks passed.` If anything fails, fix the frontmatter
+before doing anything else — schema drift compounds fast.
 
 ### 1.4 Bootstrap `.env` from the template
 
@@ -60,10 +60,11 @@ Pick the smallest thing that exercises the flow, then work up:
 | Want to add | Use | Produces |
 |---|---|---|
 | A **glossary term** you noticed missing | [`add-to-glossary`](./skills/add-to-glossary/SKILL.md) | Entry in `docs/GLOSSARY.md` under the right letter section |
-| A **new model publisher** | [`add-publisher`](./skills/add-publisher/SKILL.md) | `models/<slug>/README.md` |
+| A **new model publisher** | [`add-publisher`](./skills/add-publisher/SKILL.md) | `models/<slug>/README.md` + a `0` badge in the repo README once regenerated |
 | A **model** in an existing publisher (no capsule yet) | [`add-model`](./skills/add-model/SKILL.md) | Row in `models/<publisher>/README.md` |
-| A **full release capsule** | [`CapsuleCreatorAgent`](./agents/CapsuleCreatorAgent.md) → [`add-capsule`](./skills/add-capsule/SKILL.md) | Capsule folder + 1–N notebooks + CHANGELOG row + Recently added refresh |
-| A **new capability** in the taxonomy | [`add-capability-doc`](./skills/add-capability-doc/SKILL.md) | Primer under `docs/primers/` + row in repo README taxonomy |
+| A **full release capsule** | [`CapsuleCreatorAgent`](./agents/CapsuleCreatorAgent.md) → [`add-capsule`](./skills/add-capsule/SKILL.md) | Capsule folder + 1–N notebooks + announcement row + regenerated README badges + Recently added refresh |
+| An **audit, update, or repair** for an existing capsule | [`maintain-capsule`](./skills/maintain-capsule/SKILL.md) | Findings or focused capsule/notebook updates + regenerated indexes |
+| A **new capability** in the taxonomy | [`add-capability-doc`](./skills/add-capability-doc/SKILL.md) | Primer under `docs/primers/`; the taxonomy table in `docs/README.md` regenerates from it |
 
 **Suggested first exercise (5 minutes):** run `add-to-glossary` to add
 one term. It touches only `docs/GLOSSARY.md`, has clear success criteria,
@@ -73,7 +74,7 @@ loop end-to-end.
 Then re-run:
 
 ```bash
-python scripts/validate-specs.py
+python scripts/validate.py
 ```
 
 Still all green? The setup is working.
@@ -103,12 +104,13 @@ Still all green? The setup is working.
                        │
                        │ checked by
                        ▼
-              scripts/validate-specs.py
+              scripts/validate.py
 ```
 
 Everything the agent produces is a plain Markdown file. The YAML
 frontmatter at the top of each file is what makes it "spec-driven": each
 file declares its `kind:` and is validated against the matching schema.
+`maintain-capsule` works on existing capsules instead of creating new ones.
 
 See [`plan.md` §14](./plan.md#14-authoring-approach--spec-driven-lightweight)
 for why we chose Markdown + YAML over a heavier framework, and the
@@ -127,7 +129,7 @@ upgrade path to GitHub Spec Kit later.
    (each notebook covers 1–3 concepts).
 3. The agent invokes `add-publisher` / `add-model` / `add-capsule` /
    `refresh-recent-activity` in order.
-4. Run `python scripts/validate-specs.py` — must be all green.
+4. Run `python scripts/generate-catalog.py && python scripts/validate.py` — must be all green.
 5. Skim the generated capsule README + notebooks for the voice/hype
    rules ([`plan.md` §15](./plan.md#15-content-authoring--pedagogy-rules)).
 6. PR, review, merge.
@@ -137,13 +139,13 @@ upgrade path to GitHub Spec Kit later.
 Add the date to the **Expires** column of that model's row in the
 publisher README members table (`add-model` takes an `expires` input
 for this). That table is the single place a retirement date is
-tracked — the repo README and the CHANGELOG deliberately don't carry
+tracked — the repo README and ANNOUNCEMENTS.md deliberately don't carry
 one, so there is nothing to regenerate.
 
 ### 3.3 Monthly refresh
 
 Run `refresh-recent-activity` once a month (or wire it up via a
-scheduled GitHub Action) to keep the "Recently added" table current
+scheduled GitHub Action) to keep the "Recently added" list current
 even if no capsule shipped that month.
 
 ### 3.4 Glossary — adding a new term
@@ -158,8 +160,9 @@ entry:
   level-3 heading (`### Term`) so it gets a stable kebab-case anchor.
 - Lead with the **developer question** the term answers, in italics under the
   heading (e.g. *"Do I need the biggest model for every request?"*).
-- **2–4 sentences**, in the repo content voice — clear, concrete, no marketing
-  buzz. See the style guide expectations in the content you write.
+- **2–4 sentences**, in the repo content voice
+  ([`plan.md` §15](./plan.md#15-content-authoring--pedagogy-rules)) — clear,
+  concrete, no marketing buzz.
 - **Cross-link related terms** with in-page anchors so the glossary reads as a
   connected narrative, not a list of isolated definitions.
 - **At least one grounding reference**, ideally on `learn.microsoft.com`; fall
@@ -172,7 +175,8 @@ entry:
 Use `add-capability-doc`. This:
 
 - Adds a primer under `docs/primers/<slug>.md`.
-- Adds a row to the repo README **Capability taxonomy** table.
+- Regenerates the capability taxonomy table in `docs/README.md` from the
+  primer's frontmatter (run `python scripts/generate-catalog.py`).
 - Extends the `capabilities` enum in
   [`capsule.schema.json`](./specs/schemas/capsule.schema.json) so future
   capsules can tag themselves with it — confirm this schema change in
@@ -181,14 +185,65 @@ Use `add-capability-doc`. This:
 ### 3.6 Renaming a publisher or model
 
 Slugs appear in three places: the folder path, `publisher:`/`model:`
-frontmatter fields, and cross-references in the repo README + CHANGELOG.
+frontmatter fields, and cross-references in the repo README + ANNOUNCEMENTS.md.
 Do the rename in a single PR, then run the validator and grep for the
 old slug:
 
 ```bash
 grep -RIn "<old-slug>" .
-python scripts/validate-specs.py
+python scripts/validate.py
 ```
+
+### 3.7 Maintaining an existing capsule
+
+Use `maintain-capsule` in `audit`, `update`, or `repair` mode. The skill checks
+the capsule contract, learner path, constructionist build-and-debug loop, visual
+evidence, setup instructions, and notebook integrity before making focused edits.
+It preserves existing paths and frontmatter by default and ends with an explicit
+breaking-change report.
+
+Live notebook execution is separate from the static audit. It requires explicit
+approval because it can use credentials, invoke deployed models, and incur cost.
+
+### 3.8 Adding an announcement row
+
+A full capsule gets its row from `add-capsule`. For an announcement without a
+capsule, add a row by hand under its `## <Month> <Year>` table in
+[`ANNOUNCEMENTS.md`](../docs/ANNOUNCEMENTS.md), newest first. Every row has
+exactly four cells:
+
+| Cell | Format |
+|---|---|
+| Date | `[YYYY-MM-DD](announcement-URL)`. If a second post covers the same model, add it in the same cell (`... · [Microsoft AI blog](URL)`) instead of adding a row. |
+| Publisher | `[Name](https://ai.azure.com/catalog/models?publisher=<slug>)`. The slug is the catalog's name, not our folder name (`microsoft`, `openai`, `mistral%20ai`). A wrong slug silently shows the unfiltered catalog, so check the filter applied. [`docs/README.md`](../docs/README.md#learn-about-publishers) lists each mapping. |
+| Model | `[Name](https://ai.azure.com/catalog/models/<slug>)`, using the exact catalog slug (`claude-opus-5`, `FW-Kimi-K3`). The announcement usually links it. Record the clean URL, never one with `?publisher=&search=`. Use plain text only when the model isn't in the catalog yet. |
+| Capabilities | `Tag · Tag`, using the labels from the primers |
+
+If the announcement states an availability stage, append `<br>_(public preview)_`
+to the Model cell. The `<br>` keeps the annotation from widening the column;
+parsers strip it. Leave it off when the post doesn't say. Pricing is never a
+column, because the model card is the source of truth.
+
+A publisher-filtered catalog page shows at most 51 models and searches in the
+browser, so a model missing from a fetched page isn't ruled out. Then refresh
+the README list:
+
+```bash
+python scripts/generate-catalog.py && python scripts/validate.py
+```
+
+Run `refresh-recent-activity` too, so "How can I learn more?" shows the new
+top 3.
+
+### 3.9 Adding, renaming, or removing a notebook
+
+1. Update the capsule's `notebooks:` frontmatter (path, title, 1–3 concepts) to
+   match the files on disk.
+2. Run `python scripts/generate-catalog.py`. It refreshes the README badges
+   (counts and order), `CAPSULES.md`, `catalog.json`, and `llms.txt`.
+3. If a notebook was renamed or removed, search the README for its old path.
+   The "Try a notebook" step links one notebook by hand.
+4. Run `python scripts/validate.py`.
 
 ---
 
@@ -251,7 +306,7 @@ rg -i --glob '!.github/plan.md' --glob '!.github/agents/*' --glob '!.github/main
   -e 'revolutionary|game-changing|game changer|unlocks?|supercharge' \
   -e 'seamless|cutting-edge|best-in-class|state-of-the-art' \
   -e 'powerful|effortless(ly)?' \
-  README.md CHANGELOG.md docs/ models/
+  README.md docs/ models/
 ```
 
 Expected: no matches outside the plan/agent/guide files that legitimately
@@ -261,7 +316,7 @@ name them.
 `foundry` are fine):
 
 ```bash
-rg -n 'Azure AI Foundry' -- README.md CHANGELOG.md docs/ models/ .github/ scripts/
+rg -n 'Azure AI Foundry' -- README.md docs/ models/ .github/ scripts/
 ```
 
 Expected: zero matches.
@@ -276,6 +331,10 @@ rg -n '^## Learn more' -A 20 docs/primers/ | rg -v 'learn\.microsoft\.com'
 Expected: only the section headings and blank lines; every bullet
 should carry a Learn URL.
 
+**Locale rule** — Learn URLs never carry a locale segment such as `en-us`, so
+each reader lands in their own language. `scripts/validate-crosslinks.py`
+enforces it across the repo.
+
 ### Layer 4 — Notebook execution smoke test (opt-in per capsule)
 
 Notebook validation is opt-in because capsules require real Foundry
@@ -285,7 +344,7 @@ maintainer:
 1. Populate `.env` via `scripts/setenv.sh`.
 2. From the capsule folder:
    ```bash
-   jupyter nbconvert --to notebook --execute --inplace notebooks/*.ipynb
+   jupyter nbconvert --to notebook --execute --inplace *.ipynb
    ```
 3. If the env-precheck cell fails, the whole notebook stops — that's
    the whole point of the precheck. Fix `.env` and rerun.
@@ -371,11 +430,12 @@ frontmatter.
 | Schemas | [`.github/specs/schemas/*.schema.json`](./specs/schemas/) |
 | Agent | [`.github/agents/CapsuleCreatorAgent.md`](./agents/CapsuleCreatorAgent.md) |
 | Skills | [`.github/skills/*/SKILL.md`](./skills/) |
-| Validator | [`scripts/validate-specs.py`](../scripts/validate-specs.py) |
+| All checks (run this) | [`scripts/validate.py`](../scripts/validate.py) |
+| Schema validator | [`scripts/validate-specs.py`](../scripts/validate-specs.py) |
 | Crosslink validator | [`scripts/validate-crosslinks.py`](../scripts/validate-crosslinks.py) |
 | Env bootstrap | [`scripts/setenv.sh`](../scripts/setenv.sh), [`scripts/sample.env`](../scripts/sample.env) |
 | Repo README | [`README.md`](../README.md) |
-| Changelog | [`CHANGELOG.md`](../CHANGELOG.md) |
+| Announcements | [`docs/ANNOUNCEMENTS.md`](../docs/ANNOUNCEMENTS.md) |
 | Glossary | [`docs/GLOSSARY.md`](../docs/GLOSSARY.md) |
 | Primers | [`docs/primers/`](../docs/primers/) |
 | Quickstart | [`models/quickstart/README.md`](../models/quickstart/README.md) |
@@ -384,7 +444,7 @@ frontmatter.
 
 ## 8. Reviewing a manual (non-agent) contribution
 
-Contributors can hand-author capsules and CHANGELOG entries without
+Contributors can hand-author capsules and announcement entries without
 going through the agent. Two safety nets catch most mistakes for you:
 
 - **`scripts/validate.py`** — one command that runs the schema
@@ -394,30 +454,29 @@ going through the agent. Two safety nets catch most mistakes for you:
   `Validate contribution` workflow runs it on every pull request,
   where it gates the merge. Between them they enforce:
   - Frontmatter matches the schema for its kind
-  - Every capsule has a matching `CHANGELOG.md` row (date + model)
-  - Every CHANGELOG row is exactly four cells wide
+  - Every capsule has a matching `ANNOUNCEMENTS.md` row (date + model)
+  - Every announcement row is exactly four cells wide
   - Every capsule is listed in its publisher README
   - Every capability tag has a matching `docs/primers/<slug>.md`
   - Every `related_primers` entry names a real primer slug
-  - `README.md` Recently added top 3 = `CHANGELOG.md` top 3
-  - Generated files (`catalog.json`, `llms.txt`, `CAPSULE-TOC.md`) are current
+  - `README.md` Recently added top 3 = `ANNOUNCEMENTS.md` top 3
+  - Generated files (`catalog.json`, `llms.txt`, `CAPSULES.md`) are current
   - No `_review_` placeholders remain in learner-facing files
 - **PR template** — [`.github/pull_request_template.md`](./pull_request_template.md)
   gives contributors a checklist per change type (capsule, publisher,
-  primer, glossary, CHANGELOG-only). Anything unchecked in a section
+  primer, glossary, announcement-only). Anything unchecked in a section
   the PR touches is a signal for the reviewer.
 
 That leaves you to eyeball the things machines can't check:
 
-- **Pedagogy.** Action-focused voice ("You'll deploy…"), 1–3 concepts
-  per notebook, alternating markdown ↔ code, and mandatory `Your Turn
-  to Explore` / `Summary` / `References` cells at the end.
-- **Tone.** No hype words ("revolutionary", "game-changing"…), no
-  marketing adjectives, and always **Microsoft Foundry** (never "Azure
-  AI Foundry").
+- **Pedagogy and tone.** Check against
+  [`plan.md` §15](./plan.md#15-content-authoring--pedagogy-rules): the shared
+  "we" voice, no hype words, the build-and-debug notebook loop, 1–3 concepts
+  per notebook, and the closing `Your Turn to Explore` / `Summary` /
+  `References` sections. Always **Microsoft Foundry**, never "Azure AI Foundry".
 - **Grounding.** Learner-facing links point to `learn.microsoft.com`
   when a canonical Learn page exists; provider docs are a fallback.
-- **Pricing.** Not tracked in the CHANGELOG or the README. Rates
+- **Pricing.** Not tracked in ANNOUNCEMENTS.md or the README. Rates
   change by region, tier, and deployment type, so a frozen figure goes
   stale silently. A capsule points at the model card for price.
 

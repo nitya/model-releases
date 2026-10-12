@@ -54,7 +54,7 @@ demos/contoso-travel/
    (for example [`instructions/01-grounding.md`](instructions/01-grounding.md)) so
    the baseline has visible gaps to climb out of. In code, an agent is created with
    `AIProjectClient` + `PromptAgentDefinition` (see the
-   [prompt-agent quickstart](https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/prompt-agent?tabs=python)).
+   [prompt-agent quickstart](https://learn.microsoft.com/azure/foundry/agents/quickstarts/prompt-agent?tabs=python)).
 5. **Baseline it.** Run [benchmark/](benchmark/) to get a scorecard before you
    change anything.
 

@@ -26,7 +26,7 @@ complement to — the Azure OpenAI family.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
 - [Reasoning primer](../../docs/primers/reasoning-models.md)
 - [Long context primer](../../docs/primers/long-context.md)
 - [Glossary](../../docs/GLOSSARY.md)

@@ -6,11 +6,11 @@ slug: function-calling
 one_line: Structured tool invocation.
 learn_more:
   - title: Microsoft Foundry Models overview — tool use
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Auto and direct model routing with the Responses API
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/responses-model-routing
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/responses-model-routing
   - title: Basic Microsoft Foundry chat reference architecture
-    url: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat
+    url: https://learn.microsoft.com/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat
 ---
 
 # Function Calling & Tool Use
@@ -42,8 +42,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview — tool use](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [Auto and direct model routing with the Responses API](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/responses-model-routing)
-3. [Basic Microsoft Foundry chat reference architecture](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat)
+1. [Foundry Models overview — tool use](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [Auto and direct model routing with the Responses API](https://learn.microsoft.com/azure/foundry/openai/how-to/responses-model-routing)
+3. [Basic Microsoft Foundry chat reference architecture](https://learn.microsoft.com/azure/architecture/ai-ml/architecture/basic-microsoft-foundry-chat)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

@@ -2,7 +2,7 @@
 
 > Release capsules for Microsoft Foundry model announcements — each pairs a model release with a runnable notebook. A capsule is a folder holding a README and a Jupyter notebook you can run against your own Foundry project.
 
-Announcements are tracked in CHANGELOG.md, newest first, grouped by month. Capsules are indexed in CAPSULE-TOC.md, grouped by provider. catalog.json holds this same index in structured form.
+Announcements are tracked in ANNOUNCEMENTS.md, newest first, grouped by month. Capsules are indexed in CAPSULES.md, grouped by provider. catalog.json holds this same index in structured form.
 
 ## Capsules
 
@@ -18,22 +18,25 @@ Announcements are tracked in CHANGELOG.md, newest first, grouped by month. Capsu
 
 - [MAI-Image-2.5 family walkthrough](https://github.com/microsoft-foundry/model-releases/tree/main/models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough): Compare MAI-Image-2.5, Flash, and Pro on identical prompts. Compares: mai-image-2.5-flash, mai-image-2.5, mai-image-2.5-pro.
 
-## Capability primers
+## Primers
 
 - [audio-speech](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/audio-speech.md): STT, TTS, or realtime voice.
 - [chat-completion](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/chat-completion.md): General instruction-following and dialogue.
+- [decision-models](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/decision-models.md): Ask typed questions about some state and get back choices, scores, or probabilities our code can branch on.
 - [embeddings](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/embeddings.md): Vector representations for retrieval / similarity.
 - [fine-tuning](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/fine-tuning.md): Supports customization / distillation.
 - [function-calling](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/function-calling.md): Structured tool invocation.
 - [image-generation](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/image-generation.md): Text → image output.
 - [long-context](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/long-context.md): 200k+ token context window.
+- [Model Architecture](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/model-architecture.md): How a model is built, from dense and Mixture of Experts layers to attention and hybrids, and what that means for speed, memory, and cost.
+- [Model Cards](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/model-cards.md): How to read a model card, from parameters and context window to deployment, pricing, and limits.
 - [model-router](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/model-router.md): One endpoint that routes requests across models.
 - [multimodal](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/multimodal-models.md): Accepts image (and/or audio) input alongside text.
 - [reasoning](https://github.com/microsoft-foundry/model-releases/blob/main/docs/primers/reasoning-models.md): Extended-thinking / chain-of-thought optimized models.
 
 ## Optional
 
-- [CHANGELOG](https://github.com/microsoft-foundry/model-releases/blob/main/CHANGELOG.md): every Foundry model release announcement
-- [CAPSULE-TOC](https://github.com/microsoft-foundry/model-releases/blob/main/CAPSULE-TOC.md): capsule index grouped by provider
+- [ANNOUNCEMENTS](https://github.com/microsoft-foundry/model-releases/blob/main/docs/ANNOUNCEMENTS.md): every Foundry model release announcement
+- [CAPSULES](https://github.com/microsoft-foundry/model-releases/blob/main/docs/CAPSULES.md): capsule index grouped by provider
 - [Glossary](https://github.com/microsoft-foundry/model-releases/blob/main/docs/GLOSSARY.md): terminology used across capsules
 - [Quickstart](https://github.com/microsoft-foundry/model-releases/tree/main/models/quickstart): one-time Foundry project and .env setup

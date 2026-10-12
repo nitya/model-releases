@@ -18,34 +18,35 @@
 
 ## Type of change
 
-- [ ] New capsule (`models/<publisher>/<model>/<YYYY-MM-DD>/`)
+- [ ] New capsule (`models/<publisher>/<model>/`)
 - [ ] New publisher (`models/<publisher>/`)
 - [ ] New capability primer (`docs/primers/<slug>.md`)
 - [ ] New glossary term (`docs/GLOSSARY.md`)
-- [ ] CHANGELOG-only entry (announcement without capsule yet)
+- [ ] announcement-only entry (announcement without capsule yet)
 - [ ] Infrastructure / scripts / workflows
 - [ ] Docs / README tidy-up
 
 ## Capsule checklist (fill in for new capsules)
 
-- [ ] Folder is `models/<publisher>/<model>/<YYYY-MM-DD>/`
+- [ ] Folder is `models/<publisher>/<model>/` (the folder name equals the
+      `model:` slug; the release date lives in frontmatter)
 - [ ] `python scripts/validate.py` passes
-- [ ] `references` array in frontmatter has at least one model card
-      and one docs link, all pointing at `learn.microsoft.com` when a
+- [ ] `## References` (capsule README and each notebook) lists at least one
+      model card and one docs link, on `learn.microsoft.com` where a
       canonical Learn page exists
-- [ ] 1–3 concepts per notebook; extra concepts → extra notebooks
-- [ ] Notebook sections numbered and alternate markdown ↔ code
-- [ ] Every notebook ends with **Your Turn to Explore**, **Summary**,
-      and **References** cells
+- [ ] Notebooks follow [`plan.md` §15](./plan.md#15-content-authoring--pedagogy-rules):
+      1–3 concepts, the build-and-debug loop, and closing **Your Turn to
+      Explore**, **Summary**, and **References** sections
 - [ ] Notebook starts by verifying `.env` (points learner back to
       `models/quickstart/` if unset)
-- [ ] `CHANGELOG.md` has a row with matching Date + Model, exactly four
+- [ ] `notebooks:` frontmatter lists every notebook, and
+      `python scripts/generate-catalog.py` was run so the README badges
+      and indexes are current
+- [ ] `ANNOUNCEMENTS.md` has a row with matching Date + Model, exactly four
       cells wide, with the Date cell linked to the announcement
 - [ ] Publisher README lists this model in its members table
 - [ ] `README.md` **Recently added** block (Model / Release date /
       Capabilities) reflects the top 3
-- [ ] No hype language ("revolutionary", "game-changing", "cutting-edge",
-      "state-of-the-art" as a standalone claim, …)
 
 ## Publisher / primer / glossary checklist
 
@@ -58,9 +59,8 @@
 
 ## Pedagogy self-review
 
-- [ ] Voice is action-focused ("You'll deploy…", "Run this to see…")
-- [ ] No marketing / brand adjectives (e.g. "powerful", "seamless",
-      "world-class")
+- [ ] Voice and tone follow [`plan.md` §15](./plan.md#15-content-authoring--pedagogy-rules)
+      (warm shared "we" voice, no hype words)
 - [ ] Every learner-facing link resolves and points to a canonical
       source
 - [ ] Uses "Microsoft Foundry" (never "Azure AI Foundry"); services

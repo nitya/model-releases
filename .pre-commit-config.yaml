@@ -7,7 +7,7 @@
 # is what catches a problem while you still have the commit in hand.
 # It runs the same entrypoint CI runs, `scripts/validate.py`, which
 # covers all three checks: frontmatter schemas, cross-links, and
-# whether the generated files (catalog.json, llms.txt, CAPSULE-TOC.md,
+# whether the generated files (catalog.json, llms.txt, CAPSULES.md,
 # the README blocks) are current.
 #
 # While drafting, run the interactive version in a second terminal:
@@ -30,9 +30,7 @@ repos:
         # too: editing one by hand is exactly the drift --check catches.
         files: |
           (?x)^(
-            CHANGELOG\.md|
             README\.md|
-            CAPSULE-TOC\.md|
             catalog\.json|
             llms\.txt|
             \.github/(specs|skills|agents)/.*\.(md|json)|

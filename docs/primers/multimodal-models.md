@@ -10,11 +10,11 @@ slug: multimodal-models
 one_line: Accepts image (and/or audio) input alongside text.
 learn_more:
   - title: How to use vision-enabled chat models
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/gpt-with-vision
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/gpt-with-vision
   - title: Microsoft Foundry Models overview — multimodal in the catalog
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Azure AI Vision documentation (complementary service)
-    url: https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/
+    url: https://learn.microsoft.com/azure/ai-services/computer-vision/
 ---
 
 # Multimodal & Vision Models
@@ -44,8 +44,8 @@ flowchart LR
 
 ## Learn more
 
-1. [How to use vision-enabled chat models](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/gpt-with-vision)
-2. [Foundry Models overview — multimodal in the catalog](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-3. [Azure AI Vision documentation (complementary service)](https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/)
+1. [How to use vision-enabled chat models](https://learn.microsoft.com/azure/foundry/openai/how-to/gpt-with-vision)
+2. [Foundry Models overview — multimodal in the catalog](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+3. [Azure AI Vision documentation (complementary service)](https://learn.microsoft.com/azure/ai-services/computer-vision/)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

@@ -16,7 +16,7 @@ persona_target: [capsule-creator]
 
 > **Job:** turn a Microsoft Foundry model release into a full content
 > capsule — folder, README, notebook skeleton, publisher table row,
-> CHANGELOG row, and Recently added refresh — by walking the author
+> announcement row, and Recently added refresh — by walking the author
 > through a spec-driven flow.
 
 ## When to invoke
@@ -46,24 +46,26 @@ Say something like:
 4. **Scaffold the capsule** — asks the creator to break the release into
    an ordered list of **concepts (1–3 per notebook)**, then invokes
    [`add-capsule`](../skills/add-capsule/) which writes:
-   - `models/<publisher>/<model>/<YYYY-MM-DD>/README.md` with frontmatter
+   - `models/<publisher>/<model>/README.md` with frontmatter
      validated by [`capsule.schema.json`](../specs/schemas/capsule.schema.json).
-   - One notebook per concept group under `notebooks/`
-     (`01-<slug>.ipynb`, `02-<slug>.ipynb`, …) — each covers at most
+   - One notebook per concept group at the capsule root (`<model>.ipynb`,
+     or `01-<slug>.ipynb`, `02-<slug>.ipynb`, …) — each covers at most
      3 concepts, each opens with **Before You Begin** + **env precheck**
      so it runs independently.
    - Any capsule-specific deps appended to `requirements-dev.txt`
      under the `# Capsule dependencies` section.
-   - A prepended row in `CHANGELOG.md`, under its month heading.
+   - A prepended row in `ANNOUNCEMENTS.md`, under its month heading.
 5. **Propose 2–3 interesting use cases** grounded in the chosen domains —
    deliberately beyond the default model-card samples. The author picks.
-6. **Refresh the Recently added table** via
-   [`refresh-recent-activity`](../skills/refresh-recent-activity/).
+6. **Refresh the README** — `add-capsule` runs the generator, which updates
+   the notebook badges (counts and order). Then run
+   [`refresh-recent-activity`](../skills/refresh-recent-activity/) for the
+   Recently added list.
 7. **Offer follow-ups** — if new terminology showed up, offer
    [`add-to-glossary`](../skills/add-to-glossary/); if a new capability
    is introduced, offer
    [`add-capability-doc`](../skills/add-capability-doc/).
-8. **Validate** — runs `scripts/validate-specs.py` and fixes any
+8. **Validate** — runs `python scripts/validate.py` and fixes any
    frontmatter drift before finishing.
 
 ## Guardrails (enforced on every generated artifact)
@@ -72,27 +74,15 @@ Say something like:
 - **Grounding:** every "Learn more" link and every glossary reference
   must resolve to `learn.microsoft.com` when a canonical Learn page
   exists; only fall back to provider docs when Learn doesn't cover it.
+  Learn URLs never carry a locale segment such as `en-us`.
 - **Frontmatter first:** the agent authors and validates the YAML
   frontmatter *before* writing prose; prose can be edited freely later
   without touching the spec.
-- **Persona voice:** capsules target the **AI Developer** persona
-  (Foundry-new but Python + LLM-savvy); primers link out to beginner
-  refreshers through the glossary rather than restating basics.
-- **Notebook granularity.** Each notebook covers **1–3 concepts** —
-  never more. If a release teaches more, split into additional
-  notebooks (`01-…`, `02-…`) inside the same capsule folder, each
-  independently runnable with its own Before You Begin + env precheck.
-- **No hype.** Action-focused, plain-technical prose. Ban words like
-  *revolutionary, game-changing, unlocks, supercharge, seamless,
-  cutting-edge, best-in-class, state-of-the-art, powerful, effortlessly.*
-  Describe what the model does and where it fits; let the reader judge.
-- **Notebook shape (mandatory).** Numbered `## N. <verb-phrase>`
-  sections alternating markdown ↔ code so the Jupyter Outline reads as
-  a tutorial ToC. The second-to-last section is always
-  `## N. Your Turn to Explore` (markdown + empty code cell with 2–3
-  suggested directions), and the final section is always
-  `## N+1. Summary` (recap + links to primers/glossary). See
-  [`plan.md` §15](../plan.md) for the full rules.
+- **Voice and notebook shape:** follow [`plan.md` §15](../plan.md), the single
+  source for the warm shared voice, banned hype words, the build-and-debug
+  notebook loop, 1–3 concepts per notebook, and the closing `Your Turn to
+  Explore`, `Summary`, and `References` sections. Keep one runnable main path
+  for beginners and put professional depth in short subsections.
 
 ## Spec
 

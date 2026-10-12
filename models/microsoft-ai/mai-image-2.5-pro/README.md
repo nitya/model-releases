@@ -72,6 +72,6 @@ Constraints: `width` and `height` both ≥ 768; `width × height` ≤ 1,048,576.
 
 ## References
 
-- [Deploy and use MAI image models in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image?tabs=python) — official how-to covering the generations and edits APIs, authentication, and rate limits.
+- [Deploy and use MAI image models in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image?tabs=python) — official how-to covering the generations and edits APIs, authentication, and rate limits.
 - [Introducing MAI-Image-2.5-Pro and MAI-Voice-2-Flash](https://microsoft.ai/news/introducing-mai-image-2-5-pro-and-mai-voice-2-flash/) — release announcement for the Pro variant.
 - [MAI-Image-2.5 model page](https://microsoft.ai/models/mai-image-2-5/) — model overview, capability comparison, and arena benchmarks for the full family.

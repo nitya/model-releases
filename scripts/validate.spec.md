@@ -9,7 +9,7 @@ usage:
   - "python scripts/validate.py --watch     # interactive: re-run on every save, Ctrl-C to stop"
   - "python scripts/validate.py --fix       # regenerate stale generated files, then re-check"
   - "python scripts/validate.py --no-color  # plain output (used by CI and the pre-commit hook)"
-learn_ref: https://learn.microsoft.com/en-us/azure/foundry/
+learn_ref: https://learn.microsoft.com/azure/foundry/
 idempotent: true
 ---
 
@@ -22,7 +22,7 @@ that produces the most useful first error:
 | # | Check | Script |
 |---|---|---|
 | 1 | Frontmatter matches the JSON Schema for its `kind` | [`validate-specs.py`](./validate-specs.py) |
-| 2 | CHANGELOG ↔ README ↔ capsule ↔ primer wiring | [`validate-crosslinks.py`](./validate-crosslinks.py) |
+| 2 | ANNOUNCEMENTS ↔ README ↔ capsule ↔ primer wiring | [`validate-crosslinks.py`](./validate-crosslinks.py) |
 | 3 | Generated files are current | [`generate-catalog.py --check`](./generate-catalog.py) |
 
 Schemas run first because a frontmatter error makes the later checks

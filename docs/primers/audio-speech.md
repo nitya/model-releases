@@ -6,11 +6,11 @@ slug: audio-speech
 one_line: STT, TTS, or realtime voice.
 learn_more:
   - title: Microsoft Foundry Models overview
-    url: https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview
+    url: https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview
   - title: Azure AI Speech documentation
-    url: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/
+    url: https://learn.microsoft.com/azure/ai-services/speech-service/
   - title: Realtime voice patterns on Microsoft Foundry
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/realtime-audio
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/realtime-audio
 ---
 
 # Audio & Speech Models
@@ -39,8 +39,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
-2. [Azure AI Speech documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/)
-3. [Realtime voice patterns on Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/realtime-audio)
+1. [Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
+2. [Azure AI Speech documentation](https://learn.microsoft.com/azure/ai-services/speech-service/)
+3. [Realtime voice patterns on Foundry](https://learn.microsoft.com/azure/foundry/openai/how-to/realtime-audio)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

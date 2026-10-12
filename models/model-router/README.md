@@ -61,7 +61,7 @@ optimization levers you can measure.
 
 ## Learn more
 
-- [Model router for Microsoft Foundry — concepts](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router)
-- [How to use model router](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router)
+- [Model router for Microsoft Foundry — concepts](https://learn.microsoft.com/azure/foundry/openai/concepts/model-router)
+- [How to use model router](https://learn.microsoft.com/azure/foundry/openai/how-to/model-router)
 - [Model Router primer](../../docs/primers/model-router.md)
 - [Glossary](../../docs/GLOSSARY.md)

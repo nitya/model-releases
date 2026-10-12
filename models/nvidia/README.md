@@ -109,7 +109,7 @@ language model series.
 
 ## Learn more
 
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/foundry-models-overview)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/ai-foundry/concepts/foundry-models-overview)
 - [NVIDIA NIM on Azure AI catalog](https://ai.azure.com/catalog/publishers/nvidia,nvidia-ai)
 - [Chat completion primer](../../docs/primers/chat-completion.md)
 - [Reasoning primer](../../docs/primers/reasoning-models.md)

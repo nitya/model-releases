@@ -7,15 +7,37 @@
   "additionalProperties": false,
   "required": [
     "kind",
-    "capability",
     "slug",
     "one_line",
-    "learn_more",
-    "label"
+    "learn_more"
   ],
+  "if": {
+    "required": [
+      "topic"
+    ]
+  },
+  "then": {
+    "required": [
+      "title"
+    ]
+  },
+  "else": {
+    "required": [
+      "capability",
+      "label"
+    ]
+  },
   "properties": {
     "kind": {
       "const": "primer"
+    },
+    "topic": {
+      "const": "concept",
+      "description": "Marks a concept primer (how models work) that explains an idea rather than a capability tag. It needs a title and has no capability or label, so it never appears in the capability taxonomy."
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of a concept primer."
     },
     "capability": {
       "enum": [
@@ -29,7 +51,8 @@
         "function-calling",
         "model-router",
         "fine-tuning",
-        "long-context"
+        "long-context",
+        "decision-models"
       ]
     },
     "label": {

@@ -6,11 +6,11 @@ slug: model-router
 one_line: One endpoint that routes requests across models.
 learn_more:
   - title: Model router for Microsoft Foundry — concepts
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router
+    url: https://learn.microsoft.com/azure/foundry/openai/concepts/model-router
   - title: How to use model router for Microsoft Foundry
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/model-router
   - title: Auto and direct model routing with the Responses API
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/responses-model-routing
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/responses-model-routing
 ---
 
 # Model Router
@@ -43,8 +43,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Model router for Microsoft Foundry — concepts](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router)
-2. [How to use model router for Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router)
-3. [Auto and direct model routing with the Responses API](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/responses-model-routing)
+1. [Model router for Microsoft Foundry — concepts](https://learn.microsoft.com/azure/foundry/openai/concepts/model-router)
+2. [How to use model router for Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/how-to/model-router)
+3. [Auto and direct model routing with the Responses API](https://learn.microsoft.com/azure/foundry/openai/how-to/responses-model-routing)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

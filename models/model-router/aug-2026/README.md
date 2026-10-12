@@ -7,7 +7,7 @@ release_date: "2026-08-19"
 last_updated: "2026-08-21"
 capabilities: [model-router, chat-completion, function-calling]
 model_card: https://ai.azure.com/catalog/models/model-router
-announcement: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router
+announcement: https://learn.microsoft.com/azure/foundry/foundry-models/whats-new-model-router
 pricing:
   url: https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/
   notes: "Billed at the selected underlying model's rate — no separate routing charge"
@@ -53,19 +53,19 @@ optimization lever you can measure on a real workload.
 | Detail | Value |
 |---|---|
 | Model card | [model-router — Foundry catalog](https://ai.azure.com/catalog/models/model-router) |
-| What's new | [Model router release history](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router) |
+| What's new | [Model router release history](https://learn.microsoft.com/azure/foundry/foundry-models/whats-new-model-router) |
 | Pricing | Billed at the selected underlying model's rate — [current pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) |
 | Release date | 2026-08-19 |
 | Workload | [Contoso Travel demo](../../../demos/contoso-travel/) — shared data, instructions, and benchmark |
 
-This capsule is self-contained: 
+This capsule is self-contained:
 - **[00 · Set up your Foundry project](00-setup.ipynb)**
 walks you through creating the `contoso-travel-releases` project, deploying a
 `model-router` (plus optional baseline and eval models), and standing up the
-`contoso-travel-concierge` prompt agent. 
+`contoso-travel-concierge` prompt agent.
 - It reuses the
 [Contoso Travel demo](../../../demos/contoso-travel/) for data, instructions, and the benchmark, so the workload stays fixed while we change one routing lever at a time.
-- Authenticate with `az login` — no API key needed. 
+- Authenticate with `az login` — no API key needed.
 - **Required environment variables** — copy [`sample.env`](sample.env) to `.env` in this folder and fill it in (`.env` is git-ignored):
 
 <br/>
@@ -133,8 +133,8 @@ is the automation path for larger runs.
 
 ## References
 
-- [Evaluate model router for your workload](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/evaluate-model-router) — the hill-climbing evaluation method and scorecard dimensions.
-- [Model router concepts](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-router) — routing modes, model subsets, deployment types, failover.
-- [Use model router with Foundry agents](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router-agents) — agentic, tool-aware routing.
-- [Model router release history](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/whats-new-model-router) — the features this capsule catches up on.
+- [Evaluate model router for your workload](https://learn.microsoft.com/azure/foundry/openai/how-to/evaluate-model-router) — the hill-climbing evaluation method and scorecard dimensions.
+- [Model router concepts](https://learn.microsoft.com/azure/foundry/openai/concepts/model-router) — routing modes, model subsets, deployment types, failover.
+- [Use model router with Foundry agents](https://learn.microsoft.com/azure/foundry/openai/how-to/model-router-agents) — agentic, tool-aware routing.
+- [Model router release history](https://learn.microsoft.com/azure/foundry/foundry-models/whats-new-model-router) — the features this capsule catches up on.
 - [Model Router primer](../../../docs/primers/model-router.md) · [Contoso Travel demo](../../../demos/contoso-travel/)

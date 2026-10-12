@@ -5,8 +5,8 @@ Agent Optimizer wizard (Criteria step). It is a *starting point* — tune the
 criteria and weights to your run. The eval model returns a score per criterion; the
 optimizer averages rescaled scores into the composite score it ranks candidates by.
 
-> Grounding: [Optimize a prompt agent](https://learn.microsoft.com/en-us/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent)
-> · [Agent optimizer overview](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-optimizer-overview)
+> Grounding: [Optimize a prompt agent](https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent)
+> · [Agent optimizer overview](https://learn.microsoft.com/azure/foundry/agents/concepts/agent-optimizer-overview)
 
 ## Dataset columns
 

@@ -6,11 +6,11 @@ slug: reasoning-models
 one_line: Extended-thinking / chain-of-thought optimized models.
 learn_more:
   - title: Azure OpenAI reasoning models — GPT-5 series, o3-mini, o1
-    url: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reasoning
+    url: https://learn.microsoft.com/azure/foundry/openai/how-to/reasoning
   - title: "GPT-5 vs GPT-4.1: choosing the right model"
-    url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/model-choice-guide
+    url: https://learn.microsoft.com/azure/foundry/foundry-models/how-to/model-choice-guide
   - title: "Tutorial: Get started with a DeepSeek reasoning model"
-    url: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/tutorials/get-started-deepseek-r1
+    url: https://learn.microsoft.com/azure/foundry/foundry-models/tutorials/get-started-deepseek-r1
 ---
 
 # Reasoning Models
@@ -42,8 +42,8 @@ flowchart LR
 
 ## Learn more
 
-1. [Azure OpenAI reasoning models — GPT-5 series, o3-mini, o1](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reasoning)
-2. [GPT-5 vs GPT-4.1: choosing the right model for your use case](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/model-choice-guide)
-3. [Tutorial: Get started with a DeepSeek reasoning model](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/tutorials/get-started-deepseek-r1)
+1. [Azure OpenAI reasoning models — GPT-5 series, o3-mini, o1](https://learn.microsoft.com/azure/foundry/openai/how-to/reasoning)
+2. [GPT-5 vs GPT-4.1: choosing the right model for your use case](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/model-choice-guide)
+3. [Tutorial: Get started with a DeepSeek reasoning model](https://learn.microsoft.com/azure/foundry/foundry-models/tutorials/get-started-deepseek-r1)
 
 _New to a term? See the [glossary](../GLOSSARY.md)._

@@ -7,7 +7,7 @@ Schema validity is checked by `validate-specs.py`; this script covers
 what a human reviewer would otherwise have to eyeball:
 
 1. Every capsule folder `models/<publisher>/<model>/` has a matching
-   row in `CHANGELOG.md`.
+   row in `ANNOUNCEMENTS.md` (by date + model name, or date + model card URL).
 2. Every capsule appears in its publisher README's members list (loose
    grep — the model slug must be mentioned somewhere in the publisher
    README).
@@ -17,7 +17,7 @@ what a human reviewer would otherwise have to eyeball:
    `.ipynb` under `models/` is claimed by exactly one artifact.
 5. Every model a scenario references resolves to a real capsule.
 6. `README.md` "Recently added" top 3 rows match the top 3 rows of
-   `CHANGELOG.md` by (date, model).
+   `ANNOUNCEMENTS.md` by (date, model).
 7. No unresolved `_review_` placeholder tokens remain in the repo.
 
 Exit 0 if all invariants hold, 1 otherwise (per-issue messages
@@ -40,7 +40,7 @@ except ImportError:
     sys.exit(2)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-CHANGELOG = REPO_ROOT / "CHANGELOG.md"
+ANNOUNCEMENTS = REPO_ROOT / "docs" / "ANNOUNCEMENTS.md"
 README = REPO_ROOT / "README.md"
 PUBLISHER_ROOT = REPO_ROOT / "models"
 PRIMERS_DIR = REPO_ROOT / "docs" / "primers"
@@ -108,11 +108,11 @@ def strip_availability(cell: str) -> str:
     return re.sub(r"\s*(?:<br\s*/?>)?\s*_\([^)]*\)_\s*$", "", cell.strip())
 
 
-CHANGELOG_COLUMNS = 4
+ANNOUNCEMENTS_COLUMNS = 4
 
 
-def iter_changelog_row_cells() -> "list[tuple[int, str, list[str]]]":
-    """Walk every CHANGELOG release row as (line number, raw, cells).
+def iter_announcements_row_cells() -> "list[tuple[int, str, list[str]]]":
+    """Walk every ANNOUNCEMENTS release row as (line number, raw, cells).
 
     Rows live in one table per `## <Month> <Year>` section, so this
     walks every table in the file rather than stopping at the first
@@ -120,9 +120,9 @@ def iter_changelog_row_cells() -> "list[tuple[int, str, list[str]]]":
     check read this, so a row can never be shape-checked under one set
     of rules and parsed under another.
     """
-    if not CHANGELOG.exists():
+    if not ANNOUNCEMENTS.exists():
         return []
-    text = CHANGELOG.read_text(encoding="utf-8")
+    text = ANNOUNCEMENTS.read_text(encoding="utf-8")
     # Blank the trailing HTML-comment template rather than deleting it,
     # so reported line numbers still match the real file.
     text = re.sub(
@@ -150,8 +150,8 @@ def iter_changelog_row_cells() -> "list[tuple[int, str, list[str]]]":
     return out
 
 
-def check_changelog_row_shape() -> list[str]:
-    """Every release row must be exactly CHANGELOG_COLUMNS cells wide.
+def check_announcements_row_shape() -> list[str]:
+    """Every release row must be exactly ANNOUNCEMENTS_COLUMNS cells wide.
 
     A row with an extra cell renders under a narrower header and is
     silently wrong; a short row loses a field the parser then reads as
@@ -159,11 +159,11 @@ def check_changelog_row_shape() -> list[str]:
     asserted directly.
     """
     errs: list[str] = []
-    for lineno, raw, cells in iter_changelog_row_cells():
-        if len(cells) != CHANGELOG_COLUMNS:
+    for lineno, raw, cells in iter_announcements_row_cells():
+        if len(cells) != ANNOUNCEMENTS_COLUMNS:
             errs.append(
-                f"[crosslink] CHANGELOG.md:{lineno} has {len(cells)} "
-                f"cells, expected {CHANGELOG_COLUMNS} "
+                f"[crosslink] ANNOUNCEMENTS.md:{lineno} has {len(cells)} "
+                f"cells, expected {ANNOUNCEMENTS_COLUMNS} "
                 f"(Date | Publisher | Model | Capabilities):\n"
                 f"    {raw}"
             )
@@ -181,15 +181,15 @@ def check_annotation_on_own_line() -> list[str]:
     here.
     """
     errs: list[str] = []
-    for lineno, raw, cells in iter_changelog_row_cells():
-        if len(cells) != CHANGELOG_COLUMNS:
-            continue  # reported by check_changelog_row_shape
+    for lineno, raw, cells in iter_announcements_row_cells():
+        if len(cells) != ANNOUNCEMENTS_COLUMNS:
+            continue  # reported by check_announcements_row_shape
         model = cells[2].strip()
         if not re.search(r"_\([^)]*\)_\s*$", model):
             continue
         if not re.search(r"<br\s*/?>\s*_\([^)]*\)_\s*$", model):
             errs.append(
-                f"[crosslink] CHANGELOG.md:{lineno} — availability note "
+                f"[crosslink] ANNOUNCEMENTS.md:{lineno} — availability note "
                 f"is inline; put it on its own line with `<br>` so it "
                 f"doesn't widen the Model column:\n"
                 f"    {model}"
@@ -197,12 +197,12 @@ def check_annotation_on_own_line() -> list[str]:
     return errs
 
 
-def parse_changelog_rows() -> list[dict[str, str]]:
-    """Parse CHANGELOG rows, newest first."""
+def parse_announcements_rows() -> list[dict[str, str]]:
+    """Parse announcement row, newest first."""
     rows: list[dict[str, str]] = []
-    for _lineno, _raw, cells in iter_changelog_row_cells():
-        if len(cells) < CHANGELOG_COLUMNS:
-            # Reported by check_changelog_row_shape; skip so this
+    for _lineno, _raw, cells in iter_announcements_row_cells():
+        if len(cells) < ANNOUNCEMENTS_COLUMNS:
+            # Reported by check_announcements_row_shape; skip so this
             # parser doesn't raise before that error is printed.
             continue
         # Date cell may be `[YYYY-MM-DD](url)` or plain.
@@ -231,7 +231,7 @@ CATALOG_MODEL_RE = re.compile(
 )
 
 
-def check_model_card_urls(changelog: list[dict[str, str]]) -> list[str]:
+def check_model_card_urls(announcements: list[dict[str, str]]) -> list[str]:
     """Model-card links must be clean canonical catalog URLs.
 
     The catalog's search is client-side, so a slug is usually found via
@@ -240,13 +240,13 @@ def check_model_card_urls(changelog: list[dict[str, str]]) -> list[str]:
     model, so store the canonical form instead.
     """
     errs: list[str] = []
-    for row in changelog:
+    for row in announcements:
         url = row.get("model_url") or ""
         if "ai.azure.com" not in url:
             continue  # no link, or a deliberate non-catalog link
         if not CATALOG_MODEL_RE.match(url):
             errs.append(
-                f"[crosslink] CHANGELOG {row['model']!r} — model card URL "
+                f"[crosslink] ANNOUNCEMENTS {row['model']!r} — model card URL "
                 f"is not a canonical catalog link: {url}"
             )
     return errs
@@ -264,34 +264,32 @@ def parse_readme_recent() -> list[dict[str, str]]:
     if not m:
         return []
     rows: list[dict[str, str]] = []
-    in_body = False
     for line in m.group(1).splitlines():
-        if line.startswith("| Model"):
-            in_body = True
+        line = line.strip()
+        if not line.startswith("- "):
             continue
-        if in_body and re.match(r"^\|\s*---", line):
+        # Each entry is `- **Model** · [date](url) · Capabilities`.
+        parts = [p.strip() for p in line[2:].split(" · ", 2)]
+        if len(parts) < 3:
             continue
-        if in_body:
-            if not line.strip().startswith("|"):
-                break
-            cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            if len(cells) < 3:
-                continue
-            date_cell = cells[1]
-            m2 = re.search(r"\d{4}-\d{2}-\d{2}", date_cell)
-            date = m2.group(0) if m2 else date_cell
-            model_cell = cells[0]
-            m2 = re.match(r"\*\*([^*]+)\*\*", model_cell)
-            model = (m2.group(1) if m2 else model_cell).strip()
-            rows.append({"date": date, "model": model})
+        m2 = re.search(r"\d{4}-\d{2}-\d{2}", parts[1])
+        date = m2.group(0) if m2 else parts[1]
+        m2 = re.match(r"\*\*([^*]+)\*\*", parts[0])
+        model = (m2.group(1) if m2 else parts[0]).strip()
+        rows.append({"date": date, "model": model})
     return rows
 
 
-def check_capsule_in_changelog(
-    capsules: list[Path], changelog: list[dict[str, str]]
+def check_capsule_in_announcements(
+    capsules: list[Path], announcements: list[dict[str, str]]
 ) -> list[str]:
     errs: list[str] = []
-    idx = {(r["date"], r["model"].lower()) for r in changelog}
+    idx = {(r["date"], r["model"].lower()) for r in announcements}
+    # A row may show a readable name ("Model router") instead of the
+    # capsule slug ("aug-2026"). Date + model card still identifies it.
+    card_idx = {
+        (r["date"], r["model_url"]) for r in announcements if r.get("model_url")
+    }
     for cap in capsules:
         rel = cap.relative_to(REPO_ROOT)
         _, publisher, model_slug, _ = rel.parts
@@ -316,10 +314,12 @@ def check_capsule_in_changelog(
         # Also accept match on model slug (some manual authors put slug
         # in the Model cell).
         alt = (date, model_slug.lower())
-        if key not in idx and alt not in idx:
+        card = (date, str(fm.get("model_card") or "").strip())
+        if key not in idx and alt not in idx and card not in card_idx:
             errs.append(
-                f"[crosslink] capsule {rel} has no matching CHANGELOG "
-                f"row (looked for date={date} + model={model_name!r})"
+                f"[crosslink] capsule {rel} has no matching ANNOUNCEMENTS "
+                f"row (looked for date={date} + model={model_name!r}, "
+                f"or date + its model_card URL)"
             )
     return errs
 
@@ -468,21 +468,21 @@ def check_related_primers_exist() -> list[str]:
     return errs
 
 
-def check_readme_matches_changelog(
+def check_readme_matches_announcements(
     readme_rows: list[dict[str, str]],
-    changelog: list[dict[str, str]],
+    announcements: list[dict[str, str]],
 ) -> list[str]:
     errs: list[str] = []
-    if not changelog:
+    if not announcements:
         return errs
     if not readme_rows:
         errs.append(
             "[crosslink] README.md is missing the "
-            "<!-- BEGIN:RECENTLY-ADDED --> table"
+            "<!-- BEGIN:RECENTLY-ADDED --> list"
         )
         return errs
     expected = [
-        (r["date"], r["model"].lower()) for r in changelog[:3]
+        (r["date"], r["model"].lower()) for r in announcements[:3]
     ]
     actual = [
         (r["date"], r["model"].lower()) for r in readme_rows[:3]
@@ -490,15 +490,47 @@ def check_readme_matches_changelog(
     if expected != actual:
         errs.append(
             "[crosslink] README Recently added top 3 does not match "
-            "CHANGELOG top 3:\n"
+            "ANNOUNCEMENTS top 3:\n"
             f"    README:    {actual}\n"
-            f"    CHANGELOG: {expected}\n"
+            f"    ANNOUNCEMENTS: {expected}\n"
             "  → run `refresh-recent-activity` or update README by hand."
         )
     return errs
 
 
 PLACEHOLDER_RE = re.compile(r"_review_")
+LOCALIZED_LEARN_RE = re.compile(r"learn\.microsoft\.com/[a-z]{2}-[a-z]{2}/")
+LINK_SCAN_SUFFIXES = {".md", ".ipynb", ".json", ".py", ".sh", ".yml",
+                      ".yaml", ".txt"}
+LINK_SCAN_SKIP_DIRS = {".git", ".do-not-commit", ".venv", "venv",
+                       "node_modules", "__pycache__", ".ipynb_checkpoints"}
+
+
+def check_no_localized_learn_urls() -> list[str]:
+    """Learn links must not carry a locale segment.
+
+    Without one, Learn redirects each reader to their own language. A
+    pasted browser URL usually includes the author's locale, and nothing
+    else notices, so the rule is asserted here.
+    """
+    errs: list[str] = []
+    for p in sorted(REPO_ROOT.rglob("*")):
+        if p.suffix not in LINK_SCAN_SUFFIXES or not p.is_file():
+            continue
+        if LINK_SCAN_SKIP_DIRS & set(p.relative_to(REPO_ROOT).parts):
+            continue
+        try:
+            text = p.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        for lineno, line in enumerate(text.splitlines(), start=1):
+            if LOCALIZED_LEARN_RE.search(line):
+                errs.append(
+                    f"[crosslink] {p.relative_to(REPO_ROOT)}:{lineno} has a "
+                    "Learn URL with a locale segment; remove the "
+                    "language-region folder after learn.microsoft.com"
+                )
+    return errs
 
 
 def check_no_placeholders() -> list[str]:
@@ -510,7 +542,7 @@ def check_no_placeholders() -> list[str]:
         REPO_ROOT / ".github" / "pull_request_template.md",
         REPO_ROOT / ".github" / "maintainer-guide.md",
     }
-    scan_globs = ["CHANGELOG.md", "README.md", "docs/**/*.md",
+    scan_globs = ["README.md", "docs/**/*.md",
                   "models/**/*.md", ".github/**/*.md"]
     for glob in scan_globs:
         for p in REPO_ROOT.glob(glob):
@@ -596,11 +628,11 @@ def main() -> int:
     scenarios = find_scenarios()
     quickstart = [p for p in [PUBLISHER_ROOT / "quickstart" / "README.md"]
                   if p.exists()]
-    changelog = parse_changelog_rows()
+    announcements = parse_announcements_rows()
     readme_rows = parse_readme_recent()
 
     all_errs: list[str] = []
-    all_errs += check_capsule_in_changelog(capsules, changelog)
+    all_errs += check_capsule_in_announcements(capsules, announcements)
     all_errs += check_capsule_in_publisher_readme(capsules)
     all_errs += check_publisher_matches_folder(capsules, scenarios)
     all_errs += check_scenario_scope_matches_location(scenarios)
@@ -612,11 +644,12 @@ def main() -> int:
     all_errs += check_no_orphan_notebooks(
         capsules + scenarios + quickstart
     )
-    all_errs += check_readme_matches_changelog(readme_rows, changelog)
-    all_errs += check_model_card_urls(changelog)
-    all_errs += check_changelog_row_shape()
+    all_errs += check_readme_matches_announcements(readme_rows, announcements)
+    all_errs += check_model_card_urls(announcements)
+    all_errs += check_announcements_row_shape()
     all_errs += check_annotation_on_own_line()
     all_errs += check_no_placeholders()
+    all_errs += check_no_localized_learn_urls()
 
     if all_errs:
         for e in all_errs:
@@ -626,7 +659,7 @@ def main() -> int:
     print(
         f"Crosslinks OK — {len(capsules)} capsule(s), "
         f"{len(scenarios)} scenario(s), "
-        f"{len(changelog)} CHANGELOG row(s), "
+        f"{len(announcements)} announcement row(s), "
         f"{len(readme_rows)} README row(s)."
     )
     return 0

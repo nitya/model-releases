@@ -56,10 +56,10 @@ Walkthroughs that span more than one release in this family, so they can't live 
 
 ### Usage guides
 
-- [Use MAI image models in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image?tabs=python)
-- [MAI voices — MAI-Voice-2 and Flash](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-voices?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&tabs=mai-voice-2-flash&pivots=ai-foundry)
-- [MAI transcription — MAI-Transcribe-1.5](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry)
-- [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)
+- [Use MAI image models in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image?tabs=python)
+- [MAI voices — MAI-Voice-2 and Flash](https://learn.microsoft.com/azure/ai-services/speech-service/mai-voices?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&tabs=mai-voice-2-flash&pivots=ai-foundry)
+- [MAI transcription — MAI-Transcribe-1.5](https://learn.microsoft.com/azure/ai-services/speech-service/mai-transcribe?context=%2Fazure%2Ffoundry%2Fcontext%2Fcontext&pivots=ai-foundry)
+- [Microsoft Foundry Models overview](https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview)
 
 ### Announcements
 
