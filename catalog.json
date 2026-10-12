@@ -90,7 +90,7 @@
   ],
   "counts": {
     "capsules": 8,
-    "scenarios": 1,
+    "scenarios": 2,
     "publishers": 13,
     "primers": 13
   },
@@ -434,6 +434,59 @@
     }
   ],
   "scenarios": [
+    {
+      "slug": "foundry-podcast-studio",
+      "title": "Foundry podcast studio",
+      "summary": "Mix model families to turn release announcements into narrated decks and model-card podcasts",
+      "last_updated": "2026-10-12",
+      "scope": "cross-publisher",
+      "publisher": null,
+      "models": [
+        {
+          "publisher": "microsoft-ai",
+          "model": "mai-voice-2.1",
+          "role": "Narrates every episode, with two hosts in the primer podcast",
+          "model_card": "https://ai.azure.com/catalog/models/MAI-Voice-2.1"
+        },
+        {
+          "publisher": "microsoft-ai",
+          "model": "mai-image-2.6-flash",
+          "role": "Draws the slide art",
+          "model_card": "https://ai.azure.com/catalog/models/MAI-Image-2.6-Flash"
+        },
+        {
+          "publisher": "microsoft-ai",
+          "model": "mai-image-2.6",
+          "role": "Draws the cover art",
+          "model_card": "https://ai.azure.com/catalog/models/MAI-Image-2.6"
+        },
+        {
+          "publisher": "microsoft-ai",
+          "model": "mai-transcribe-2",
+          "role": "Turns the finished audio into captions and slide timing"
+        },
+        {
+          "publisher": "microsoft",
+          "model": "microsoft-decision-1",
+          "role": "Scores which paragraphs deserve a slide, checks each slide against its source, and reviews generated code"
+        },
+        {
+          "publisher": "azure-openai",
+          "model": "gpt-6-sol",
+          "role": "Drafts the slides and the narration, and writes the player page",
+          "model_card": "https://ai.azure.com/catalog/models/gpt-6-sol"
+        }
+      ],
+      "capabilities": [
+        "audio-speech",
+        "image-generation",
+        "decision-models",
+        "chat-completion"
+      ],
+      "path": "models/multi-model-scenarios/foundry-podcast-studio",
+      "url": "https://github.com/microsoft-foundry/model-releases/tree/main/models/multi-model-scenarios/foundry-podcast-studio",
+      "notebooks": []
+    },
     {
       "slug": "mai-image-family-walkthrough",
       "title": "MAI-Image-2.5 family walkthrough",

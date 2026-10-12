@@ -73,11 +73,16 @@
           "model": {
             "type": "string",
             "pattern": "^[a-z0-9]+([-.][a-z0-9]+)*$",
-            "description": "Model slug \u2014 must match a capsule folder under models/<publisher>/."
+            "description": "Model slug \u2014 matches a capsule folder under models/<publisher>/ when one exists."
           },
           "role": {
             "type": "string",
             "description": "What this model contributes to the scenario."
+          },
+          "model_card": {
+            "type": "string",
+            "format": "uri",
+            "description": "Official model card URL. Required when the model has no capsule at models/<publisher>/<model>/, so readers still have a source to follow."
           }
         }
       }

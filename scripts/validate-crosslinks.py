@@ -15,7 +15,8 @@ what a human reviewer would otherwise have to eyeball:
    primer file in `docs/primers/<slug>.md`.
 4. Every notebook declared in frontmatter exists on disk, and every
    `.ipynb` under `models/` is claimed by exactly one artifact.
-5. Every model a scenario references resolves to a real capsule.
+5. Every model a scenario references resolves to a real capsule, or carries a
+   `model_card` link when it has no capsule yet.
 6. `README.md` "Recently added" top 3 rows match the top 3 rows of
    `ANNOUNCEMENTS.md` by (date, model).
 7. No unresolved `_review_` placeholder tokens remain in the repo.
@@ -602,7 +603,7 @@ def check_no_orphan_notebooks(artifacts: list[Path]) -> list[str]:
 
 
 def check_scenario_models_exist(scenarios: list[Path]) -> list[str]:
-    """Each model a scenario references must be a real capsule."""
+    """Each model a scenario references needs a capsule, or a model_card link."""
     errs: list[str] = []
     for scen in scenarios:
         rel = scen.relative_to(REPO_ROOT)
@@ -613,11 +614,13 @@ def check_scenario_models_exist(scenarios: list[Path]) -> list[str]:
             publisher = str(entry.get("publisher") or "").strip()
             model = str(entry.get("model") or "").strip()
             target = PUBLISHER_ROOT / publisher / model / "README.md"
-            if not target.exists():
+            card = str(entry.get("model_card") or "").strip()
+            if not target.exists() and not card.startswith(("http://", "https://")):
                 errs.append(
                     f"[crosslink] scenario {rel} references "
                     f"{publisher}/{model} but no capsule exists at "
-                    f"models/{publisher}/{model}/README.md"
+                    f"models/{publisher}/{model}/README.md. "
+                    f"Add a capsule, or give the entry a model_card link."
                 )
     return errs
 

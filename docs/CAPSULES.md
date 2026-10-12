@@ -45,6 +45,7 @@ A capsule pairs a model release with runnable notebooks. Pick a provider, then o
 
 Scenarios use several releases together in one notebook.
 
+- 2026-10-12 · **[Foundry podcast studio](../models/multi-model-scenarios/foundry-podcast-studio/)** · Multiple publishers
 - 2026-08-12 · **[MAI-Image-2.5 family walkthrough](../models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/)** · Microsoft AI
   1. [Compare MAI-Image-2.5, Flash, and Pro side by side](../models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/mai-image-family-walkthrough.ipynb)
 <!-- END:CAPSULE-LIST -->
