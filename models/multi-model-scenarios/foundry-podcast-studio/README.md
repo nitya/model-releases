@@ -256,6 +256,10 @@ flowchart LR
 | We open the player locally | The episode is published to a podcast feed and a site, with the transcript and sources attached |
 | Deployments are named for jobs | Models, prompts, and templates are pinned and versioned, so an episode can be reproduced and a retirement date is a planned change |
 
+For a design that turns this scenario into a hosted agent we can prompt, with the finished video stored in
+Azure Storage, and for an alternative built from several agents that talk over the A2A protocol, see the
+[appendix](appendix-hosted-agent.md).
+
 ## Know the boundaries
 
 - **The checks reduce mistakes and don't remove them.** A decision model works within the options we give it,
