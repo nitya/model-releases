@@ -106,7 +106,7 @@ The README is the front door, and each section answers one question:
 3. **How can I get started?** Notebook-count badges per publisher, then Setup,
    Pick a family, and Try a notebook. The badge block between
    `<!-- BEGIN:RECENT-CAPSULES --> … <!-- END:RECENT-CAPSULES -->` is generated
-   from capsule frontmatter by `scripts/generate-catalog.py`.
+   from capsule frontmatter by `scripts/5-generate-catalog.py`.
 4. **How can I learn more?** The top 3 announcement row as a **Recently added**
    list between `<!-- BEGIN:RECENTLY-ADDED --> … <!-- END:RECENTLY-ADDED -->`,
    each as `**Model** · [Release date](announcement) · Capabilities`. The
@@ -284,7 +284,7 @@ Behavior:
    grounded in the chosen domain; let the author pick.
 5. Append capsule deps to `requirements-dev.txt`.
 6. Prepend row to `ANNOUNCEMENTS.md`.
-7. Run `python scripts/generate-catalog.py` (README badges, `CAPSULES.md`,
+7. Run `python scripts/5-generate-catalog.py` (README badges, `CAPSULES.md`,
    indexes) and invoke `refresh-recent-activity` to update the repo README.
 8. Offer to invoke `add-to-glossary` / `add-capability-doc` if new terms
    or a new category appear.
@@ -318,7 +318,7 @@ Behavior:
 
 **Status: v1 scaffolding complete (2026-08-03).** All 11 build tasks
 below are `done` in the session `todos` table; `python
-scripts/validate.py` reports every artifact valid.
+scripts/4-validate-spec.py` reports every artifact valid.
 
 > Historical v1 build log. Counts and file names below reflect v1; the repo
 > itself is the source of truth for current state.
@@ -335,7 +335,7 @@ Tracked in the session `todos` table with dependencies. High-level order:
    taxonomy entries, each with YAML frontmatter and Learn-grounded
    resources.
 6. ✅ Create `models/quickstart/` (README pointing to
-   `scripts/sample.env` + `scripts/setenv.sh`).
+   `scripts/sample.env` + `scripts/2-setup-env.sh`).
 7. ✅ Create the 11 publisher folders each with a `README.md` stub.
 8. ✅ Confirm `requirements-dev.txt` "Capsule dependencies" placeholder +
    `.devcontainer/post-create.sh` installs it.
@@ -346,8 +346,8 @@ Tracked in the session `todos` table with dependencies. High-level order:
     `refresh-recent-activity`).
 11. ✅ Wire up the **Recently added** marker block
     at the top of the repo README.
-12. ✅ Create `scripts/` (README, `sample.env`, `setenv.sh` +
-    `setenv.spec.md` sidecar, `validate-specs.py`).
+12. ✅ Create `scripts/` (README, `sample.env`, `2-setup-env.sh` +
+    `2-setup-env.spec.md` sidecar, `validate-specs.py`).
 13. ✅ Author 7 JSON Schemas under `.github/specs/schemas/` (capsule,
     publisher, primer, quickstart, skill, agent, script) + README.
 14. ✅ Author [`.github/maintainer-guide.md`](./maintainer-guide.md) —
@@ -387,7 +387,7 @@ at **3 Learn links** to keep learners focused.
 
 **Never localize Learn URLs.** Write `learn.microsoft.com/azure/...`, with no
 locale segment such as `en-us`, so Learn sends each reader to their own
-language. `validate.py` fails any Learn link that carries one.
+language. `4-validate-spec.py` fails any Learn link that carries one.
 
 ### Brand rule — always "Microsoft Foundry"
 
@@ -436,7 +436,7 @@ without rewriting existing artifacts.
 2. Skill / agent validates it against `.github/specs/schemas/<kind>.schema.json`.
 3. Skill renders / updates the human-facing artifact and any
    cross-references (publisher tables, ANNOUNCEMENTS, Recent Activity).
-4. `scripts/validate.py` re-runs every check across the whole repo to
+4. `scripts/4-validate-spec.py` re-runs every check across the whole repo to
    catch drift (on-demand, pre-commit, and in CI).
 
 ## 15. Content authoring & pedagogy rules

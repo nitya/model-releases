@@ -96,18 +96,6 @@ def find_scenarios() -> list[Path]:
     return sorted(set(scen))
 
 
-def strip_availability(cell: str) -> str:
-    """Drop a trailing `_(public preview)_`-style availability note.
-
-    The annotation documents where a release can be used; it is not
-    part of the model name, so no row-matching should see it. The note
-    sits on its own line after a `<br>`, which has to come off with it —
-    otherwise an unlinked model keeps the tag and stops matching its
-    capsule.
-    """
-    return re.sub(r"\s*(?:<br\s*/?>)?\s*_\([^)]*\)_\s*$", "", cell.strip())
-
-
 ANNOUNCEMENTS_COLUMNS = 4
 
 
@@ -170,29 +158,41 @@ def check_announcements_row_shape() -> list[str]:
     return errs
 
 
-def check_annotation_on_own_line() -> list[str]:
-    """An availability note must sit after a `<br>`, on its own line.
+def check_no_availability_notes() -> list[str]:
+    """Model cells carry no availability note, so each row stays one line.
 
-    Kept inline, the note adds its full length to the Model column's
-    natural width. A markdown table sizes columns to their content, so
-    a long note steals width from Date and Publisher until those wrap
-    mid-value and the rows go ragged. Nothing else notices, because the
-    parser strips the note either way — so the layout rule is asserted
-    here.
+    A note such as `_(public preview)_` forces a second line in the cell
+    or widens the column until Date and Publisher wrap. The stage lives
+    in the capsule and on the model card, so it is kept out of the table.
     """
     errs: list[str] = []
     for lineno, raw, cells in iter_announcements_row_cells():
         if len(cells) != ANNOUNCEMENTS_COLUMNS:
             continue  # reported by check_announcements_row_shape
         model = cells[2].strip()
-        if not re.search(r"_\([^)]*\)_\s*$", model):
-            continue
-        if not re.search(r"<br\s*/?>\s*_\([^)]*\)_\s*$", model):
+        if re.search(r"<br\s*/?>|_\([^)]*\)_", model):
             errs.append(
-                f"[crosslink] ANNOUNCEMENTS.md:{lineno} — availability note "
-                f"is inline; put it on its own line with `<br>` so it "
-                f"doesn't widen the Model column:\n"
+                f"[crosslink] ANNOUNCEMENTS.md:{lineno} — the Model cell "
+                f"has an availability note or line break; keep it to the "
+                f"model name and link:\n"
                 f"    {model}"
+            )
+    return errs
+
+
+def check_capabilities_cell_length() -> list[str]:
+    """Name at most three capabilities, then `[...]`, so rows stay short."""
+    errs: list[str] = []
+    for lineno, raw, cells in iter_announcements_row_cells():
+        if len(cells) != ANNOUNCEMENTS_COLUMNS:
+            continue  # reported by check_announcements_row_shape
+        tags = [t.strip() for t in cells[3].split("·") if t.strip()]
+        named = [t for t in tags if t != "[...]"]
+        if len(named) > 3:
+            errs.append(
+                f"[crosslink] ANNOUNCEMENTS.md:{lineno} — {len(named)} "
+                f"capabilities named; keep 3 and end with `· [...]`:\n"
+                f"    {cells[3]}"
             )
     return errs
 
@@ -212,9 +212,8 @@ def parse_announcements_rows() -> list[dict[str, str]]:
         # ever added.
         m = re.match(r"\[([^\]]+)\]", cells[1])
         publisher = m.group(1) if m else cells[1]
-        # Model cell may be `[Model](url)` or plain, and may carry a
-        # trailing availability note like `_(public preview)_`.
-        model_cell = strip_availability(cells[2])
+        # Model cell is `[Model](url)` or plain text.
+        model_cell = cells[2].strip()
         m = re.match(r"\[([^\]]+)\]\(([^)]+)\)", model_cell)
         model = m.group(1) if m else model_cell
         rows.append({
@@ -537,7 +536,7 @@ def check_no_placeholders() -> list[str]:
     errs: list[str] = []
     # Files where placeholders are legitimate documentation examples.
     ALLOW = {
-        REPO_ROOT / "scripts" / "scan_foundry_blog.py",
+        REPO_ROOT / "scripts" / "6-scan-foundry-blog.py",
         REPO_ROOT / ".github" / "workflows" / "scan-foundry-blog.yml",
         REPO_ROOT / ".github" / "pull_request_template.md",
         REPO_ROOT / ".github" / "maintainer-guide.md",
@@ -647,7 +646,8 @@ def main() -> int:
     all_errs += check_readme_matches_announcements(readme_rows, announcements)
     all_errs += check_model_card_urls(announcements)
     all_errs += check_announcements_row_shape()
-    all_errs += check_annotation_on_own_line()
+    all_errs += check_no_availability_notes()
+    all_errs += check_capabilities_cell_length()
     all_errs += check_no_placeholders()
     all_errs += check_no_localized_learn_urls()
 

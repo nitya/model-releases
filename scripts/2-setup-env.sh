@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
-# setenv.sh
+# 2-setup-env.sh
 # Purpose:    Bootstrap the repo-root .env from scripts/sample.env and
 #             auto-populate Microsoft Foundry connection details using
 #             the Azure CLI when a project is provided.
-# Prereqs:    Azure CLI logged in (`az login`) for any mode beyond copy-only.
+# Prereqs:    A Foundry project (run ./scripts/1-create-rg.sh first) and the
+#             Azure CLI logged in (`az login`) for any mode beyond copy-only.
 # Learn ref:  https://learn.microsoft.com/cli/azure/get-started-with-azure-cli
 #             https://learn.microsoft.com/azure/foundry/how-to/create-projects
 # Usage:
-#   ./scripts/setenv.sh                                          # copy template only
-#   ./scripts/setenv.sh --use <rg> <project> [--force]          # populate from existing project
-#   ./scripts/setenv.sh --create <rg> <project> <location> [--force]  # create project + populate
-#   ./scripts/setenv.sh <rg> <project> [--force]                # legacy alias for --use
+#   ./scripts/2-setup-env.sh                                 # copy template only
+#   ./scripts/2-setup-env.sh --use <rg> <project> [--force]  # populate from a project
+#   ./scripts/2-setup-env.sh <rg> <project> [--force]        # same as --use
 #
+# To create the project itself, run ./scripts/1-create-rg.sh.
 # The .env file is git-ignored. Never commit real keys.
 
 set -euo pipefail
@@ -25,7 +26,6 @@ TARGET="${REPO_ROOT}/.env"
 MODE=""
 RG=""
 PROJECT=""
-LOCATION=""
 FORCE=""
 
 case "${1:-}" in
@@ -36,11 +36,8 @@ case "${1:-}" in
     FORCE="${4:-}"
     ;;
   --create)
-    MODE="create"
-    RG="${2:-}"
-    PROJECT="${3:-}"
-    LOCATION="${4:-}"
-    FORCE="${5:-}"
+    echo "✗ --create moved. Run ./scripts/1-create-rg.sh to create the project." >&2
+    exit 1
     ;;
   --force)
     FORCE="--force"
@@ -49,7 +46,7 @@ case "${1:-}" in
     MODE=""
     ;;
   *)
-    # Legacy positional: setenv.sh <rg> <project> [--force]
+    # Legacy positional: 2-setup-env.sh <rg> <project> [--force]
     MODE="use"
     RG="${1:-}"
     PROJECT="${2:-}"
@@ -120,7 +117,7 @@ populate_from_project() {
   update_env "MICROSOFT_FOUNDRY_API_KEY"      "$apikey"
   update_env "MICROSOFT_FOUNDRY_REGION"       "$region"
   echo "✅ Populated .env from Azure CLI."
-  echo "→ Next: add deployment names (e.g. CHAT_DEPLOYMENT=my-gpt4o) as each capsule requires them."
+  echo "→ Next: deploy the models a capsule needs with ./scripts/3-deploy-model.sh --help"
 }
 
 # ---------- guard: sample.env must exist ----------
@@ -146,57 +143,19 @@ case "$MODE" in
 
   "")  # copy-only
     echo "ℹ️  No mode given — .env is ready to edit by hand."
-    echo "   To populate from an existing project:"
-    echo "     ./scripts/setenv.sh --use <rg> <project>"
-    echo "   To create a new project and populate:"
-    echo "     ./scripts/setenv.sh --create <rg> <project> <location>"
+    echo "   To populate it from a project:"
+    echo "     ./scripts/2-setup-env.sh --use <rg> <project>"
+    echo "   Don't have a project yet? Run ./scripts/1-create-rg.sh"
     exit 0
     ;;
 
   use)
     if [[ -z "$RG" || -z "$PROJECT" ]]; then
       echo "✗ --use requires <rg> and <project>." >&2
-      echo "  Usage: ./scripts/setenv.sh --use <rg> <project> [--force]" >&2
+      echo "  Usage: ./scripts/2-setup-env.sh --use <rg> <project> [--force]" >&2
       exit 1
     fi
     require_az
-    populate_from_project "$RG" "$PROJECT"
-    ;;
-
-  create)
-    if [[ -z "$RG" || -z "$PROJECT" || -z "$LOCATION" ]]; then
-      echo "✗ --create requires <rg>, <project>, and <location>." >&2
-      echo "  Usage: ./scripts/setenv.sh --create <rg> <project> <location> [--force]" >&2
-      exit 1
-    fi
-    require_az
-
-    # Create resource group if it doesn't already exist.
-    if az group show --name "$RG" >/dev/null 2>&1; then
-      echo "ℹ️  Resource group '${RG}' already exists — skipping creation."
-    else
-      echo "→ Creating resource group '${RG}' in '${LOCATION}'..."
-      az group create --name "$RG" --location "$LOCATION" --output none
-      echo "✅ Resource group created."
-    fi
-
-    # Create the Foundry AI Services resource if it doesn't already exist.
-    # Reference: https://learn.microsoft.com/azure/foundry/how-to/create-projects
-    if az cognitiveservices account show --name "$PROJECT" --resource-group "$RG" >/dev/null 2>&1; then
-      echo "ℹ️  Foundry project '${PROJECT}' already exists — skipping creation."
-    else
-      echo "→ Creating Foundry AI Services resource '${PROJECT}'..."
-      az cognitiveservices account create \
-        --name "$PROJECT" \
-        --resource-group "$RG" \
-        --kind "AIServices" \
-        --sku "S0" \
-        --location "$LOCATION" \
-        --yes \
-        --output none
-      echo "✅ Foundry project created."
-    fi
-
     populate_from_project "$RG" "$PROJECT"
     ;;
 

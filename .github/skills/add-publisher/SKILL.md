@@ -40,8 +40,8 @@ Creates a new publisher folder with a README whose frontmatter conforms to
 1. Add the publisher's row to the **Publishers** table in
    [`docs/README.md`](../../../docs/README.md). That table is hand-maintained,
    and its catalog `?publisher=` value is the catalog's name, not our slug.
-2. Run `python scripts/generate-catalog.py`. The publisher appears in the repo
+2. Run `python scripts/5-generate-catalog.py`. The publisher appears in the repo
    README as a `0` badge. Optionally add a color for its slug to
-   `COLLECTION_BADGE_COLORS` in `scripts/generate-catalog.py` (default: gray).
+   `COLLECTION_BADGE_COLORS` in `scripts/5-generate-catalog.py` (default: gray).
 
 Fails (non-destructively) if `models/<slug>/` already exists.

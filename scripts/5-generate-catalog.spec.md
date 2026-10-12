@@ -1,17 +1,17 @@
 ---
 kind: script
-script: scripts/generate-catalog.py
+script: scripts/5-generate-catalog.py
 purpose: Generate catalog.json, llms.txt, and every marker-bracketed index table from artifact frontmatter, so the indexes of the repo can never drift from the content.
 prereqs:
   - "pyyaml (`pip install -r requirements-dev.txt`)"
 usage:
-  - "python scripts/generate-catalog.py           # write all generated files"
-  - "python scripts/generate-catalog.py --check   # fail if any is stale"
+  - "python scripts/5-generate-catalog.py           # write all generated files"
+  - "python scripts/5-generate-catalog.py --check   # fail if any is stale"
 learn_ref: https://llmstxt.org/
 idempotent: true
 ---
 
-# generate-catalog.py
+# 5-generate-catalog.py
 
 Builds every index of this repo from one source: artifact frontmatter.
 All of these are **generated** — edit the frontmatter, never the output.
@@ -70,7 +70,7 @@ The repo README has two marker-bounded blocks, refreshed by different tools:
 | Block | Refreshed by | Run it when |
 |---|---|---|
 | `RECENT-CAPSULES` (notebook badges) | this script | a notebook is added, renamed, or removed (update the capsule's `notebooks:` frontmatter first), or a new publisher or badge color is added |
-| `RECENTLY-ADDED` (top 3 announcement row) | the `refresh-recent-activity` skill, or `scripts/scan_foundry_blog.py` | a announcement row is added or edited |
+| `RECENTLY-ADDED` (top 3 announcement row) | the `refresh-recent-activity` skill, or `scripts/6-scan-foundry-blog.py` | a announcement row is added or edited |
 
 The README's "Try a notebook" link is hand-written. After a notebook rename or
 removal, search the README for the old path.
@@ -78,8 +78,8 @@ removal, search the README for the old path.
 ## Checking for drift
 
 `--check` is one of the three checks in
-[`scripts/validate.py`](./validate.py), which runs from the pre-commit
+[`scripts/4-validate-spec.py`](./4-validate-spec.py), which runs from the pre-commit
 hook and from the
 [`validate.yml`](../.github/workflows/validate.yml) workflow. If you
 change frontmatter and forget to regenerate, it fails with the list of
-stale files; `python scripts/validate.py --fix` regenerates them.
+stale files; `python scripts/4-validate-spec.py --fix` regenerates them.

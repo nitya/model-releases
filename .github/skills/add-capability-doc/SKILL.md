@@ -33,7 +33,7 @@ depends_on: []
 Creates a new primer file with frontmatter validated by
 [`primer.schema.json`](../../specs/schemas/primer.schema.json). The capability
 taxonomy table in `docs/README.md` is generated from primer frontmatter, so run
-`python scripts/generate-catalog.py` afterwards instead of editing the table.
+`python scripts/5-generate-catalog.py` afterwards instead of editing the table.
 
 Also updates the [`capsule.schema.json`](../../specs/schemas/capsule.schema.json)
 `capabilities` enum so future capsules can tag themselves with the new

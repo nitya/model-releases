@@ -7,14 +7,14 @@ separate CI steps:
 
     1. validate-specs.py        — frontmatter vs. JSON Schema
     2. validate-crosslinks.py   — ANNOUNCEMENTS / README / capsule wiring
-    3. generate-catalog.py      — generated files are current
+    3. 5-generate-catalog.py      — generated files are current
 
 Usage:
 
-    python scripts/validate.py            # run once, report, exit non-zero on failure
-    python scripts/validate.py --watch    # re-run on every save (Ctrl-C to stop)
-    python scripts/validate.py --fix      # regenerate catalog files, then re-check
-    python scripts/validate.py --no-color # plain output (used by CI)
+    python scripts/4-validate-spec.py            # run once, report, exit non-zero on failure
+    python scripts/4-validate-spec.py --watch    # re-run on every save (Ctrl-C to stop)
+    python scripts/4-validate-spec.py --fix      # regenerate catalog files, then re-check
+    python scripts/4-validate-spec.py --no-color # plain output (used by CI)
 
 `--watch` is the interactive session: leave it running in a second
 terminal while you edit, and every save re-runs the full set. It polls
@@ -37,7 +37,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CHECKS: list[tuple[str, list[str]]] = [
     ("Schemas", ["scripts/validate-specs.py"]),
     ("Crosslinks", ["scripts/validate-crosslinks.py"]),
-    ("Generated files", ["scripts/generate-catalog.py", "--check"]),
+    ("Generated files", ["scripts/5-generate-catalog.py", "--check"]),
 ]
 
 # Directories whose contents feed a check. Anything else (notebooks,
@@ -101,7 +101,7 @@ def run_checks(style: Style, quiet_when_green: bool = False) -> int:
             print(
                 style.dim(
                     "  Generated files are rebuilt, not edited by hand — "
-                    "run `python scripts/validate.py --fix`."
+                    "run `python scripts/4-validate-spec.py --fix`."
                 )
             )
     else:
@@ -196,7 +196,7 @@ def main() -> int:
     if args.fix:
         print(style.bold("Regenerating catalog files"))
         proc = subprocess.run(
-            [sys.executable, "scripts/generate-catalog.py"], cwd=REPO_ROOT
+            [sys.executable, "scripts/5-generate-catalog.py"], cwd=REPO_ROOT
         )
         if proc.returncode != 0:
             return proc.returncode

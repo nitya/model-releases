@@ -65,7 +65,7 @@ Say something like:
    [`add-to-glossary`](../skills/add-to-glossary/); if a new capability
    is introduced, offer
    [`add-capability-doc`](../skills/add-capability-doc/).
-8. **Validate** — runs `python scripts/validate.py` and fixes any
+8. **Validate** — runs `python scripts/4-validate-spec.py` and fixes any
    frontmatter drift before finishing.
 
 ## Guardrails (enforced on every generated artifact)

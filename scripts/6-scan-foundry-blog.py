@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-scan_foundry_blog.py — Scan the Microsoft Foundry blog for new model
+6-scan-foundry-blog.py — Scan the Microsoft Foundry blog for new model
 announcements and stage draft ANNOUNCEMENTS + README updates.
 
 Behavior:
@@ -415,12 +415,8 @@ def render_readme_block(rows: list[dict[str, str]]) -> str:
     body_lines: list[str] = []
     for r in rows:
         # README shows a plain bold model name; the ANNOUNCEMENTS cell may
-        # carry link markup and an availability note on a second line,
-        # so strip all three rather than nesting a link inside bold.
-        model = re.sub(
-            r"\s*(?:<br\s*/?>)?\s*_\([^)]*\)_\s*$",
-            "", r.get("model", "_review_").strip()
-        )
+        # carry link markup, so strip it rather than nesting a link inside bold.
+        model = r.get("model", "_review_").strip()
         m = re.match(r"\[([^\]]+)\]", model)
         if m:
             model = m.group(1)

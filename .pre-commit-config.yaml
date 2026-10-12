@@ -5,13 +5,13 @@
 #
 # CI validates once per pull request, not on every push, so this hook
 # is what catches a problem while you still have the commit in hand.
-# It runs the same entrypoint CI runs, `scripts/validate.py`, which
+# It runs the same entrypoint CI runs, `scripts/4-validate-spec.py`, which
 # covers all three checks: frontmatter schemas, cross-links, and
 # whether the generated files (catalog.json, llms.txt, CAPSULES.md,
 # the README blocks) are current.
 #
 # While drafting, run the interactive version in a second terminal:
-#     python scripts/validate.py --watch
+#     python scripts/4-validate-spec.py --watch
 #
 # To skip the hook for a work-in-progress commit:
 #     git commit --no-verify
@@ -21,7 +21,7 @@ repos:
     hooks:
       - id: validate
         name: Validate specs, cross-links, and generated files
-        entry: python scripts/validate.py --no-color
+        entry: python scripts/4-validate-spec.py --no-color
         language: system
         # The checks read the whole repo, not just staged files, so
         # there is nothing useful to pass through.

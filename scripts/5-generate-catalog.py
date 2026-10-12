@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate-catalog.py — build the machine-readable index of this repo.
+5-generate-catalog.py — build the machine-readable index of this repo.
 
 Writes two artifacts, both generated from artifact frontmatter so they
 can never drift from the content:
@@ -15,8 +15,8 @@ can never drift from the content:
    Grounding: https://llmstxt.org/
 
 Usage:
-    python scripts/generate-catalog.py           # write the files
-    python scripts/generate-catalog.py --check   # verify they're current
+    python scripts/5-generate-catalog.py           # write the files
+    python scripts/5-generate-catalog.py --check   # verify they're current
 
 Exit code:
     0 = written (or, with --check, already current)
@@ -498,7 +498,7 @@ def main() -> int:
             print(
                 "[catalog] stale generated file(s): "
                 + ", ".join(stale)
-                + "\n  → run `python scripts/generate-catalog.py`"
+                + "\n  → run `python scripts/5-generate-catalog.py`"
             )
             return 1
         print("Catalog OK — all generated files are current.")

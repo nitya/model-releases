@@ -43,7 +43,7 @@ creator explicitly approves a coordinated migration.
    declared notebooks. Do not inspect `.do-not-commit/`.
 2. Check the working tree before editing. Preserve unrelated changes and report
    overlapping user edits before modifying the same region.
-3. Run `python scripts/validate.py --no-color`. Record pre-existing failures and
+3. Run `python scripts/4-validate-spec.py --no-color`. Record pre-existing failures and
    do not attribute them to this maintenance pass.
 
 ## 2. Audit the capsule
@@ -88,7 +88,7 @@ Do not add frontmatter fields for prose that belongs in the body. Do not hand-ed
 When a notebook is added, renamed, or removed:
 
 1. Update the capsule's `notebooks:` frontmatter to match the files on disk.
-2. Run `python scripts/generate-catalog.py`. It refreshes the README badges
+2. Run `python scripts/5-generate-catalog.py`. It refreshes the README badges
    (counts and order), `CAPSULES.md`, `catalog.json`, and `llms.txt`.
 3. Search the README for the old notebook path. The "Try a notebook" step
    links one notebook by hand, so a rename or removal can leave it broken.
@@ -98,7 +98,7 @@ When a notebook is added, renamed, or removed:
 After each substantive edit, run:
 
 ```bash
-python scripts/generate-catalog.py && python scripts/validate.py --no-color
+python scripts/5-generate-catalog.py && python scripts/4-validate-spec.py --no-color
 ```
 
 Perform static notebook checks before any live execution. Run notebooks only when

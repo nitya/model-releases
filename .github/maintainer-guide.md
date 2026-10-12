@@ -37,21 +37,27 @@ pip install pyyaml jsonschema
 ### 1.3 Run every check — expect all green
 
 ```bash
-python scripts/validate.py
+python scripts/4-validate-spec.py
 ```
 
 You should see a `PASS` line for each of Schemas, Crosslinks, and Generated
 files, then `All checks passed.` If anything fails, fix the frontmatter
 before doing anything else — schema drift compounds fast.
 
-### 1.4 Bootstrap `.env` from the template
+### 1.4 Create a Foundry project and `.env`
+
+Capsule authors need a Foundry project to run notebooks. One script creates it
+and writes `.env`:
 
 ```bash
-./scripts/setenv.sh                                # copy sample.env → .env
-./scripts/setenv.sh <resource-group> <project>     # + populate via Azure CLI
+./scripts/1-create-rg.sh                       # sign in, create project + monitoring + access, write .env
+./scripts/3-deploy-model.sh --list <search>    # find a model; deploy it with <deployment> <model>
 ```
 
-Details in [`scripts/setenv.spec.md`](../scripts/setenv.spec.md).
+Details in [`scripts/1-create-rg.spec.md`](../scripts/1-create-rg.spec.md),
+[`2-setup-env.spec.md`](../scripts/2-setup-env.spec.md), and
+[`3-deploy-model.spec.md`](../scripts/3-deploy-model.spec.md). Add `--dry-run` to
+preview what a script would do.
 
 ### 1.5 Add your first artifact
 
@@ -74,7 +80,7 @@ loop end-to-end.
 Then re-run:
 
 ```bash
-python scripts/validate.py
+python scripts/4-validate-spec.py
 ```
 
 Still all green? The setup is working.
@@ -104,7 +110,7 @@ Still all green? The setup is working.
                        │
                        │ checked by
                        ▼
-              scripts/validate.py
+              scripts/4-validate-spec.py
 ```
 
 Everything the agent produces is a plain Markdown file. The YAML
@@ -129,7 +135,7 @@ upgrade path to GitHub Spec Kit later.
    (each notebook covers 1–3 concepts).
 3. The agent invokes `add-publisher` / `add-model` / `add-capsule` /
    `refresh-recent-activity` in order.
-4. Run `python scripts/generate-catalog.py && python scripts/validate.py` — must be all green.
+4. Run `python scripts/5-generate-catalog.py && python scripts/4-validate-spec.py` — must be all green.
 5. Skim the generated capsule README + notebooks for the voice/hype
    rules ([`plan.md` §15](./plan.md#15-content-authoring--pedagogy-rules)).
 6. PR, review, merge.
@@ -176,7 +182,7 @@ Use `add-capability-doc`. This:
 
 - Adds a primer under `docs/primers/<slug>.md`.
 - Regenerates the capability taxonomy table in `docs/README.md` from the
-  primer's frontmatter (run `python scripts/generate-catalog.py`).
+  primer's frontmatter (run `python scripts/5-generate-catalog.py`).
 - Extends the `capabilities` enum in
   [`capsule.schema.json`](./specs/schemas/capsule.schema.json) so future
   capsules can tag themselves with it — confirm this schema change in
@@ -191,7 +197,7 @@ old slug:
 
 ```bash
 grep -RIn "<old-slug>" .
-python scripts/validate.py
+python scripts/4-validate-spec.py
 ```
 
 ### 3.7 Maintaining an existing capsule
@@ -217,19 +223,19 @@ exactly four cells:
 | Date | `[YYYY-MM-DD](announcement-URL)`. If a second post covers the same model, add it in the same cell (`... · [Microsoft AI blog](URL)`) instead of adding a row. |
 | Publisher | `[Name](https://ai.azure.com/catalog/models?publisher=<slug>)`. The slug is the catalog's name, not our folder name (`microsoft`, `openai`, `mistral%20ai`). A wrong slug silently shows the unfiltered catalog, so check the filter applied. [`docs/README.md`](../docs/README.md#learn-about-publishers) lists each mapping. |
 | Model | `[Name](https://ai.azure.com/catalog/models/<slug>)`, using the exact catalog slug (`claude-opus-5`, `FW-Kimi-K3`). The announcement usually links it. Record the clean URL, never one with `?publisher=&search=`. Use plain text only when the model isn't in the catalog yet. |
-| Capabilities | `Tag · Tag`, using the labels from the primers |
+| Capabilities | `Tag · Tag`, using the labels from the primers. Name at most 3; if a model has more, name the 3 that matter most and end with `· [...]`. |
 
-If the announcement states an availability stage, append `<br>_(public preview)_`
-to the Model cell. The `<br>` keeps the annotation from widening the column;
-parsers strip it. Leave it off when the post doesn't say. Pricing is never a
-column, because the model card is the source of truth.
+Keep each row on one line. Don't add availability notes such as "public preview"
+to the Model cell; the stage lives in the capsule and on the model card, and
+`4-validate-spec.py` fails a note or line break there. Pricing is never a column
+either, because the model card is the source of truth.
 
 A publisher-filtered catalog page shows at most 51 models and searches in the
 browser, so a model missing from a fetched page isn't ruled out. Then refresh
 the README list:
 
 ```bash
-python scripts/generate-catalog.py && python scripts/validate.py
+python scripts/5-generate-catalog.py && python scripts/4-validate-spec.py
 ```
 
 Run `refresh-recent-activity` too, so "How can I learn more?" shows the new
@@ -239,11 +245,11 @@ top 3.
 
 1. Update the capsule's `notebooks:` frontmatter (path, title, 1–3 concepts) to
    match the files on disk.
-2. Run `python scripts/generate-catalog.py`. It refreshes the README badges
+2. Run `python scripts/5-generate-catalog.py`. It refreshes the README badges
    (counts and order), `CAPSULES.md`, `catalog.json`, and `llms.txt`.
 3. If a notebook was renamed or removed, search the README for its old path.
    The "Try a notebook" step links one notebook by hand.
-4. Run `python scripts/validate.py`.
+4. Run `python scripts/4-validate-spec.py`.
 
 ---
 
@@ -341,7 +347,7 @@ Notebook validation is opt-in because capsules require real Foundry
 deployments + credentials. The recommended pattern for a capsule
 maintainer:
 
-1. Populate `.env` via `scripts/setenv.sh`.
+1. Populate `.env` with `scripts/1-create-rg.sh` (or `scripts/2-setup-env.sh` for an existing project).
 2. From the capsule folder:
    ```bash
    jupyter nbconvert --to notebook --execute --inplace *.ipynb
@@ -371,9 +377,9 @@ catches problems before they reach the PR. Both run the same
 entrypoint:
 
 ```bash
-python scripts/validate.py           # schemas + crosslinks + generated files
-python scripts/validate.py --watch   # interactive: re-run on every save
-python scripts/validate.py --fix     # regenerate stale generated files
+python scripts/4-validate-spec.py           # schemas + crosslinks + generated files
+python scripts/4-validate-spec.py --watch   # interactive: re-run on every save
+python scripts/4-validate-spec.py --fix     # regenerate stale generated files
 ```
 
 Voice rules — no hype words, always **Microsoft Foundry** — are **not**
@@ -430,10 +436,10 @@ frontmatter.
 | Schemas | [`.github/specs/schemas/*.schema.json`](./specs/schemas/) |
 | Agent | [`.github/agents/CapsuleCreatorAgent.md`](./agents/CapsuleCreatorAgent.md) |
 | Skills | [`.github/skills/*/SKILL.md`](./skills/) |
-| All checks (run this) | [`scripts/validate.py`](../scripts/validate.py) |
+| All checks (run this) | [`scripts/4-validate-spec.py`](../scripts/4-validate-spec.py) |
 | Schema validator | [`scripts/validate-specs.py`](../scripts/validate-specs.py) |
 | Crosslink validator | [`scripts/validate-crosslinks.py`](../scripts/validate-crosslinks.py) |
-| Env bootstrap | [`scripts/setenv.sh`](../scripts/setenv.sh), [`scripts/sample.env`](../scripts/sample.env) |
+| Foundry setup | [`scripts/1-create-rg.sh`](../scripts/1-create-rg.sh), [`2-setup-env.sh`](../scripts/2-setup-env.sh), [`3-deploy-model.sh`](../scripts/3-deploy-model.sh), [`scripts/sample.env`](../scripts/sample.env) |
 | Repo README | [`README.md`](../README.md) |
 | Announcements | [`docs/ANNOUNCEMENTS.md`](../docs/ANNOUNCEMENTS.md) |
 | Glossary | [`docs/GLOSSARY.md`](../docs/GLOSSARY.md) |
@@ -447,7 +453,7 @@ frontmatter.
 Contributors can hand-author capsules and announcement entries without
 going through the agent. Two safety nets catch most mistakes for you:
 
-- **`scripts/validate.py`** — one command that runs the schema
+- **`scripts/4-validate-spec.py`** — one command that runs the schema
   validator, the crosslink validator, and the generated-file check.
   Run it before committing, or leave `--watch` running while you
   edit. The pre-commit hook runs the same command, and the
@@ -483,13 +489,13 @@ That leaves you to eyeball the things machines can't check:
 Run every check with one command before pushing:
 
 ```bash
-python scripts/validate.py
+python scripts/4-validate-spec.py
 ```
 
 Leave it running while you draft, so each save re-checks:
 
 ```bash
-python scripts/validate.py --watch
+python scripts/4-validate-spec.py --watch
 ```
 
 or install the pre-commit hooks to have it run on every commit:

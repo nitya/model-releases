@@ -14,7 +14,7 @@ this repo. One schema per `kind:` value.
 | `agent` | [`agent.schema.json`](./agent.schema.json) | `.github/agents/<name>.md` |
 | `script` | [`script.schema.json`](./script.schema.json) | `scripts/<name>.spec.md` |
 
-Run [`scripts/validate.py`](../../../scripts/validate.py) to check every
+Run [`scripts/4-validate-spec.py`](../../../scripts/4-validate-spec.py) to check every
 artifact against its schema and the repo's other invariants.
 
 ## What belongs in frontmatter
@@ -38,10 +38,10 @@ systems chunk per file. When an agent fetches a single capsule README,
 co-located frontmatter is the only thing telling it the model, the
 capability, and the price. Centralizing it would make every page
 context-free. Instead,
-[`scripts/generate-catalog.py`](../../../scripts/generate-catalog.py)
+[`scripts/5-generate-catalog.py`](../../../scripts/5-generate-catalog.py)
 derives the central index (`catalog.json`, `llms.txt`) *from* these
 per-file fields, so you get one-fetch discovery without giving up
-self-describing pages. `scripts/validate.py` fails if the generated
+self-describing pages. `scripts/4-validate-spec.py` fails if the generated
 files drift.
 
 `summary` is the field to get right: it is the meta description reused

@@ -27,7 +27,7 @@ include announcements that have no capsule yet), in this shape:
 
 | Part | Source | Link target |
 |---|---|---|
-| Model | announcement row's Model cell, minus any link markup and availability note | plain bold text — no link |
+| Model | announcement row's Model cell, minus any link markup | plain bold text — no link |
 | Release date | announcement row's Date cell | the announcement (carried over from that cell) |
 | Capabilities | announcement row's Capabilities cell, verbatim | plain text — no link |
 

@@ -1,7 +1,7 @@
 name: Validate contribution
 
 # Runs on pull requests, and on demand. Deliberately **not** on push:
-# authors validate locally while they work — `python scripts/validate.py
+# authors validate locally while they work — `python scripts/4-validate-spec.py
 # --watch` re-runs the same three checks on every save — so CI stays off
 # each individual commit and runs once per PR instead.
 #
@@ -38,4 +38,4 @@ jobs:
       # Same entrypoint authors run locally, so a green local run and a
       # green CI run mean the same thing. --no-color keeps the log plain.
       - name: Validate
-        run: python scripts/validate.py --no-color
+        run: python scripts/4-validate-spec.py --no-color

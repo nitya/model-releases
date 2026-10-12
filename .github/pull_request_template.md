@@ -5,7 +5,7 @@
   the boxes as you go. Any unchecked box in a section you're touching
   is a signal for the reviewer to look closer.
 
-  The `Validate contribution` job runs `python scripts/validate.py` on
+  The `Validate contribution` job runs `python scripts/4-validate-spec.py` on
   this PR and gates the merge. It covers the mechanical items (schemas,
   cross-links, generated files, no `_review_` placeholders) — run the
   same command locally first so CI isn't where you find out.
@@ -30,7 +30,7 @@
 
 - [ ] Folder is `models/<publisher>/<model>/` (the folder name equals the
       `model:` slug; the release date lives in frontmatter)
-- [ ] `python scripts/validate.py` passes
+- [ ] `python scripts/4-validate-spec.py` passes
 - [ ] `## References` (capsule README and each notebook) lists at least one
       model card and one docs link, on `learn.microsoft.com` where a
       canonical Learn page exists
@@ -40,7 +40,7 @@
 - [ ] Notebook starts by verifying `.env` (points learner back to
       `models/quickstart/` if unset)
 - [ ] `notebooks:` frontmatter lists every notebook, and
-      `python scripts/generate-catalog.py` was run so the README badges
+      `python scripts/5-generate-catalog.py` was run so the README badges
       and indexes are current
 - [ ] `ANNOUNCEMENTS.md` has a row with matching Date + Model, exactly four
       cells wide, with the Date cell linked to the announcement

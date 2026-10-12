@@ -96,10 +96,11 @@ _Traces help us answer it._ They record what the model was asked, what it return
 </p>
 <!-- END:RECENT-CAPSULES -->
 
-- **Setup** → [Open the repository in GitHub Codespaces](https://codespaces.new/microsoft-foundry/model-releases) and follow the
-  [quickstart](./models/quickstart/) once.
+- **Setup** → [Open the repository in GitHub Codespaces](https://codespaces.new/microsoft-foundry/model-releases), then run `./scripts/1-create-rg.sh` once.
+  It signs you in, creates your Foundry project with monitoring and access, and writes your `.env`
+  ([quickstart](./models/quickstart/README.md)).
 - **Pick a family** → Click a badge to see notebooks - if `0` try [creating the first one](./docs/README.md#contributing-how-can-i-add-new-content).
-- **Try a notebook** → Open one in VS Code, select the kernel, and run the cells.
+- **Try a notebook** → Deploy the model it needs with `./scripts/3-deploy-model.sh`, open the notebook in VS Code, select the kernel, and run the cells.
 
 Not sure where to start? [MAI-Image-2.5](./models/microsoft-ai/mai-image-2.5/mai-image-2.5.ipynb) gives a visual result fast. Then change an input, test a hunch, and fix whatever breaks, because that's where most of the learning happens.
 

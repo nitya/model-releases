@@ -1,19 +1,19 @@
 ---
 kind: script
-script: scripts/validate.py
+script: scripts/4-validate-spec.py
 purpose: Run the schema validator, the crosslink validator, and the generated-file check from one command; --watch re-runs them on every save so an author can validate interactively before committing.
 prereqs:
   - "Dev dependencies installed: pip install -r requirements-dev.txt"
 usage:
-  - "python scripts/validate.py             # run once; exits non-zero if any check fails"
-  - "python scripts/validate.py --watch     # interactive: re-run on every save, Ctrl-C to stop"
-  - "python scripts/validate.py --fix       # regenerate stale generated files, then re-check"
-  - "python scripts/validate.py --no-color  # plain output (used by CI and the pre-commit hook)"
+  - "python scripts/4-validate-spec.py             # run once; exits non-zero if any check fails"
+  - "python scripts/4-validate-spec.py --watch     # interactive: re-run on every save, Ctrl-C to stop"
+  - "python scripts/4-validate-spec.py --fix       # regenerate stale generated files, then re-check"
+  - "python scripts/4-validate-spec.py --no-color  # plain output (used by CI and the pre-commit hook)"
 learn_ref: https://learn.microsoft.com/azure/foundry/
 idempotent: true
 ---
 
-# validate.py
+# 4-validate-spec.py
 
 The single entrypoint for checking a contribution. It shells out to
 the three checks that used to be three separate CI steps, in the order
@@ -23,7 +23,7 @@ that produces the most useful first error:
 |---|---|---|
 | 1 | Frontmatter matches the JSON Schema for its `kind` | [`validate-specs.py`](./validate-specs.py) |
 | 2 | ANNOUNCEMENTS ↔ README ↔ capsule ↔ primer wiring | [`validate-crosslinks.py`](./validate-crosslinks.py) |
-| 3 | Generated files are current | [`generate-catalog.py --check`](./generate-catalog.py) |
+| 3 | Generated files are current | [`5-generate-catalog.py --check`](./5-generate-catalog.py) |
 
 Schemas run first because a frontmatter error makes the later checks
 report confusing follow-on failures.
@@ -42,7 +42,7 @@ problem shows up.
 ## Interactive use
 
 ```bash
-python scripts/validate.py --watch
+python scripts/4-validate-spec.py --watch
 ```
 
 Leave that running in a second terminal while you edit. It polls the
@@ -55,4 +55,4 @@ it works from a bare checkout.
 right response to a stale-generated-file failure — those files are
 built from frontmatter and are never edited by hand.
 
-See [`scripts/validate.py`](./validate.py) for the implementation.
+See [`scripts/4-validate-spec.py`](./4-validate-spec.py) for the implementation.

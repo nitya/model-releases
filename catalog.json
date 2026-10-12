@@ -338,8 +338,8 @@
           "path": "models/microsoft-ai/mai-image-2.5-flash/mai-image-2.5-flash.ipynb",
           "title": "Production-scale image generation with MAI-Image-2.5-Flash",
           "concepts": [
-            "batch image generation",
-            "throughput measurement and cost estimation",
+            "compare Flash with MAI-Image-2.5 on the same prompts for quality, latency, and cost",
+            "batch generation, throughput measurement, and cost estimation",
             "concurrent requests for high-volume workflows"
           ]
         }

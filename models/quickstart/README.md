@@ -4,7 +4,7 @@ required_env:
   - MICROSOFT_FOUNDRY_ENDPOINT
   - MICROSOFT_FOUNDRY_API_KEY
 sample_env: scripts/sample.env
-setup_script: scripts/setenv.sh
+setup_script: scripts/1-create-rg.sh
 learn_more:
   - title: Foundry quickstart docs
     url: https://learn.microsoft.com/azure/foundry/quickstarts/get-started-code
@@ -16,7 +16,14 @@ learn_more:
 
 # Model Releases Quickstart
 
-> **Do this once.** Every capsule notebook in this repo assumes you've completed the four steps below. When a notebook can't find a required env var, it will point you back here.
+> **Do this once.** Every capsule notebook in this repo assumes you've finished the steps below. When a notebook can't find a required env var, it will point you back here.
+
+The short version:
+
+```bash
+./scripts/1-create-rg.sh      # creates your Foundry project, monitoring, and access, then writes .env
+./scripts/3-deploy-model.sh   # deploys the models a capsule needs (run with --help)
+```
 
 **Grounded in Microsoft Learn:**
 - [Quickstart: Get started with Microsoft Foundry SDK](https://learn.microsoft.com/azure/foundry/quickstarts/get-started-code)
@@ -29,9 +36,10 @@ learn_more:
 
 ```mermaid
 flowchart LR
-    A[Azure sub +<br/>Foundry access] --> B[Foundry project]
-    B --> C[Model deployments<br/>named by job]
-    C --> D[.env<br/>endpoint + key + names]
+    A[Azure<br/>subscription] -->|1-create-rg.sh| B[Foundry project<br/>+ monitoring + access]
+    B -->|2-setup-env.sh| D[.env<br/>endpoint + key + names]
+    B -->|3-deploy-model.sh| C[Model deployments<br/>named by job]
+    C --> D
     D --> E[Verify cell<br/>passes in a notebook]
 ```
 
@@ -39,60 +47,71 @@ flowchart LR
 
 ## 1. Prerequisites
 
-- An **Azure subscription** with access to Microsoft Foundry
-  ([sign-in](https://ai.azure.com)).
-- **Azure CLI** logged in: `az login` — see
-  [Azure CLI docs](https://learn.microsoft.com/cli/azure/get-started-with-azure-cli).
+- An **Azure subscription** where you can create resources and assign roles
+  (Owner, or Contributor plus User Access Administrator, on the resource group).
+- **Azure CLI**. The devcontainer and Codespaces already include it; otherwise
+  [install it](https://learn.microsoft.com/cli/azure/install-azure-cli). The
+  script signs you in, so you don't need to run `az login` first.
 - **Python 3.10+** (the devcontainer ships 3.12) or open this repo in the
   provided devcontainer, which installs `requirements-dev.txt` for you.
 
 ## 2. Create a Foundry project
 
-1. Go to [ai.azure.com](https://ai.azure.com) and sign in with your Azure account.
-2. Slide the **New Foundry** toggle (top-right) to **on**.
-3. When prompted, complete the **Create project** wizard. Alternatively, click the project drop-down and select **Create project** to trigger the flow manually.
-4. If prompted to create a resource group in the Azure Portal, complete that step before continuing.
-5. Note the **resource group name** and **project name** — you need them in Step 4.
-6. Wait for creation to complete.
+Run the script from the repo root:
 
-Full walkthrough: [Create a project in the Foundry portal](https://learn.microsoft.com/azure/foundry/how-to/create-projects).
+```bash
+./scripts/1-create-rg.sh
+```
 
-> **Other ways to create a project** (Azure CLI, Foundry Toolkit) will be documented here in a future update.
+If you get a permission error, make the scripts executable first with
+`chmod a+x scripts/*.sh`.
+
+The script walks us through it:
+
+1. **Signs you in** to Azure and lets you pick a default subscription.
+2. **Asks for a resource group name and a location**, then shows what it will
+   create and waits for a yes.
+3. **Creates** the resource group, a Foundry resource, and a default project.
+4. **Turns on monitoring**: Application Insights and Log Analytics, with the
+   Foundry resource's logs sent to the workspace.
+5. **Grants access**: Foundry User for you and the project, plus the Reader
+   roles that tracing needs. The
+   [script spec](../../scripts/1-create-rg.spec.md) lists every role and why.
+6. **Offers to write `.env`** for you (step 3 below).
+
+To preview without changing anything, add `--dry-run`. It's safe to re-run, and
+existing resources are kept. If a role assignment needs someone with more
+access, the script prints the exact commands to hand to an owner.
+
+Prefer the portal? See
+[Create a project in the Foundry portal](https://learn.microsoft.com/azure/foundry/how-to/create-projects).
 
 ## 3. Deploy the models a capsule needs
 
 Each release capsule lists the exact deployments it expects in its
-**Before You Begin** section. To deploy a model:
-
-1. In your project, open **Model catalog**.
-2. Select the model → **Deploy**.
-3. Name the deployment **by the job it does**, not the raw model name
-   (e.g. `router-nano`, `policy-mini`, `planner-gpt41`) — this makes it easy
-   to swap models later without touching notebooks.
-
-Full reference: [Deploy models in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/how-to/deploy-models-openai).
-
-> **Other deployment paths** (Azure CLI, Foundry Toolkit) will be documented here in a future update.
-
-## 4. Configure `.env`
-
-**Step 1 — Authenticate with Azure**
+**Before You Begin** section. Find a model, then deploy it:
 
 ```bash
-az login
+./scripts/3-deploy-model.sh --list mai
+./scripts/3-deploy-model.sh image-flash MAI-Image-2.5-Flash --env-var AZURE_MAI_IMAGE_25_FLASH_DEPLOYMENT
 ```
 
-**Step 2 — Run the setup script**
+The script fills in the model's format, version, deployment type, and capacity
+from the catalog, and `--env-var` saves the deployment name to `.env`.
 
-From the repo root, substituting your resource group and project name from Step 2.
-If you get a permission error, make the scripts executable first:
+Name the deployment **by the job it does**, not the raw model name
+(e.g. `router-nano`, `policy-mini`, `planner-gpt41`). That makes it easy to swap
+models later without touching notebooks.
+
+Full reference: [Deploy models using Azure CLI and Bicep](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/create-model-deployments).
+
+## 4. Check your `.env`
+
+Script 1 offers to write `.env` for you. If you skipped that, or want to refresh
+it, run:
 
 ```bash
-chmod a+x scripts/*.sh
-```
-
-```bash
-./scripts/setenv.sh --use <resource-group> <project-name>
+./scripts/2-setup-env.sh --use <resource-group> <project-name>
 ```
 
 The script copies [`scripts/sample.env`](../../scripts/sample.env) to `.env`, then reads
@@ -105,9 +124,9 @@ To load the variables into your current terminal session:
 source .env
 ```
 
-Full reference: [`scripts/setenv.spec.md`](../../scripts/setenv.spec.md).
+Full reference: [`scripts/2-setup-env.spec.md`](../../scripts/2-setup-env.spec.md).
 
-Then set at minimum:
+These are the variables it sets:
 
 | Variable | What it is |
 |---|---|
@@ -141,9 +160,11 @@ print('✅ base env OK' if not missing else f'⚠️ missing: {missing}')"
 
 ## Troubleshooting
 
-- **`401 / 403`** — API key wrong, or your identity lacks the *Cognitive
-  Services User* role. See
-  [Foundry RBAC](https://learn.microsoft.com/azure/foundry/concepts/rbac-azure-ai-foundry).
+- **`401 / 403`** — API key wrong, or your identity lacks the *Foundry User*
+  role. Re-run `./scripts/1-create-rg.sh`, which assigns it, or see
+  [Foundry RBAC](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry).
+- **Can't create a deployment** — Foundry User can't deploy models. Ask an owner
+  for *Foundry Account Owner* or *Cognitive Services Contributor* on the resource.
 - **`404 model not found`** — deployment name in `.env` doesn't match
   what's in the portal. Match them exactly (case-sensitive).
 - **Quota errors** — request a quota increase from the portal or pick a

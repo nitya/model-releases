@@ -120,7 +120,7 @@ Produces a complete release capsule:
 5. Adds a members-table row to `models/<publisher>/README.md`.
 6. Regenerates `CAPSULES.md`, `catalog.json`, `llms.txt`, and the
    repo README's notebook badges (a count per publisher, highest first)
-   by running `python scripts/generate-catalog.py`. The counts come from
+   by running `python scripts/5-generate-catalog.py`. The counts come from
    each capsule's `notebooks:` frontmatter. These are generated -
    never hand-edit them. The capsule's row appears under
    its publisher's `## <Provider>` heading automatically; the generator
