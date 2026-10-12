@@ -50,11 +50,11 @@ settings, and traces are the diagnostics.
 flowchart LR
     job["A job to do"] --> agent
     subgraph agent["Agent (the vehicle)"]
-        model["Model (engine)"]
-        instructions["Instructions (manual)"]
-        tools["Tools (accessories)"]
-        memory["Memory (settings)"]
-        traces["Traces (diagnostics)"]
+        model["Model<br/>(engine)"]
+        instructions["Instructions<br/>(manual)"]
+        tools["Tools<br/>(accessories)"]
+        memory["Memory<br/>(settings)"]
+        traces["Traces<br/>(diagnostics)"]
     end
     agent --> done["A finished job"]
 ```
@@ -96,14 +96,12 @@ _Traces help us answer it._ They record what the model was asked, what it return
 </p>
 <!-- END:RECENT-CAPSULES -->
 
-- **Setup.** [Open the repository in GitHub Codespaces](https://codespaces.new/microsoft-foundry/model-releases) and follow the
-  [quickstart](./models/quickstart/) once to connect a Foundry project and create your `.env` file.
-- **Pick a family.** Click a badge above to see the list of notebooks available. A `0` means
-  we'd love help [creating the first one](./docs/README.md#contributing-how-can-i-add-new-content).
-- **Try a notebook.** Open one in VS Code, select the kernel, and run the cells. Not sure where
-  to start? [MAI-Image-2.5](./models/microsoft-ai/mai-image-2.5/mai-image-2.5.ipynb) gives a
-  visual result fast. Then change an input, test a hunch, and fix whatever breaks, because
-  that's where most of the learning happens.
+- **Setup** → [Open the repository in GitHub Codespaces](https://codespaces.new/microsoft-foundry/model-releases) and follow the
+  [quickstart](./models/quickstart/) once.
+- **Pick a family** → Click a badge to see notebooks - if `0` try [creating the first one](./docs/README.md#contributing-how-can-i-add-new-content).
+- **Try a notebook** → Open one in VS Code, select the kernel, and run the cells.
+
+Not sure where to start? [MAI-Image-2.5](./models/microsoft-ai/mai-image-2.5/mai-image-2.5.ipynb) gives a visual result fast. Then change an input, test a hunch, and fix whatever breaks, because that's where most of the learning happens.
 
 Want release summaries and update dates? Try the [CAPSULES](./docs/CAPSULES.md).
 
@@ -129,6 +127,6 @@ capabilities. Here are the three most recent:
 
 ## Where can I find the details?
 
-- [Reference guide](./docs/README.md): how the repo is organized, what each capability tag means, and a glossary of terms
-- [Contribute](./docs/README.md#contributing-how-can-i-add-new-content): add a capsule, publisher, capability, or glossary term
-- [Use it from an agent](./docs/README.md#using-this-repo-from-an-agent): fetch the whole catalog through `catalog.json` or `llms.txt`
+- [Reference guide](./docs/README.md): how repo is organized, plus a glossary of terms
+- [Contribute content](./docs/README.md#contributing-how-can-i-add-new-content): add a capsule, publisher, capability, or glossary term
+- [Use it from an agent](./docs/README.md#using-this-repo-from-an-agent): fetch repo data through `catalog.json` or `llms.txt`
