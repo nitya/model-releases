@@ -152,7 +152,7 @@ The notebooks call the decision endpoint, `<resource>/providers/microsoft/v1/sys
 |---|---|
 | [01-triage-festival-messages.ipynb](01-triage-festival-messages.ipynb) | Route, rank, and gate messages in one request, then fix vague options with an abstention choice |
 | [02-set-confidence-thresholds.ipynb](02-set-confidence-thresholds.ipynb) | Run the whole shift, check calibration, pick thresholds that don't miss emergencies, and render an ops wall |
-| [03-guard-and-grade-the-ops-copilot.ipynb](03-guard-and-grade-the-ops-copilot.ipynb) | Gate agent actions, check replies against the guide, and grade them against a rubric |
+| [03-guard-and-grade-the-ops-copilot.ipynb](03-guard-and-grade-the-ops-copilot.ipynb) | Gate agent actions, check replies against the guide, grade them against a rubric, and screen a social wall |
 
 Each notebook is independently runnable. Output goes to `output/`, which is created at runtime
 and isn't committed.
@@ -177,8 +177,10 @@ people or events. The map script is there too, so the image can be regenerated.
   probabilities and our option wording instead of asking it to explain.
 - Wording matters. Vague or overlapping options produce confident wrong answers, which notebook
   01 shows and fixes.
-- Calibration is a claim to check on our own data. Notebook 02 does that and shows a confident
-  miss that thresholds can't catch.
+- Calibration is a claim to check on our own data. Notebook 02 does that, then compares two ways
+  to handle a confident mistake: raise the confidence bar, or fix the option wording.
+- Probabilities can shift a little when the same request is sent again, so the numbers in your
+  runs will differ slightly from the ones described here. Leave a margin around any threshold.
 - It isn't a writer. Drafting, summarizing, and explaining belong to a generative model, and
   Microsoft-Decision-1 can check that model's work.
 - Don't use it as the only basis for decisions about people, such as credit, employment, housing,
@@ -187,7 +189,7 @@ people or events. The map script is there too, so the image can be regenerated.
 ## Beyond the festival
 
 The same pattern fits other desks: support-ticket routing, incident triage, search relevance,
-safety screening, and tool selection for an agent. Notebook 03's last exercise screens a social
+safety screening, and tool selection for an agent. Notebook 03 ends by screening a social
 wall for harmful posts with a yes-or-no question, and the primer lists more
 [ways to use a decision model](../../../docs/primers/decision-models.md).
 

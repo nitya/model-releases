@@ -118,6 +118,9 @@ also need an explanation, a plan, or a draft.
 - **Next:** the team plans to rebase future versions on OpenAI and Microsoft MAI
   models.
 
+- **See it work:** the [Microsoft-Decision-1 capsule](../../models/microsoft/microsoft-decision-1/README.md)
+  follows a festival ops desk through routing, confidence thresholds, and agent guardrails.
+
 Release details are in [ANNOUNCEMENTS](../ANNOUNCEMENTS.md).
 
 ## Try it on our own data

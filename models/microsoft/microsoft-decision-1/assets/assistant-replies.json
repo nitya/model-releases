@@ -128,7 +128,7 @@
   {
     "id": "r19",
     "question": "Who headlines on Sunday?",
-    "reply": "Sunday's headliner is Nova Reyes.",
+    "reply": "Sunday's headliner is the Northwind Orchestra.",
     "expected_grounding": "cannot_tell",
     "human_grade": 0
   },

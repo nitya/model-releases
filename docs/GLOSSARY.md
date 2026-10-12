@@ -27,6 +27,19 @@ to go deeper.
 
 ## A
 
+### Abstention Option
+
+*"What should a model answer when it doesn't have enough to go on?"*
+
+An abstention option is an answer we add to a closed question, such as "cannot tell" or
+"unclear," so a [decision model](#decision-model) can decline to choose. Without one, the model
+has to spread its probability over the options we gave it, and a vague input still gets a
+confident-looking answer. When our code treats the abstention as "send this to a person," missing
+evidence becomes a signal we can act on. Notebooks 01 and 03 of the
+[Microsoft-Decision-1 capsule](../models/microsoft/microsoft-decision-1/README.md) show both cases.
+
+**Reference:** [Deploy and use Microsoft-Decision-1 in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision)
+
 ### Active Parameters
 
 *"This model has 235 billion parameters — so why is it fast?"*
@@ -82,6 +95,18 @@ _No entries yet._
 
 ## C
 
+### Calibration
+
+*"If the model says 0.9, is it right nine times out of ten?"*
+
+Calibration is how well a model's stated probabilities match how often it is right. A calibrated
+0.9 is correct about 90 percent of the time, which is what lets us automate confident answers and
+escalate the rest with a threshold. We check calibration on our own labeled data, because a model
+can be well calibrated on familiar tasks and overconfident on others. A worked check is in
+[notebook 02](../models/microsoft/microsoft-decision-1/02-set-confidence-thresholds.ipynb) of the Microsoft-Decision-1 capsule.
+
+**Reference:** [Deploy and use Microsoft-Decision-1 in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision)
+
 ### Context Window
 
 *"How much can the model actually take in on a single call?"*
@@ -98,6 +123,20 @@ practical reason to trim context and [right-size](#right-sizing) each request.
 **Reference:** [Work with chat completion models — Microsoft Foundry](https://learn.microsoft.com/azure/foundry/openai/how-to/chatgpt)
 
 ## D
+
+### Decision Model
+
+*"Which model do we use for a step that picks, scores, or checks instead of writing?"*
+
+A decision model answers closed questions about some state with a choice, a score, or a
+probability, and doesn't generate free-form text. Our code can branch on the typed answer, so it
+fits the routing, gating, ranking, and grading steps that run often and need a predictable
+response. Microsoft-Decision-1 is one example. See the
+[Decision Models primer](primers/decision-models.md) for how the decision API works, and
+[Abstention Option](#abstention-option) and [Calibration](#calibration) for two habits that make
+the answers safer to act on.
+
+**Reference:** [Deploy and use Microsoft-Decision-1 in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision)
 
 ### Dense Model
 
