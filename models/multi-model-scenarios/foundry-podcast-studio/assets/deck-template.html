@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Narrated deck</title>
+<style>
+  :root { --ink:#25303B; --bg:#F7F5F0; --card:#FFFFFF; --teal:#2A7FBA; --coral:#E4572E; --line:#E3DED3; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.5 system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  header { padding:20px 28px 8px; }
+  h1 { margin:0; font-size:26px; }
+  .sub { margin:2px 0 8px; color:#5C6B7A; }
+  .notice { display:inline-block; margin:4px 0 0; padding:4px 10px; font-size:13px; background:#FFF1D6; border:1px solid #F2A541; border-radius:6px; }
+  main { display:grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap:22px; padding:12px 28px 32px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; }
+  #stage { width:100%; aspect-ratio:1/1; max-height:480px; object-fit:contain; background:#EFEAE0; border-radius:8px; }
+  audio { width:100%; margin-top:10px; }
+  h2 { margin:0 0 8px; font-size:15px; text-transform:uppercase; letter-spacing:.04em; color:#5C6B7A; }
+  #slideTitle { margin:12px 0 4px; font-size:20px; }
+  #bullets { margin:0; padding-left:20px; }
+  #slides { display:flex; flex-direction:column; gap:6px; }
+  #slides button { text-align:left; padding:8px 10px; font:inherit; background:#fff; border:1px solid var(--line); border-radius:8px; cursor:pointer; }
+  #slides button.on { border-color:var(--teal); background:#DCEBFA; }
+  #captions { max-height:230px; overflow:auto; line-height:1.7; }
+  .w.now { background:#FFD9C7; border-radius:3px; }
+  .cite { padding:8px 10px; margin-top:6px; background:#F1F6FB; border-left:4px solid var(--teal); border-radius:6px; font-size:14px; }
+  .cite small { display:block; color:#5C6B7A; }
+  a { color:var(--teal); }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title"></h1>
+  <p class="sub" id="subtitle"></p>
+  <span class="notice" id="disclosure"></span>
+</header>
+<main>
+  <section>
+    <div class="panel">
+      <img id="stage" alt="Illustration for the current slide">
+      <h2 id="slideTitle" style="text-transform:none;letter-spacing:0;color:inherit"></h2>
+      <ul id="bullets"></ul>
+      <audio id="audio" controls preload="metadata"></audio>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <h2>Slides</h2>
+      <div id="slides"></div>
+    </div>
+  </section>
+  <section>
+    <div class="panel">
+      <h2>Captions</h2>
+      <div id="captions"></div>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <h2>Where this slide comes from</h2>
+      <div id="sources"></div>
+      <p class="sub" id="origin"></p>
+    </div>
+  </section>
+</main>
+<script type="application/json" id="episode">__EPISODE_DATA__</script>
+<script>
+  // All episode text goes in with textContent, so nothing in the data can run as markup.
+  const data = JSON.parse(document.getElementById("episode").textContent);
+  const $ = (id) => document.getElementById(id);
+  $("title").textContent = data.title;
+  $("subtitle").textContent = data.subtitle || "";
+  $("disclosure").textContent = data.disclosure;
+  const audio = $("audio");
+  audio.src = data.audio;
+  const stage = $("stage");
+  stage.src = data.cover;
+
+  const origin = document.createElement("a");
+  origin.textContent = "Read the original announcement";
+  origin.href = data.source.url;
+  origin.target = "_blank";
+  origin.rel = "noopener noreferrer";
+  $("origin").append(origin, document.createTextNode(" (" + data.source.date + ")"));
+
+  const slideButtons = new Map();
+  data.slides.forEach((slide) => {
+    const button = document.createElement("button");
+    button.textContent = slide.title;
+    button.addEventListener("click", () => { audio.currentTime = slide.start; audio.play(); });
+    $("slides").appendChild(button);
+    slideButtons.set(slide.id, button);
+  });
+
+  const wordNodes = [];
+  data.words.forEach((word, i) => {
+    const span = document.createElement("span");
+    span.className = "w";
+    span.textContent = (i ? " " : "") + word.w;
+    span.dataset.start = word.start;
+    span.dataset.end = word.end;
+    span.addEventListener("click", () => { audio.currentTime = word.start; audio.play(); });
+    $("captions").appendChild(span);
+    wordNodes.push(span);
+  });
+
+  let current = null;
+  function showSlide(slide) {
+    $("slideTitle").textContent = slide.title;
+    $("bullets").replaceChildren();
+    slide.bullets.forEach((text) => {
+      const item = document.createElement("li");
+      item.textContent = text;
+      $("bullets").appendChild(item);
+    });
+    $("sources").replaceChildren();
+    slide.cites.forEach((cite) => {
+      const box = document.createElement("div");
+      box.className = "cite";
+      box.textContent = "\u201C" + cite.text + "\u201D";
+      const small = document.createElement("small");
+      small.textContent = "Paragraph " + cite.n + " of the announcement";
+      box.appendChild(small);
+      $("sources").appendChild(box);
+    });
+    stage.src = slide.image;
+  }
+
+  audio.addEventListener("timeupdate", () => {
+    const t = audio.currentTime;
+    const slide = data.slides.find((s) => t >= s.start && t < s.end) || null;
+    if (slide !== current) {
+      if (current) slideButtons.get(current.id).classList.remove("on");
+      current = slide;
+      if (slide) { slideButtons.get(slide.id).classList.add("on"); showSlide(slide); }
+    }
+    wordNodes.forEach((span) => {
+      const on = t >= +span.dataset.start && t < +span.dataset.end;
+      span.classList.toggle("now", on);
+      if (on) span.scrollIntoView({ block: "nearest" });
+    });
+  });
+</script>
+</body>
+</html>

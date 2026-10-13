@@ -7,7 +7,7 @@ A capsule pairs a model release with runnable notebooks. Pick a provider, then o
   <a href="#microsoft"><img src="https://img.shields.io/badge/Microsoft-3-6B7280?style=flat-square" alt="Microsoft: 3 notebooks" /></a>
   <a href="#microsoft-ai"><img src="https://img.shields.io/badge/Microsoft%20AI-8-00A4EF?style=flat-square" alt="Microsoft AI: 8 notebooks" /></a>
   <a href="#model-router"><img src="https://img.shields.io/badge/Model%20Router-3-7F3FBF?style=flat-square" alt="Model Router: 3 notebooks" /></a>
-  <a href="#multi-model-scenarios"><img src="https://img.shields.io/badge/Multi--model%20scenarios-2-6B7280?style=flat-square" alt="Multi-model scenarios: 2 notebooks" /></a>
+  <a href="#multi-model-scenarios"><img src="https://img.shields.io/badge/Multi--model%20scenarios-3-6B7280?style=flat-square" alt="Multi-model scenarios: 3 notebooks" /></a>
 </p>
 
 ## Microsoft
@@ -47,6 +47,7 @@ Scenarios use several releases together in one notebook.
 
 - 2026-10-12 · **[Foundry podcast studio](../models/multi-model-scenarios/foundry-podcast-studio/)** · Multiple publishers
   1. [Walk through three model cards as a two-host podcast](../models/multi-model-scenarios/foundry-podcast-studio/01-primer-podcast-model-cards.ipynb)
+  2. [Turn release announcements into narrated, source-linked decks](../models/multi-model-scenarios/foundry-podcast-studio/02-release-notes-radio.ipynb)
 - 2026-08-12 · **[MAI-Image-2.5 family walkthrough](../models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/)** · Microsoft AI
   1. [Compare MAI-Image-2.5, Flash, and Pro side by side](../models/microsoft-ai/multi-model-scenarios/mai-image-family-walkthrough/mai-image-family-walkthrough.ipynb)
 <!-- END:CAPSULE-LIST -->

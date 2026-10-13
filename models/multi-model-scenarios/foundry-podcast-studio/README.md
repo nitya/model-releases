@@ -38,6 +38,11 @@ notebooks:
       - checking a script against model-card excerpts before paying for speech
       - fixing the transcription of model names with a phrase list
       - assembling a synced player from audio, word timestamps, and images
+  - path: 02-release-notes-radio.ipynb
+    title: "Turn release announcements into narrated, source-linked decks"
+    concepts:
+      - grounding every slide bullet in its source paragraphs before it is voiced
+      - reviewing a generated player page before it runs
 ---
 
 # Foundry Podcast Studio — Scenario
