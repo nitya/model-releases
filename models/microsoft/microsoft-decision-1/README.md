@@ -36,15 +36,9 @@ notebooks:
 
 **Released:** 2026-10-09 · **Publisher:** [Microsoft](../README.md) · **Capability:** Decision Models
 
-Most steps in an AI application are decisions, not drafts: which team gets this, how bad is
-it, may the agent run that action? Microsoft-Decision-1 answers closed questions about text
-or JSON with a choice, a score, or a probability, so our code can branch on the answer. New to
-the idea? Read the [decision models primer](../../../docs/primers/decision-models.md) first,
-then come back to watch one work through a story.
+Most steps in an AI application are decisions, not drafts: which team gets this, how bad is it, may the agent run that action? Microsoft-Decision-1 answers closed questions about text or JSON with a choice, a score, or a probability, so our code can branch on the answer. New to the idea? Read the [decision models primer](../../../docs/primers/decision-models.md) first, then come back to watch one work through a story.
 
-> **Lifecycle.** The announcement describes Microsoft-Decision-1 as a public preview, while the
-> model card lists it as generally available. Check the model card for the current status before
-> planning production use.
+> **Lifecycle.** The [announcement](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-microsoft-decision-1-in-microsoft-foundry-for-decision-and-classific/4562742) describes Microsoft-Decision-1 as a public preview in Oct 2026. Check the model card for the current status before planning production use.
 
 ## The scenario: the Contoso Music Festival ops desk
 
